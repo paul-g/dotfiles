@@ -4,6 +4,5 @@
 
 ````
 ln -s <path_to_checkout/emacs/emacs.el> ~/.emacs.el
-mkdir .yasnippet-snippets
-mkdir .emacs.d/mysnippets
+ln -s <path_to_checkout/emacs/yasnippet-snippets> ~/.yasnippet-snippets
 ````

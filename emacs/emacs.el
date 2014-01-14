@@ -75,13 +75,13 @@
 (setq next-line-add-newlines t)                         ; Add new lines at end of buffer
 
 ;; Setup yasnippet
-(setq yas/root-directory '("~/.emacs.d/mysnippets"
-                           "~/workspaces/config/yasnippet-snippets"))
+(setq yas/root-directory '("~/.yasnippet-snippets"))
 
 ;; Map `yas/load-directory' to every element
 (mapc 'yas/load-directory yas/root-directory)
 (yas-global-mode 1)
 (global-auto-complete-mode 1)
+
 
 ;; -- Useful functions --
 (add-hook 'after-save-hook 'compile-latex-hook)
@@ -115,6 +115,7 @@
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
+
 ;; -- Key bindings
 (global-set-key [f1] 'ascope-init)
 (global-set-key [f2] 'ascope-find-this-symbol)
@@ -122,6 +123,6 @@
 (global-set-key [f4] 'ascope-find-functions-calling-this-functions)
 (global-set-key [f5] 'compile)
 (global-set-key [f6] 'ff-find-other-file)
-(global-set-key (kbd "C-x c") 'magit-status)
+(global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-<tab>") 'yas-expand)
 (global-set-key (kbd "C-c n") 'indent-buffer)
