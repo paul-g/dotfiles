@@ -20,10 +20,23 @@
     ;;themes
     zenburn-theme ir-black-theme solarized-theme))
 
+(defun packages-installed-p ()
+  (loop for p in packages
+        when (not (package-installed-p p)) do (return nil)
+        finally (return t)))
+
+
+(unless (packages-installed-p)
+  (message "%s" "Refreshing package database...")
+  (package-refresh-contents)
+  (message "%s" " done.")
+  (dolist (p packages)
+    (when (not (package-installed-p p))
+      (package-install p))))
+
 (dolist (p packages)
   (when (not (package-installed-p p))
     (package-install p)))
-
 
 ;; -- imports --
 (require 'ascope)
