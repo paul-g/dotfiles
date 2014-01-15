@@ -11,7 +11,8 @@
 (defvar packages
   '(ack-and-a-half
     ;; coding stuff
-    ascope auto-complete yasnippet magit haskell-mode python inf-ruby
+    ascope auto-complete yasnippet magit haskell-mode
+    python inf-ruby multiple-cursors
     ;; writing
     ebib markdown-mode
     ;; ui
@@ -42,6 +43,7 @@
 (require 'ascope)
 (require 'auto-complete)
 (require 'ebib)
+(require 'multiple-cursors)
 (require 'popup)
 (require 'volatile-highlights)
 (require 'yasnippet)
@@ -124,3 +126,7 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-<tab>") 'yas-expand)
 (global-set-key (kbd "C-c n") 'indent-buffer)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
