@@ -50,6 +50,7 @@
 (tool-bar-mode -1)
 (volatile-highlights-mode t)
 
+
 ;; -- Coding --
 (define-key global-map (kbd "RET") 'newline-and-indent) ; Auto indent on enter
 (setq next-line-add-newlines t)                         ; Add new lines at end of buffer
@@ -72,7 +73,7 @@
 (defun bury-compile-buffer-if-successful (buffer string)
   "Bury a compilation buffer if succeeded without warnings "
   (if (and
-      (string-match "compilation" (buffer-name buffer))
+       (string-match "compilation" (buffer-name buffer))
        (string-match "finished" string)
        (not
         (with-current-buffer buffer
