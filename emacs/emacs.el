@@ -58,9 +58,9 @@
 (load-theme 'ir-black t)
 (menu-bar-mode -1)
 (setq column-number-mode t)
-(setq indent-tabs-mode nil)
-(setq tab-width 2)
-(setq whitespace-style '(face tabs trailing lines-tail))
+(setq indent-tabs-mode nil
+      tab-width 2
+      whitespace-style '(face tabs trailing lines-tail))
 (show-paren-mode 1)
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
@@ -78,9 +78,9 @@
 (global-auto-complete-mode 1)
 
 ;; -- Backups --
-(setq backup-directory-alist `(("." . "~/.emacs-bkp")))
-(setq backup-by-copying t)
-(setq delete-old-versions t
+(setq backup-directory-alist `(("." . "~/.emacs-bkp"))
+      backup-by-copying t
+      delete-old-versions t
       kept-new-versions 6
       kept-old-versions 2
       version-control t)
