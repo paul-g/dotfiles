@@ -47,6 +47,7 @@
 (require 'popup)
 (require 'volatile-highlights)
 (require 'yasnippet)
+(require 'expand-region)
 
 
 ;; -- UI, Editing --
@@ -64,6 +65,7 @@
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 (volatile-highlights-mode t)
+(pending-delete-mode t)
 
 
 ;; -- Coding --
@@ -130,3 +132,5 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
