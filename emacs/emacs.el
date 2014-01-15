@@ -81,9 +81,9 @@
 (setq backup-directory-alist `(("." . "~/.emacs-bkp")))
 (setq backup-by-copying t)
 (setq delete-old-versions t
-  kept-new-versions 6
-  kept-old-versions 2
-  version-control t)
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control t)
 
 ;; -- Useful functions --
 (add-hook 'after-save-hook 'compile-latex-hook)
@@ -108,7 +108,16 @@
                         (switch-to-prev-buffer (get-buffer-window buf) 'kill))
                       buffer)))
 
+(setq bury-compile-buffer 1)
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
+
+(defun toggle-bury-compile-buffer  ()
+  "Toggle burying compilation buffer on/off."
+  (interactive)
+  (setq bury-compile-buffer (- 1 bury-compile-buffer))
+  (if (= bury-compile-buffer 0)
+      (remove-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
+    (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)))
 
 (defun indent-buffer ()
   "Indent buffer"
@@ -133,4 +142,3 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 (global-set-key (kbd "C-=") 'er/expand-region)
-
