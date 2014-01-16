@@ -76,6 +76,7 @@
 (mapc 'yas/load-directory yas/root-directory)
 (yas-global-mode 1)
 (global-auto-complete-mode 1)
+(setq compilation-scroll-output 'first-error)
 
 ;; -- Backups --
 (setq backup-directory-alist `(("." . "~/.emacs-bkp"))
