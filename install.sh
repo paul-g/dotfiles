@@ -23,7 +23,7 @@ fi
 
 
 echo "Installing some useful packages..."
-packages=(maven python)
+packages=(alien maven python)
 
 for p in "${packages[@]}"; do
     installed=$(dpkg -s "$p" 2> /dev/null)
