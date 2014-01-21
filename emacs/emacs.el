@@ -161,7 +161,6 @@
 (global-set-key [f10] 'ascope-find-global-definition)
 (global-set-key [f11] 'ascope-find-functions-calling-this-functions)
 
-
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-<tab>") 'yas-expand)
 (global-set-key (kbd "C-c n") 'indent-buffer)
@@ -170,3 +169,6 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 (global-set-key (kbd "C-=") 'er/expand-region)
+
+(key-chord-define-global "qq" 'query-replace)
+
