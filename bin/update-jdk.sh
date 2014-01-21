@@ -24,16 +24,19 @@ if [[ ! "$version" =~ \.tar\.gz$ ]]; then
     exit 1
 fi
 
+
 # Extract archive and find jdk version (should be the first extracted directory)
-output=$(tar xvzf $jdkArchive | head -1)
+tar xzf $jdkArchive
+output=$(tar -tf $jdkArchive | head -1)
+
 jdkDir=${output::-1}
 jdkPath="${instDir}/$jdkDir"
 
-echo $jdkDir
 
 # create directory
 mkdir -p ${instDir}
 mv "$jdkDir" ${instDir}
+
 
 # A list of binaries to update
 binaries=(java javac javaws)
