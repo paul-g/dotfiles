@@ -14,7 +14,7 @@
     ascope auto-complete yasnippet magit haskell-mode
     python inf-ruby multiple-cursors
     ;; writing
-    ebib markdown-mode
+    ebib markdown-mode key-chord
     ;; ui
     expand-region paredit projectile popup
     volatile-highlights yaml-mode yari
@@ -43,12 +43,14 @@
 (require 'ascope)
 (require 'auto-complete)
 (require 'ebib)
+(require 'expand-region)
+(require 'key-chord)
+(require 'kmacro)
 (require 'multiple-cursors)
 (require 'popup)
 (require 'volatile-highlights)
 (require 'yasnippet)
-(require 'expand-region)
-(require 'kmacro)
+
 
 ;; -- UI, Editing --
 (desktop-save-mode 1)
@@ -66,7 +68,7 @@
 (tool-bar-mode -1)
 (volatile-highlights-mode t)
 (pending-delete-mode t)
-
+(key-chord-mode 1)
 
 ;; -- Coding --
 (define-key global-map (kbd "RET") 'newline-and-indent) ; Auto indent on enter
@@ -142,16 +144,17 @@
   (if (= recording-macro 1)
       (kmacro-start-macro 0)
     (kmacro-end-macro nil)))
-  )
 
 ;; -- Key bindings
 (global-set-key [f1] 'toggle-record-macro)
-(global-set-key [f2] 'ascope-init)
-(global-set-key [f3] 'ascope-find-this-symbol)
-(global-set-key [f4] 'ascope-find-global-definition)
+(global-set-key [f2] 'kmacro-call-macro)
 (global-set-key [f5] 'compile)
-(global-set-key [f6] 'ascope-find-functions-calling-this-functions)
 (global-set-key [f7] 'ff-find-other-file)
+(global-set-key [f8] 'ascope-init)
+(global-set-key [f9] 'ascope-find-this-symbol)
+(global-set-key [f10] 'ascope-find-global-definition)
+(global-set-key [f11] 'ascope-find-functions-calling-this-functions)
+
 
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-<tab>") 'yas-expand)
