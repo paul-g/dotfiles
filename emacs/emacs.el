@@ -48,7 +48,7 @@
 (require 'volatile-highlights)
 (require 'yasnippet)
 (require 'expand-region)
-
+(require 'kmacro)
 
 ;; -- UI, Editing --
 (desktop-save-mode 1)
@@ -127,14 +127,32 @@
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
+;; -- Treat annotations as comments --
+(add-hook 'java-mode-hook
+          (lambda ()
+            "Treat Java 1.5 @-style annotations as comments."
+            (setq c-comment-start-regexp "(@|/(/|[*][*]?))")
+            (modify-syntax-entry ?@ "< b" java-mode-syntax-table)))
+
+(setq recording-macro 0)
+(defun toggle-record-macro ()
+  "Toggle record macro on/off"
+  (interactive)
+  (setq recording-macro (- 1 recording-macro))
+  (if (= recording-macro 1)
+      (kmacro-start-macro 0)
+    (kmacro-end-macro nil)))
+  )
 
 ;; -- Key bindings
-(global-set-key [f1] 'ascope-init)
-(global-set-key [f2] 'ascope-find-this-symbol)
-(global-set-key [f3] 'ascope-find-global-definition)
-(global-set-key [f4] 'ascope-find-functions-calling-this-functions)
+(global-set-key [f1] 'toggle-record-macro)
+(global-set-key [f2] 'ascope-init)
+(global-set-key [f3] 'ascope-find-this-symbol)
+(global-set-key [f4] 'ascope-find-global-definition)
 (global-set-key [f5] 'compile)
-(global-set-key [f6] 'ff-find-other-file)
+(global-set-key [f6] 'ascope-find-functions-calling-this-functions)
+(global-set-key [f7] 'ff-find-other-file)
+
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-<tab>") 'yas-expand)
 (global-set-key (kbd "C-c n") 'indent-buffer)
