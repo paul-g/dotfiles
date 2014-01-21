@@ -17,7 +17,7 @@
     ebib markdown-mode key-chord
     ;; ui
     expand-region paredit projectile popup
-    volatile-highlights yaml-mode yari
+    volatile-highlights yaml-mode yari auto-dim-other-buffers
     ;;themes
     zenburn-theme ir-black-theme solarized-theme))
 
@@ -54,7 +54,7 @@
 
 ;; -- UI, Editing --
 (desktop-save-mode 1)
-(global-hl-line-mode 0)
+(global-hl-line-mode 1)
 (global-linum-mode 1)
 (ido-mode 1)
 (load-theme 'ir-black t)
@@ -69,6 +69,12 @@
 (volatile-highlights-mode t)
 (pending-delete-mode t)
 (key-chord-mode 1)
+(set-default 'cursor-type 'bar)
+(blink-cursor-mode 0)
+(setq auto-dim-other-buffers-mode t)
+(custom-set-faces
+ '(auto-dim-other-buffers-face ((t (:background "gray2"))))
+ '(hl-line ((t (:background "#151515" :underline nil)))))
 
 ;; -- Coding --
 (define-key global-map (kbd "RET") 'newline-and-indent) ; Auto indent on enter
