@@ -151,6 +151,14 @@
       (kmacro-start-macro 0)
     (kmacro-end-macro nil)))
 
+(setq compilation-scroll-output 'first-error)
+(defun toggle-auto-scroll-compilation-buffer ()
+  "Toggle scroll compilation buffer on/off"
+  (interactive)
+  (if (equal compilation-scroll-output nil)
+      (setq compilation-scroll-output 'first-error)
+    (setq compilation-scroll-output nil )))
+
 ;; -- Key bindings
 (global-set-key [f1] 'toggle-record-macro)
 (global-set-key [f2] 'kmacro-call-macro)
