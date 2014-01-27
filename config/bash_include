@@ -1,0 +1,36 @@
+export PS1='\[\e[1;32m\][\W]\$ \[\e[0m\]'
+
+# --- Aliases ---
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias rm='rm -i'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+# --- Useful Functions ---
+function projector-clone() {
+    vga=`xrandr -q | grep -o VGA.`
+    lvds=`xrandr -q | grep -o LVDS.`
+    res="1024x768"
+    echo "Setting projector -> $vga, local -> $lvds, res = 1024 x 768"
+    xrandr --output $vga --mode $res --same-as $lvds --output $lvds --mode $res
+}
+
+function projector-off() {
+    vga=`xrandr -q | grep -o VGA.`
+    lvds=`xrandr -q | grep -o LVDS.`
+    echo "Closing projector -> $vga, local -> $lvds"
+    xrandr --output $vga --off
+    xrandr --output $lvds --auto
+}
+
