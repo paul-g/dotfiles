@@ -34,3 +34,6 @@ function projector-off() {
     xrandr --output $lvds --auto
 }
 
+function display-dual-left-of() {
+    xrandr --auto --output $1 --left-of $2
+}
