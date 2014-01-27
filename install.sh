@@ -1,5 +1,8 @@
 #!/bin/bash
 
+function fail() {
+    echo -e "\t[FAIL] $1"
+}
 
 # Check for existing files/simlinks
 echo "Installing Emacs 24 setup..."
@@ -8,8 +11,8 @@ installEmacsSetup=1
 for dir in "${dirs[@]}"; do
     path=$(readlink -f ${dir})
     if [ -a ${path} ]; then
-        echo -e "\t${path} found! Skipping Emacs setup installation."
-        echo -e "\tPlease remove ${path} and re-run the script to update your setup."
+        fail "${path} found! Skipping Emacs setup installation."
+        fail "Please remove ${path} and re-run the script to update your setup."
         installEmacsSetup=0
         break
     fi
@@ -21,6 +24,17 @@ if [ $installEmacsSetup -eq 1 ]; then
     ln -s $(readlink -f emacs/yasnippet-snippets) ~/.yasnippet-snippets
 fi
 
+echo "Installing shell include..."
+installBash=1
+if [ -a $(readlink -f ~/.bash_include) ]; then
+    fail "~/.bash_include found! Skipping installation."
+    fail "Please remove ~/.bash_include to update your setup."
+    installBash=0
+fi
+
+if [ $installBash -eq 1 ]; then
+    ln -s $(readlink -f config/bash_include) ~/.bash_include
+fi
 
 echo "Installing some useful packages..."
 packages=(alien fakeroot htop maven python)
