@@ -4,7 +4,9 @@ Here lie my configurations for Linux:
 
 1. Emacs (emacs/)
 2. Useful scripts (bin/)
-3. (Coming Soon...) For Xmonad (xmonad/)
+3. Xmonad (xmonad/) -- shorter version of
+   [Vic Fryzel's](https://github.com/vicfryzel/xmonad-config) ir-black
+   config
 
 # Instructions
 
@@ -26,4 +28,4 @@ This shall:
 The installation script:
 
 1. Creates appropriate simlinks (e.g. `~/.emacs.el -> <path/to/checkout/emacs/emacs.el`)
-2. Installs a bunch of useful packages (if these are not already present)
+2. Installs a bunch of useful packages (when not present)
