@@ -53,4 +53,14 @@ fi
 
 # Install xmonad
 echo "Installing xmonad..."
+installXmonad=1
+if [ -a $(readlink -f ~/.xmonad) ]; then
+    fail "~/.xmonad found! Skipping installation"
+    fail "Please remove ~/.xmonad to update your setup."
+    installXmonad=0
+fi
 
+if [ $installXmonad -eq 1 ]; then
+    ln -s $(readlink -f xmonad) ~/.xmonad
+    ln -s $(readlink -f xmonad/bin/xmonad.start) /usr/bin/xmonad.start
+fi
