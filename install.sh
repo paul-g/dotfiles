@@ -7,7 +7,8 @@ function fail() {
 # Installing some useful packages
 echo "Installing some useful packages..."
 packages=(alien fakeroot htop maven python
-	  xmonad libghc-xmonad-contrib-dev libghc-xmonad-dev suckless-tools)
+          xmonad libghc-xmonad-contrib-dev libghc-xmonad-dev suckless-tools trayer
+          terminator chromium-browser xscreensaver)
 
 for p in "${packages[@]}"; do
     installed=$(dpkg -s "$p" 2> /dev/null)
