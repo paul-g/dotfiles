@@ -10,7 +10,7 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.EZConfig
 
 -- xprop | grep WM_CLASS
 myManageHook = composeAll
@@ -50,9 +50,9 @@ xmonadConfig = defaultConfig {
     focusedBorderColor = "#ffb6b0",
     layoutHook         = smartBorders $ myLayout,
     manageHook         = myManageHook
-} `additionalKeys`
-  [((mod4Mask .|. shiftMask, xK_l), spawn "xscreensaver-command --lock"),
-   ((mod4Mask, xK_p),  spawn "dmenu_run -nb 'black' -nf 'white' -fn '-*-*-*-*-*-*-15-*-*-*-*-*-*-*' ")]
+} `additionalKeysP`
+  [("M-S-l", spawn "xscreensaver-command --lock"),
+   ("M-p",  spawn "dmenu_run -nb 'black' -nf 'white' -fn '-*-*-*-*-*-*-15-*-*-*-*-*-*-*' ")]
 
 --- Start xmonad --- 
 main = do
