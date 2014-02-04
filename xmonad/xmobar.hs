@@ -1,9 +1,12 @@
 Config {
-  font = "xft:Fixed-11",
+  font = "xft:mono-11",
   bgColor = "#000000",
   fgColor = "#ffffff",
-  position = TopW L 95, -- leave 5% for the system tray
-  lowerOnStart = True,
+
+  -- Use either PC or laptop layout
+  position = Static { xpos = 0 , ypos = 0, width = 1825, height = 22 },
+  --  position = TopW L 95, -- leave 5% for the system tray
+
   commands = [
     -- Battery status indicator
     Run BatteryP ["BAT0"]
@@ -35,8 +38,15 @@ Config {
      "-l","#CEFFAC",
      "-n","#FFFFCC"] 10,
 
-    -- Use eth0/wlan0 depending on ethernet/wireless connection
-    -- TODO find a nice way to handle this
+    -- Monitor network usage
+    Run Network "eth0"
+    ["-t","<fc=yellow>N: </fc> <rx>, <tx>",
+     "-H","200",
+     "-L","10",
+     "-h","#FFB6B0",
+     "-l","#CEFFAC",
+     "-n","#FFFFCC"] 10,
+
     Run Network "wlan0"
     ["-t","<fc=yellow>N: </fc> <rx>, <tx>",
      "-H","200",
@@ -54,5 +64,10 @@ Config {
     ],
   sepChar = "%",
   alignSep = "}{",
-  template = "%StdinReader% }{%thermal0% %battery% %wlan0% %multicpu% %memory% %swap% <fc=#FFFFCC>%date%</fc> "
+
+  -- Use either PC or laptop template
+  template = "%StdinReader% }{%eth0% %multicpu% %memory% %swap% <fc=#FFFFCC>%date%</fc> "
+  -- template = "%StdinReader% }{%thermal0% %battery% %wlan0% %multicpu% %memory% %swap% <fc=#FFFFCC>%date%</fc> "
   }
+
+
