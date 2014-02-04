@@ -11,7 +11,7 @@
 (defvar packages
   '(ack-and-a-half
     ;; coding stuff
-    ascope auto-complete yasnippet magit haskell-mode
+    ascope auto-complete autopair yasnippet magit haskell-mode
     python inf-ruby multiple-cursors
     ;; writing
     ebib markdown-mode key-chord
@@ -42,6 +42,7 @@
 ;; -- imports --
 (require 'ascope)
 (require 'auto-complete)
+(require 'autopair)
 (require 'ebib)
 (require 'expand-region)
 (require 'key-chord)
@@ -52,7 +53,9 @@
 (require 'yasnippet)
 
 
+
 ;; -- UI, Editing --
+(autopair-global-mode)
 (desktop-save-mode 1)
 (global-hl-line-mode 1)
 (global-linum-mode 1)
@@ -158,6 +161,16 @@
   (if (equal compilation-scroll-output nil)
       (setq compilation-scroll-output 'first-error)
     (setq compilation-scroll-output nil )))
+
+(defun bashrc ()
+  "Open a buffer with bashrc."
+  (interactive)
+  (find-file "~/.bashrc"))
+
+(defun emacsel ()
+  "Open a buffer with emacs.el"
+  (interactive)
+  (find-file "~/.emacs.el"))
 
 ;; -- Key bindings
 (global-set-key [f1] 'toggle-record-macro)

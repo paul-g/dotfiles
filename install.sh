@@ -4,6 +4,22 @@ function fail() {
     echo -e "\t[FAIL] $1"
 }
 
+# Installing some useful packages
+echo "Installing some useful packages..."
+packages=(alien fakeroot htop maven python
+          xmonad libghc-xmonad-contrib-dev libghc-xmonad-dev suckless-tools trayer
+          terminator chromium-browser xscreensaver)
+
+for p in "${packages[@]}"; do
+    installed=$(dpkg -s "$p" 2> /dev/null)
+    if [ $? -eq 1 ]; then
+        echo -e "\t'$p' package not found! Installing..."
+        apt-get install $p -y
+    else
+        echo -e "\t[OK] '$p' package found"
+    fi
+done
+
 # Check for existing files/simlinks
 echo "Installing Emacs 24 setup..."
 dirs=(~/.emacs.el ~/.emacs.d ~/.yasnippet-snippets)
@@ -36,15 +52,16 @@ if [ $installBash -eq 1 ]; then
     ln -s $(readlink -f config/bash_include) ~/.bash_include
 fi
 
-echo "Installing some useful packages..."
-packages=(alien fakeroot htop maven python)
+# Install xmonad
+echo "Installing xmonad..."
+installXmonad=1
+if [ -a $(readlink -f ~/.xmonad) ]; then
+    fail "~/.xmonad found! Skipping installation"
+    fail "Please remove ~/.xmonad to update your setup."
+    installXmonad=0
+fi
 
-for p in "${packages[@]}"; do
-    installed=$(dpkg -s "$p" 2> /dev/null)
-    if [ $? -eq 1 ]; then
-        echo -e "\t'$p' package not found! Installing..."
-        apt-get install $p -y
-    else
-        echo -e "\t[OK] '$p' package found"
-    fi
-done
+if [ $installXmonad -eq 1 ]; then
+    ln -s $(readlink -f xmonad) ~/.xmonad
+    ln -s $(readlink -f xmonad/bin/xmonad.start) /usr/bin/xmonad.start
+fi
