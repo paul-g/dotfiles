@@ -1,0 +1,30 @@
+#!/bin/bash
+
+start() {
+    prog=$1
+    if [ -x ${prog} ] ; then
+        ${prog}
+    fi
+}
+
+gnome-settings-daemon &
+
+xsetroot -solid midnightblue
+
+xscreensaver -no-splash &
+
+# setup tray
+trayer --edge top --align right --SetDockType true --SetPartialStrut true  --expand true --width 5 --height 22 --transparent true --alpha 0 --tint 0x000000 &
+
+# setup primary display
+xrandr --output LVDS --primary
+
+start /usr/bin/nm-applet &
+
+start /usr/bin/terminator &
+
+sleep 2 && start /usr/bin/emacs &
+
+sleep 5 && start /usr/bin/chromium-browser &
+
+exec xmonad
