@@ -159,6 +159,16 @@
       (setq compilation-scroll-output 'first-error)
     (setq compilation-scroll-output nil )))
 
+(defun bashrc ()
+  "Open a buffer with bashrc."
+  (interactive)
+  (find-file "~/.bashrc"))
+
+(defun emacsel ()
+  "Open a buffer with emacs.el"
+  (interactive)
+  (find-file "~/.emacs.el"))
+
 ;; -- Key bindings
 (global-set-key [f1] 'toggle-record-macro)
 (global-set-key [f2] 'kmacro-call-macro)

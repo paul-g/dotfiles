@@ -13,9 +13,11 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias rm='rm -i'
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias vi='emacs -nw'
+alias vim='emacs -nw'
 
 # --- Useful Functions ---
 function projector-clone() {
@@ -34,3 +36,6 @@ function projector-off() {
     xrandr --output $lvds --auto
 }
 
+function display-dual-left-of() {
+    xrandr --auto --output $1 --left-of $2
+}
