@@ -173,6 +173,7 @@
 ;; -- Key bindings
 (global-set-key [f1] 'toggle-record-macro)
 (global-set-key [f2] 'kmacro-call-macro)
+(global-set-key [f3] 'toggle-record-macro)
 (global-set-key [f5] 'compile)
 (global-set-key [f7] 'ff-find-other-file)
 (global-set-key [f8] 'ascope-init)
