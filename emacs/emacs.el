@@ -16,8 +16,8 @@
     ;; writing
     ace-jump-mode ebib markdown-mode key-chord
     ;; ui
-    expand-region paredit projectile popup
-    volatile-highlights yaml-mode yari auto-dim-other-buffers
+    expand-region paredit projectile popup powerline
+    volatile-highlights yaml-mode yari
     ;;themes
     zenburn-theme ir-black-theme solarized-theme))
 
@@ -55,6 +55,7 @@
 (require 'yasnippet)
 
 ;; -- UI, Editing --
+(powerline-center-theme)
 (autopair-global-mode)
 (desktop-save-mode 1)
 (global-hl-line-mode 1)
@@ -75,10 +76,6 @@
 (key-chord-mode 1)
 (set-default 'cursor-type 'bar)
 (blink-cursor-mode 0)
-(setq auto-dim-other-buffers-mode t)
-(custom-set-faces
- '(auto-dim-other-buffers-face ((t (:background "gray2"))))
- '(hl-line ((t (:background "#151515" :underline nil)))))
 
 ;; -- Coding --
 (define-key global-map (kbd "RET") 'newline-and-indent) ; Auto indent on enter
