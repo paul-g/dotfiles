@@ -12,9 +12,9 @@
   '(ack-and-a-half
     ;; coding stuff
     ascope auto-complete autopair yasnippet magit haskell-mode
-    python inf-ruby multiple-cursors
+    python inf-ruby multiple-cursors flycheck
     ;; writing
-    ebib markdown-mode key-chord
+    ace-jump-mode ebib markdown-mode key-chord
     ;; ui
     expand-region paredit projectile popup
     volatile-highlights yaml-mode yari auto-dim-other-buffers
@@ -40,11 +40,13 @@
     (package-install p)))
 
 ;; -- imports --
+(require 'ace-jump-mode)
 (require 'ascope)
 (require 'auto-complete)
 (require 'autopair)
 (require 'ebib)
 (require 'expand-region)
+(require 'flycheck)
 (require 'key-chord)
 (require 'kmacro)
 (require 'multiple-cursors)
@@ -52,13 +54,12 @@
 (require 'volatile-highlights)
 (require 'yasnippet)
 
-
-
 ;; -- UI, Editing --
 (autopair-global-mode)
 (desktop-save-mode 1)
 (global-hl-line-mode 1)
 (global-linum-mode 1)
+(global-flycheck-mode 1)
 (ido-mode 1)
 (load-theme 'ir-black t)
 (menu-bar-mode -1)
@@ -192,5 +193,6 @@
 (global-set-key (kbd "C-=") 'er/expand-region)
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 
 (key-chord-define-global "qq" 'query-replace)
