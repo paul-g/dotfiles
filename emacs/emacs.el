@@ -53,9 +53,10 @@
 (require 'popup)
 (require 'volatile-highlights)
 (require 'yasnippet)
+(require 'powerline)
 
 ;; -- UI, Editing --
-(powerline-center-theme)
+(powerline-default-theme)
 (autopair-global-mode)
 (desktop-save-mode 1)
 (global-hl-line-mode 1)
