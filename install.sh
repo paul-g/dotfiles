@@ -6,7 +6,7 @@ function fail() {
 
 # Installing some useful packages
 echo "Installing some useful packages..."
-packages=(alien clang fakeroot htop maven python python-pip
+packages=(alien ack-grep clang fakeroot htop maven python python-pip
           xmonad libghc-xmonad-contrib-dev libghc-xmonad-dev suckless-tools trayer
           terminator chromium-browser xscreensaver)
 
