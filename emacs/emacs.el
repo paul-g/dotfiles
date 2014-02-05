@@ -194,3 +194,6 @@
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 
 (key-chord-define-global "qq" 'query-replace)
+
+(custom-set-faces
+ '(hl-line ((t (:color nil :style nil :background "#151515" :underline nil)))))
