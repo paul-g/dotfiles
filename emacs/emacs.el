@@ -26,7 +26,6 @@
         when (not (package-installed-p p)) do (return nil)
         finally (return t)))
 
-
 (unless (packages-installed-p)
   (message "%s" "Refreshing package database...")
   (package-refresh-contents)
@@ -57,6 +56,9 @@
 
 ;; -- UI, Editing --
 (powerline-default-theme)
+(setq powerline-active1 "green")
+
+
 (autopair-global-mode)
 (desktop-save-mode 1)
 (global-hl-line-mode 1)
@@ -197,4 +199,25 @@
 (key-chord-define-global "qq" 'query-replace)
 
 (custom-set-faces
- '(hl-line ((t (:color nil :style nil :background "#151515" :underline nil)))))
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "gray11" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+ '(fringe ((t (:background "gray11"))))
+ '(hl-line ((t (:color nil :style nil :background "#151515" :underline nil))))
+ '(linum ((t (:inherit (shadow default) :background "gray11
+" :height 0.8))))
+ '(mode-line ((t (:background "#202020" :foreground "#CCCCCC"))))
+ '(mode-line-inactive ((t (:inherit mode-line :background "#202020" :foreground "#000000" :weight light))))
+ '(powerline-active1 ((t (:background "dark olive green"))))
+ '(powerline-active2 ((t (:inherit mode-line :background "gray11")))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(fringe-mode 15 nil (fringe))
+ '(global-linum-mode t)
+ '(powerline-default-separator (quote arrow))
+ '(powerline-text-scale-factor nil))
