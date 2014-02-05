@@ -6,7 +6,7 @@ function fail() {
 
 # Installing some useful packages
 echo "Installing some useful packages..."
-packages=(alien fakeroot htop maven python
+packages=(alien clang fakeroot htop maven python python-pip
           xmonad libghc-xmonad-contrib-dev libghc-xmonad-dev suckless-tools trayer
           terminator chromium-browser xscreensaver)
 
@@ -18,6 +18,12 @@ for p in "${packages[@]}"; do
     else
         echo -e "\t[OK] '$p' package found"
     fi
+done
+
+# Installing some python packages
+packages=(pylint scipy)
+for p in "${packages[@]}"; do
+    pip install "$p"
 done
 
 # Check for existing files/simlinks
