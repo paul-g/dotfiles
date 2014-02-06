@@ -220,4 +220,5 @@
  '(fringe-mode 15 nil (fringe))
  '(global-linum-mode t)
  '(powerline-default-separator (quote arrow))
- '(powerline-text-scale-factor nil))
+ '(powerline-text-scale-factor nil)
+ '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify)))
