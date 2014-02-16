@@ -18,6 +18,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias vi='emacs -nw'
 alias vim='emacs -nw'
+alias ack='ack-grep'
 
 # --- Useful Functions ---
 function projector-clone() {

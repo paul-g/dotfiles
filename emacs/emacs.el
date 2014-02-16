@@ -97,6 +97,8 @@
       kept-new-versions 6
       kept-old-versions 2
       version-control t)
+;; -- Hooks --
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; -- Useful functions --
 (add-hook 'after-save-hook 'compile-latex-hook)
@@ -210,6 +212,11 @@
  '(ac-completion-face ((t (:foreground "darkgray"))))
  '(ac-selection-face ((t (:background "dark olive green"))))
  '(error ((t (:foreground "dark red" :weight bold))))
+ '(flycheck-error ((t (:foreground "firebrick"))))
+ '(flyspell-duplicate ((t (:foreground "Gold3" :weight bold))))
+ '(flyspell-duplicate-face ((t (:foreground "Gold3" :weight bold))) t)
+ '(flyspell-incorrect ((t (:foreground "firebrick4" :weight bold))))
+ '(flyspell-incorrect-face ((t (:foreground "firebrick4" :underline t :weight bold))) t)
  '(fringe ((t (:background "gray11"))))
  '(hl-line ((t (:color nil :style nil :background "#151515" :underline nil))))
  '(linum ((t (:inherit (shadow default) :background "gray11
