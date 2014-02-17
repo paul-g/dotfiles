@@ -216,6 +216,9 @@
  '(flyspell-incorrect ((t (:foreground "firebrick4" :weight bold))))
  '(flyspell-incorrect-face ((t (:foreground "firebrick4" :underline t :weight bold))) t)
  '(fringe ((t (:background "gray11"))))
+ '(helm-candidate-number ((t (:background "dark olive green" :foreground "black"))))
+ '(helm-selection ((t (:background "dark olive green" :underline nil))))
+ '(helm-source-header ((t (:background "gray13" :foreground "white" :weight bold :height 1.0))))
  '(hl-line ((t (:color nil :style nil :background "#151515" :underline nil))))
  '(linum ((t (:inherit (shadow default) :background "gray11
 " :height 0.8))))
