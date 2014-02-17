@@ -9,7 +9,7 @@
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 (defvar packages
-  '(ack-and-a-half
+  '(ack-and-a-half helm helm-ls-git
     ;; coding stuff
     ascope auto-complete autopair yasnippet magit haskell-mode
     python inf-ruby multiple-cursors flycheck
@@ -227,6 +227,9 @@
  ;; If there is more than one, they won't work right.
  '(fringe-mode 15 nil (fringe))
  '(global-linum-mode t)
+ '(helm-full-frame nil)
+ '(helm-match-plugin-mode t nil (helm-match-plugin))
+ '(helm-split-window-in-side-p t)
  '(powerline-default-separator (quote arrow))
  '(powerline-text-scale-factor nil)
  '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify)))
