@@ -56,9 +56,6 @@
 
 ;; -- UI, Editing --
 (powerline-default-theme)
-(setq powerline-active1 "green")
-
-
 (autopair-global-mode)
 (desktop-save-mode 1)
 (global-hl-line-mode 1)
@@ -201,12 +198,17 @@
 (key-chord-define-global "qq" 'query-replace)
 
 
+;; --- Various customisations ---
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "gray11" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+ '(ac-candidate-face ((t (:background "gray30"))))
+ '(ac-completion-face ((t (:foreground "darkgray"))))
+ '(ac-selection-face ((t (:background "dark olive green"))))
+ '(error ((t (:foreground "dark red" :weight bold))))
  '(flycheck-error ((t (:foreground "firebrick"))))
  '(flyspell-duplicate ((t (:foreground "Gold3" :weight bold))))
  '(flyspell-duplicate-face ((t (:foreground "Gold3" :weight bold))) t)
@@ -216,10 +218,12 @@
  '(hl-line ((t (:color nil :style nil :background "#151515" :underline nil))))
  '(linum ((t (:inherit (shadow default) :background "gray11
 " :height 0.8))))
+ '(magit-item-highlight ((t (:background "gray14"))))
  '(mode-line ((t (:background "#202020" :foreground "#CCCCCC"))))
  '(mode-line-inactive ((t (:inherit mode-line :background "#202020" :foreground "#000000" :weight light))))
  '(powerline-active1 ((t (:background "dark olive green"))))
- '(powerline-active2 ((t (:inherit mode-line :background "gray11")))))
+ '(powerline-active2 ((t (:inherit mode-line :background "gray11"))))
+ '(warning ((t (:foreground "dark goldenrod" :weight bold)))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
