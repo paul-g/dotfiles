@@ -199,6 +199,8 @@
 (key-chord-define-global "zz" 'helm-etags-select)
 (key-chord-define-global "##" 'magit-status)
 (key-chord-define-global ",," 'other-window)
+(key-chord-define-global "bb" 'switch-to-buffer)
+(key-chord-define-global "ff" 'find-file)
 
 
 ;; --- Various customisations ---
