@@ -196,6 +196,7 @@
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 
 (key-chord-define-global "qq" 'query-replace)
+(key-chord-define-global "zz" 'helm-etags-select)
 
 
 ;; --- Various customisations ---
