@@ -56,9 +56,6 @@
 
 ;; -- UI, Editing --
 (powerline-default-theme)
-(setq powerline-active1 "green")
-
-
 (autopair-global-mode)
 (desktop-save-mode 1)
 (global-hl-line-mode 1)
