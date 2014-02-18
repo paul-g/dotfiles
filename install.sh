@@ -21,7 +21,7 @@ for p in "${packages[@]}"; do
 done
 
 # Installing some python packages
-packages=(pylint scipy)
+packages=(pylint scipy elpy rope)
 for p in "${packages[@]}"; do
     pip install "$p"
 done

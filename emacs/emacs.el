@@ -12,7 +12,7 @@
   '(ack-and-a-half helm helm-ls-git
     ;; coding stuff
     ascope auto-complete autopair yasnippet magit haskell-mode
-    python inf-ruby multiple-cursors flycheck
+    python elpy inf-ruby multiple-cursors flycheck
     ;; writing
     ace-jump-mode ebib markdown-mode key-chord
     ;; ui
@@ -53,6 +53,9 @@
 (require 'volatile-highlights)
 (require 'yasnippet)
 (require 'powerline)
+(require 'elpy)
+
+(elpy-enable)
 
 ;; -- UI, Editing --
 (powerline-default-theme)
