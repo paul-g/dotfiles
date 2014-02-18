@@ -199,12 +199,12 @@
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 
 (key-chord-define-global "qq" 'query-replace)
-(key-chord-define-global "zz" 'helm-etags-select)
 (key-chord-define-global "##" 'magit-status)
 (key-chord-define-global ",," 'other-window)
 (key-chord-define-global "bb" 'switch-to-buffer)
 (key-chord-define-global "jj" 'find-file)
-
+(key-chord-define-global "aa" 'helm-ls-git-ls)
+(key-chord-define-global "zz" 'helm-etags-select)
 
 ;; --- Various customisations ---
 (custom-set-faces
