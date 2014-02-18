@@ -55,8 +55,6 @@
 (require 'powerline)
 (require 'elpy)
 
-(elpy-enable)
-
 ;; -- UI, Editing --
 (powerline-default-theme)
 (autopair-global-mode)
@@ -89,6 +87,9 @@
 (yas-global-mode 1)
 (global-auto-complete-mode 1)
 (setq compilation-scroll-output 'first-error)
+
+;; --- Python IDE ---
+(elpy-enable)
 
 ;; -- Backups --
 (setq backup-directory-alist `(("." . "~/.emacs-bkp"))
@@ -227,13 +228,16 @@
  '(helm-selection ((t (:background "dark olive green" :underline nil))))
  '(helm-source-header ((t (:background "gray13" :foreground "white" :weight bold :height 1.0))))
  '(hl-line ((t (:color nil :style nil :background "#151515" :underline nil))))
+ '(lazy-highlight ((t (:background "dark goldenrod" :foreground "#2F2F00"))))
  '(linum ((t (:inherit (shadow default) :background "gray11
 " :height 0.8))))
  '(magit-item-highlight ((t (:background "gray14"))))
  '(mode-line ((t (:background "#202020" :foreground "#CCCCCC"))))
  '(mode-line-inactive ((t (:inherit mode-line :background "#202020" :foreground "#000000" :weight light))))
+ '(popup-tip-face ((t (:background "gray30" :foreground "white"))))
  '(powerline-active1 ((t (:background "dark olive green"))))
  '(powerline-active2 ((t (:inherit mode-line :background "gray11"))))
+ '(tooltip ((t (:inherit variable-pitch :background "gray30" :foreground "black"))))
  '(warning ((t (:foreground "dark goldenrod" :weight bold)))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
