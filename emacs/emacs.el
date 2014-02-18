@@ -90,6 +90,9 @@
 
 ;; --- Python IDE ---
 (elpy-enable)
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:setup-keys t)                      ; optional
+(setq jedi:complete-on-dot t)                 ; optional
 
 ;; -- Backups --
 (setq backup-directory-alist `(("." . "~/.emacs-bkp"))
@@ -234,6 +237,7 @@
  '(magit-item-highlight ((t (:background "gray14"))))
  '(mode-line ((t (:background "#202020" :foreground "#CCCCCC"))))
  '(mode-line-inactive ((t (:inherit mode-line :background "#202020" :foreground "#000000" :weight light))))
+ '(popup-summary-face ((t (:background "gray30" :foreground "dark goldenrod"))))
  '(popup-tip-face ((t (:background "gray30" :foreground "white"))))
  '(powerline-active1 ((t (:background "dark olive green"))))
  '(powerline-active2 ((t (:inherit mode-line :background "gray11"))))
