@@ -16,8 +16,8 @@
     ;; writing
     ace-jump-mode ebib markdown-mode key-chord
     ;; ui
-    expand-region paredit projectile popup powerline
-    volatile-highlights yaml-mode yari
+    expand-region paredit projectile helm-projectile popup
+    powerline volatile-highlights yaml-mode yari
     ;;themes
     zenburn-theme ir-black-theme solarized-theme))
 
@@ -180,7 +180,7 @@
   (find-file "~/.emacs.el"))
 
 ;; -- Key bindings
-(global-set-key [f1] 'toggle-record-macro)
+(global-set-key [f1] 'projectile-regenerate-tags)
 (global-set-key [f2] 'kmacro-call-macro)
 (global-set-key [f3] 'toggle-record-macro)
 (global-set-key [f5] 'compile)
@@ -209,6 +209,7 @@
 (key-chord-define-global "jj" 'find-file)
 (key-chord-define-global "aa" 'helm-ls-git-ls)
 (key-chord-define-global "zz" 'helm-etags-select)
+(key-chord-define-global "ZZ" 'helm-projectile)
 
 ;; --- Various customisations ---
 (custom-set-faces
