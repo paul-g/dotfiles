@@ -12,7 +12,7 @@
   '(ack-and-a-half helm helm-ls-git
     ;; coding stuff
     ascope auto-complete autopair yasnippet magit haskell-mode
-    python elpy inf-ruby multiple-cursors flycheck
+    python elpy jedi inf-ruby multiple-cursors flycheck
     ;; writing
     ace-jump-mode ebib markdown-mode key-chord
     ;; ui
