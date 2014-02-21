@@ -77,6 +77,7 @@
 (key-chord-mode 1)
 (set-default 'cursor-type 'bar)
 (blink-cursor-mode 0)
+(savehist-mode 1)
 
 ;; -- Coding --
 (define-key global-map (kbd "RET") 'newline-and-indent) ; Auto indent on enter
@@ -103,14 +104,6 @@
       version-control t)
 ;; -- Hooks --
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-;; -- Useful functions --
-(add-hook 'after-save-hook 'compile-latex-hook)
-
-(defun compile-latex-hook()
-  (when (eq major-mode 'latex-mode)
-    (recompile))
-  )
 
 ;; Hide Compilation buffer if everything went OK
 (defun bury-compile-buffer-if-successful (buffer string)
