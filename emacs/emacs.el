@@ -54,6 +54,7 @@
 (require 'yasnippet)
 (require 'powerline)
 (require 'elpy)
+(require 'projectile)
 
 ;; -- UI, Editing --
 (powerline-default-theme)
@@ -200,7 +201,7 @@
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 
 (key-chord-define-global "qq" 'query-replace)
-(key-chord-define-global "##" 'magit-status)
+(key-chord-define-global "$$" 'magit-status)
 (key-chord-define-global ",," 'other-window)
 (key-chord-define-global "bb" 'switch-to-buffer)
 (key-chord-define-global "jj" 'find-file)
