@@ -78,6 +78,7 @@
 (set-default 'cursor-type 'bar)
 (blink-cursor-mode 0)
 (savehist-mode 1)
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; -- Coding --
 (define-key global-map (kbd "RET") 'newline-and-indent) ; Auto indent on enter
