@@ -54,6 +54,7 @@
 (require 'yasnippet)
 (require 'powerline)
 (require 'elpy)
+(require 'projectile)
 
 ;; -- UI, Editing --
 (powerline-default-theme)
