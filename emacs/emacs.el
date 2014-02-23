@@ -103,8 +103,10 @@
       kept-new-versions 6
       kept-old-versions 2
       version-control t)
+
 ;; -- Hooks --
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'text-mode-hook 'auto-fill-mode)
 
 ;; Hide Compilation buffer if everything went OK
 (defun bury-compile-buffer-if-successful (buffer string)
