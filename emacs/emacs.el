@@ -93,6 +93,7 @@
 ;; --- Python IDE ---
 (elpy-enable)
 (add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook 'projectile-on)
 (setq jedi:setup-keys t)                      ; optional
 (setq jedi:complete-on-dot t)                 ; optional
 
