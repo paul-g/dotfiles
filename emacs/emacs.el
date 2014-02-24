@@ -122,7 +122,8 @@
       (run-with-timer 1 nil
                       (lambda (buf)
                         (bury-buffer buf)
-                        (switch-to-prev-buffer (get-buffer-window buf) 'kill))
+                        (delete-window (get-buffer-window buf))
+                        )
                       buffer)))
 
 (setq bury-compile-buffer 1)
@@ -176,6 +177,8 @@
   "Open a buffer with emacs.el"
   (interactive)
   (find-file "~/.emacs.el"))
+
+
 
 ;; -- Key bindings
 (global-set-key [f1] 'projectile-regenerate-tags)
@@ -247,6 +250,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(compilation-scroll-output (quote first-error))
+ '(compilation-window-height 10)
  '(fringe-mode 15 nil (fringe))
  '(global-linum-mode t)
  '(helm-full-frame nil)
