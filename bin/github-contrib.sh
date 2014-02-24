@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # A simple script to plot total contributions to GitHub
 
 # Set this up as a cronjob running daily around midnight (crontab -e):
@@ -12,7 +14,7 @@ function fetch {
     DATA="${BASE}/github-contrib.dat"
     LOG="${BASE}/github-contrib.log"
 
-    date "+%d.%m.%g" >> ${LOG}
+    date >> ${LOG}
     contributions=`curl "${URL}" 2>> ${LOG} | grep -o '[0-9]* Total' | sed 's/ Total//'`
     echo "" >> ${LOG}
 
