@@ -40,3 +40,9 @@ function projector-off() {
 function display-dual-left-of() {
     xrandr --auto --output $1 --left-of $2
 }
+
+# display disk usage in human readable format, largest file first
+function mydu() {
+    echo "Checking disk usage. This may take a while..."
+    du -d 1 -h | sort -h -r
+}
