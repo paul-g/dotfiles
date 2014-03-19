@@ -1,7 +1,20 @@
 #!/bin/bash
 
 function fail() {
-    echo -e "\t[FAIL] $1"
+    echo -e "    [FAIL] $1"
+}
+
+function skip() {
+    echo -e "    [SKIP] $1"
+}
+
+function ok() {
+    echo -e "    [OK]  $1"
+}
+
+function skipFoundFile() {
+    skip "$1 found! Skipping installation"
+    skip "    Please remove $1 to update your setup."
 }
 
 # Installing some useful packages
@@ -16,18 +29,19 @@ for p in "${packages[@]}"; do
         echo -e "\t'$p' package not found! Installing..."
         apt-get install $p -y
     else
-        echo -e "\t[OK] '$p' package found"
+        ok "$p package found"
     fi
 done
 
 # Installing some python packages
+echo "\nInstalling python packages..."
 packages=(pylint scipy elpy rope jedi epc)
 for p in "${packages[@]}"; do
     pip install "$p"
 done
 
 # Check for existing files/simlinks
-echo "Installing Emacs 24 setup..."
+echo -e "\nInstalling Emacs 24 setup..."
 dirs=(~/.emacs.el ~/.emacs.d ~/.yasnippet-snippets)
 installEmacsSetup=1
 for dir in "${dirs[@]}"; do
@@ -46,19 +60,17 @@ if [ $installEmacsSetup -eq 1 ]; then
     ln -s $(readlink -f emacs/yasnippet-snippets) ~/.yasnippet-snippets
 fi
 
-echo "Installing shell include..."
+echo -e "\nInstalling shell include..."
 if [ -a $(readlink -f ~/.bash_include) ]; then
-    fail "~/.bash_include found! Skipping installation."
-    fail "Please remove ~/.bash_include to update your setup."
+    skipFoundFile "~/.bash_include"
 else
     ln -s $(readlink -f config/bash_include) ~/.bash_include
 fi
 
 # Install xmonad
-echo "Installing xmonad..."
+echo -e "\nInstalling xmonad..."
 if [ -a $(readlink -f ~/.xmonad) ]; then
-    fail "~/.xmonad found! Skipping installation"
-    fail "Please remove ~/.xmonad to update your setup."
+    skipFoundFile "~/.xmonad"
 else
     ln -s $(readlink -f xmonad) ~/.xmonad
     ln -s $(readlink -f xmonad/bin/xmonad.start) /usr/bin/xmonad.start
@@ -66,9 +78,9 @@ fi
 
 
 # Install Git settings
+echo -e "\nInstalling git config..."
 if [ -a $(readlink -f ~/.xmonad) ]; then
-    fail "~/.gitconfig found! Skipping installation"
-    fail "Please remove ~/.gitconfig to update your setup."
+    skipFoundFile "~/.gitconfig"
 else
     ln -s $(readlink -f git/gitconfig) ~/.xmonad
 fi
