@@ -47,27 +47,28 @@ if [ $installEmacsSetup -eq 1 ]; then
 fi
 
 echo "Installing shell include..."
-installBash=1
 if [ -a $(readlink -f ~/.bash_include) ]; then
     fail "~/.bash_include found! Skipping installation."
     fail "Please remove ~/.bash_include to update your setup."
-    installBash=0
-fi
-
-if [ $installBash -eq 1 ]; then
+else
     ln -s $(readlink -f config/bash_include) ~/.bash_include
 fi
 
 # Install xmonad
 echo "Installing xmonad..."
-installXmonad=1
 if [ -a $(readlink -f ~/.xmonad) ]; then
     fail "~/.xmonad found! Skipping installation"
     fail "Please remove ~/.xmonad to update your setup."
-    installXmonad=0
-fi
-
-if [ $installXmonad -eq 1 ]; then
+else
     ln -s $(readlink -f xmonad) ~/.xmonad
     ln -s $(readlink -f xmonad/bin/xmonad.start) /usr/bin/xmonad.start
+fi
+
+
+# Install Git settings
+if [ -a $(readlink -f ~/.xmonad) ]; then
+    fail "~/.gitconfig found! Skipping installation"
+    fail "Please remove ~/.gitconfig to update your setup."
+else
+    ln -s $(readlink -f git/gitconfig) ~/.xmonad
 fi
