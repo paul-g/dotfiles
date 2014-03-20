@@ -79,7 +79,7 @@ fi
 
 # Install Git settings
 echo -e "\nInstalling git config..."
-if [ -a $(readlink -f ~/.xmonad) ]; then
+if [ -a $(readlink -f ~/.gitconfig) ]; then
     skipFoundFile "~/.gitconfig"
 else
     ln -s $(readlink -f git/gitconfig) ~/.xmonad
