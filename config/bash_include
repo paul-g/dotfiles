@@ -16,8 +16,6 @@ alias rm='rm -i'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias vi='emacs -nw'
-alias vim='emacs -nw'
 alias ack='ack-grep'
 
 # --- Useful Functions ---
@@ -45,4 +43,8 @@ function display-dual-left-of() {
 function mydu() {
     echo "Checking disk usage. This may take a while..."
     du -d 1 -h | sort -h -r
+}
+
+function cd() {
+    builtin cd "$@" && ls
 }
