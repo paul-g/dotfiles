@@ -66,3 +66,13 @@ function myfu() {
 function cd() {
     builtin cd "$@" && ls
 }
+
+# create a new, empty pandoc project
+function pandoc-init() {
+    if [[ "$#" -ne 1 ]]; then
+	echo "Usage: pandoc-init <Project Name>"
+	return
+    fi
+    pathToFile=`readlink ~/.bash_include`
+    cp `dirname $pathToFile`"/../templates/pandoc" $1 -r
+}
