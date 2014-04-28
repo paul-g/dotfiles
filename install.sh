@@ -82,5 +82,5 @@ echo -e "\nInstalling git config..."
 if [ -a $(readlink -f ~/.gitconfig) ]; then
     skipFoundFile "~/.gitconfig"
 else
-    ln -s $(readlink -f git/gitconfig) ~/.xmonad
+    ln -s $(readlink -f git/gitconfig) ~/.gitconfig
 fi
