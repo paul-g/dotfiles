@@ -111,6 +111,7 @@
 (add-hook 'text-mode-hook 'auto-fill-mode)
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'text-mode-hook 'flyspell-buffer)
+(setq auto-mode-alist (cons '("\\.lara$" . javascript-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.maxj$" . java-mode) auto-mode-alist))
 
 ;; Hide Compilation buffer if everything went OK
