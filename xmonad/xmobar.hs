@@ -65,9 +65,5 @@ Config {
   sepChar = "%",
   alignSep = "}{",
 
-  -- Use either PC or laptop template
-  template = "%StdinReader% }{%eth0% %multicpu% %memory% %swap% <fc=#FFFFCC>%date%</fc> "
-  -- template = "%StdinReader% }{%thermal0% %battery% %wlan0% %multicpu% %memory% %swap% <fc=#FFFFCC>%date%</fc> "
+  template = "%StdinReader% }{%thermal0% %battery% %wlan0% %eth0% %multicpu% %memory% %swap% <fc=#FFFFCC>%date%</fc> "
   }
-
-
