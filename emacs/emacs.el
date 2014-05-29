@@ -44,17 +44,18 @@
 (require 'auto-complete)
 (require 'autopair)
 (require 'ebib)
+(require 'elpy)
 (require 'expand-region)
 (require 'flycheck)
 (require 'key-chord)
 (require 'kmacro)
 (require 'multiple-cursors)
 (require 'popup)
-(require 'volatile-highlights)
-(require 'yasnippet)
 (require 'powerline)
-(require 'elpy)
 (require 'projectile)
+(require 'volatile-highlights)
+(require 'workgroups2)
+(require 'yasnippet)
 
 ;; -- UI, Editing --
 (powerline-default-theme)
@@ -126,7 +127,7 @@
       (run-with-timer 1 nil
                       (lambda (buf)
                         (bury-buffer buf)
-                        (delete-window (get-buffer-window buf))
+                        (switch-to-prev-buffer (get-buffer-window buf) 'kill)
                         )
                       buffer)))
 
