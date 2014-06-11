@@ -1,6 +1,3 @@
-;; -- Useful built-ins --
-(require 'cl)
-
 ;; -- Package management --
 (require 'package)
 (package-initialize)
@@ -9,7 +6,7 @@
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 (defvar packages
-  '(ack-and-a-half helm helm-ls-git
+  '(cl-lib ack-and-a-half helm helm-bibtex helm-ls-git
     ;; coding stuff
     ascope auto-complete autopair yasnippet magit haskell-mode
     python elpy jedi inf-ruby multiple-cursors flycheck
@@ -54,7 +51,6 @@
 (require 'powerline)
 (require 'projectile)
 (require 'volatile-highlights)
-(require 'workgroups2)
 (require 'yasnippet)
 
 ;; -- UI, Editing --
@@ -62,7 +58,6 @@
 (autopair-global-mode)
 (desktop-save-mode 1)
 (global-hl-line-mode 1)
-(global-linum-mode 1)
 (global-flycheck-mode 1)
 (ido-mode 1)
 (load-theme 'ir-black t)
@@ -183,7 +178,11 @@
   (interactive)
   (find-file "~/.emacs.el"))
 
-
+;; -- Local settings --
+(setq helm-bibtex-bibliography "~/workspaces/refdb/bibliography.bib")
+(setq helm-bibtex-library-path "~/workspaces/refdb/papers")
+(setq helm-bibtex-notes-path "~/workspaces/refdb/notes")
+(setq helm-bibtex-notes-extension ".md")
 
 ;; -- Key bindings
 (global-set-key [f1] 'projectile-regenerate-tags)
@@ -229,14 +228,11 @@
  '(ac-selection-face ((t (:background "dark olive green"))))
  '(error ((t (:foreground "dark red" :weight bold))))
  '(flycheck-error ((t (:foreground "firebrick"))))
- '(flyspell-duplicate ((t (:foreground "Gold3" :weight bold))))
+ '(flyspell-duplicate ((t (:foreground "light goldenrod"))))
  '(flyspell-duplicate-face ((t (:foreground "Gold3" :weight bold))) t)
- '(flyspell-incorrect ((t (:foreground "firebrick4" :weight bold))))
+ '(flyspell-incorrect ((t (:foreground "IndianRed1"))))
  '(flyspell-incorrect-face ((t (:foreground "firebrick4" :underline t :weight bold))) t)
  '(fringe ((t (:background "gray11"))))
- '(helm-candidate-number ((t (:background "dark olive green" :foreground "black"))))
- '(helm-selection ((t (:background "dark olive green" :underline nil))))
- '(helm-source-header ((t (:background "gray13" :foreground "white" :weight bold :height 1.0))))
  '(hl-line ((t (:color nil :style nil :background "#151515" :underline nil))))
  '(lazy-highlight ((t (:background "dark goldenrod" :foreground "#2F2F00"))))
  '(linum ((t (:inherit (shadow default) :background "gray11
@@ -247,9 +243,14 @@
  '(popup-summary-face ((t (:background "gray30" :foreground "dark goldenrod"))))
  '(popup-tip-face ((t (:background "gray30" :foreground "white"))))
  '(powerline-active1 ((t (:background "dark olive green"))))
- '(powerline-active2 ((t (:inherit mode-line :background "gray11"))))
+ '(powerline-active2 ((t (:inherit mode-line :background "gray20"))))
  '(tooltip ((t (:inherit variable-pitch :background "gray30" :foreground "black"))))
- '(warning ((t (:foreground "dark goldenrod" :weight bold)))))
+ '(warning ((t (:foreground "dark goldenrod" :weight bold))))
+ '(helm-candidate-number ((t (:background "dark olive green" :foreground "black"))))
+ '(helm-selection ((t (:background "dark olive green" :underline nil))))
+ '(helm-source-header ((t (:background "gray13" :foreground "white" :weight bold :height 1.0))))
+ '(helm-split-window-in-side-p t))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -259,9 +260,6 @@
  '(compilation-window-height 10)
  '(fringe-mode 15 nil (fringe))
  '(global-linum-mode t)
- '(helm-full-frame nil)
- '(helm-match-plugin-mode t nil (helm-match-plugin))
- '(helm-split-window-in-side-p t)
  '(powerline-default-separator (quote arrow))
  '(powerline-text-scale-factor nil)
  '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify)))
