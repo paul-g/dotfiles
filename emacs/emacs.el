@@ -35,6 +35,9 @@
   (when (not (package-installed-p p))
     (package-install p)))
 
+(load-theme 'ir-black t)
+;; (load-theme 'tango-plus t)
+
 ;; -- imports --
 (require 'ace-jump-mode)
 (require 'ascope)
@@ -60,7 +63,6 @@
 (global-hl-line-mode 1)
 (global-flycheck-mode 1)
 (ido-mode 1)
-(load-theme 'ir-black t)
 (menu-bar-mode -1)
 (setq column-number-mode t)
 (setq indent-tabs-mode nil
@@ -233,6 +235,10 @@
  '(flyspell-incorrect ((t (:foreground "IndianRed1"))))
  '(flyspell-incorrect-face ((t (:foreground "firebrick4" :underline t :weight bold))) t)
  '(fringe ((t (:background "gray11"))))
+ '(helm-candidate-number ((t (:background "dark olive green" :foreground "black"))))
+ '(helm-selection ((t (:background "dark olive green" :underline nil))))
+ '(helm-source-header ((t (:background "gray13" :foreground "white" :weight bold :height 1.0))))
+ '(helm-split-window-in-side-p t)
  '(hl-line ((t (:color nil :style nil :background "#151515" :underline nil))))
  '(lazy-highlight ((t (:background "dark goldenrod" :foreground "#2F2F00"))))
  '(linum ((t (:inherit (shadow default) :background "gray11
@@ -245,11 +251,7 @@
  '(powerline-active1 ((t (:background "dark olive green"))))
  '(powerline-active2 ((t (:inherit mode-line :background "gray20"))))
  '(tooltip ((t (:inherit variable-pitch :background "gray30" :foreground "black"))))
- '(warning ((t (:foreground "dark goldenrod" :weight bold))))
- '(helm-candidate-number ((t (:background "dark olive green" :foreground "black"))))
- '(helm-selection ((t (:background "dark olive green" :underline nil))))
- '(helm-source-header ((t (:background "gray13" :foreground "white" :weight bold :height 1.0))))
- '(helm-split-window-in-side-p t))
+ '(warning ((t (:foreground "dark goldenrod" :weight bold)))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -258,6 +260,7 @@
  ;; If there is more than one, they won't work right.
  '(compilation-scroll-output (quote first-error))
  '(compilation-window-height 10)
+ '(custom-safe-themes (quote ("f5e9f66da69f504cb61aacedeb8284d8f38f2e6f835fd658cac5f0ad5d924549" default)))
  '(fringe-mode 15 nil (fringe))
  '(global-linum-mode t)
  '(powerline-default-separator (quote arrow))
