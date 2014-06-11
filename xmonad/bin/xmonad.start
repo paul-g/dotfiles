@@ -9,15 +9,12 @@ start() {
 
 gnome-settings-daemon &
 
-xsetroot -solid midnightblue
+xsetroot -solid black
 
 xscreensaver -no-splash &
 
 # setup tray
-trayer --edge top --align right --SetDockType true --SetPartialStrut true  --expand true --width 5 --height 22 --transparent true --alpha 0 --tint 0x000000 &
-
-# setup primary display
-xrandr --output LVDS --primary
+trayer --edge top --align right --widthtype percent --width 10 --transparent true --tint 0x000000 --alpha 0 --distance 0 &
 
 start /usr/bin/nm-applet &
 

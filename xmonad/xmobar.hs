@@ -3,9 +3,7 @@ Config {
   bgColor = "#000000",
   fgColor = "#ffffff",
 
-  -- Use either PC or laptop layout
-  position = Static { xpos = 0 , ypos = 0, width = 1825, height = 22 },
-  --  position = TopW L 95, -- leave 5% for the system tray
+  position = TopW L 90, -- leave 10% for the system tray
 
   commands = [
     -- Battery status indicator
@@ -69,5 +67,3 @@ Config {
   template = "%StdinReader% }{%eth0% %multicpu% %memory% %swap% <fc=#FFFFCC>%date%</fc> "
   -- template = "%StdinReader% }{%thermal0% %battery% %wlan0% %multicpu% %memory% %swap% <fc=#FFFFCC>%date%</fc> "
   }
-
-
