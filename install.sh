@@ -20,7 +20,7 @@ function skipFoundFile() {
 # Installing some useful packages
 echo "Installing some useful packages..."
 packages=(alien ack-grep clang exuberant-ctags fakeroot gnuplot htop maven python python-pip
-          xmonad libghc-xmonad-contrib-dev libghc-xmonad-dev suckless-tools trayer
+          subversion xmonad libghc-xmonad-contrib-dev libghc-xmonad-dev suckless-tools trayer
           valgrind terminator chromium-browser xscreensaver)
 
 for p in "${packages[@]}"; do
