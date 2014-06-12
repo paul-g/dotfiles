@@ -183,6 +183,14 @@
   (find-file "~/.emacs.el"))
 
 
+(require 'org-latex)
+(unless (boundp 'org-export-latex-classes)
+  (setq org-export-latex-classes nil))
+(add-to-list 'org-export-latex-classes
+             '("article"
+               "\\documentclass{article}"
+               ("\\section{%s}" . "\\section*{%s}")))
+
 
 ;; -- Key bindings
 (global-set-key [f1] 'projectile-regenerate-tags)
@@ -228,9 +236,9 @@
  '(ac-selection-face ((t (:background "dark olive green"))))
  '(error ((t (:foreground "dark red" :weight bold))))
  '(flycheck-error ((t (:foreground "firebrick"))))
- '(flyspell-duplicate ((t (:foreground "Gold3" :weight bold))))
+ '(flyspell-duplicate ((t (:foreground "light goldenrod" :weight normal))))
  '(flyspell-duplicate-face ((t (:foreground "Gold3" :weight bold))) t)
- '(flyspell-incorrect ((t (:foreground "firebrick4" :weight bold))))
+ '(flyspell-incorrect ((t (:foreground "RosyBrown2" :weight normal))))
  '(flyspell-incorrect-face ((t (:foreground "firebrick4" :underline t :weight bold))) t)
  '(fringe ((t (:background "gray11"))))
  '(helm-candidate-number ((t (:background "dark olive green" :foreground "black"))))
@@ -240,13 +248,13 @@
  '(lazy-highlight ((t (:background "dark goldenrod" :foreground "#2F2F00"))))
  '(linum ((t (:inherit (shadow default) :background "gray11
 " :height 0.8))))
- '(magit-item-highlight ((t (:background "gray14"))))
+ '(magit-item-highlight ((t (:background "gray14"))) t)
  '(mode-line ((t (:background "#202020" :foreground "#CCCCCC"))))
  '(mode-line-inactive ((t (:inherit mode-line :background "#202020" :foreground "#000000" :weight light))))
  '(popup-summary-face ((t (:background "gray30" :foreground "dark goldenrod"))))
  '(popup-tip-face ((t (:background "gray30" :foreground "white"))))
  '(powerline-active1 ((t (:background "dark olive green"))))
- '(powerline-active2 ((t (:inherit mode-line :background "gray11"))))
+ '(powerline-active2 ((t (:inherit mode-line :background "gray20"))))
  '(tooltip ((t (:inherit variable-pitch :background "gray30" :foreground "black"))))
  '(warning ((t (:foreground "dark goldenrod" :weight bold)))))
 (custom-set-variables
@@ -256,6 +264,7 @@
  ;; If there is more than one, they won't work right.
  '(compilation-scroll-output (quote first-error))
  '(compilation-window-height 10)
+ '(custom-safe-themes (quote ("4a60f0178f5cfd5eafe73e0fc2699a03da90ddb79ac6dbc73042a591ae216f03" default)))
  '(fringe-mode 15 nil (fringe))
  '(global-linum-mode t)
  '(helm-full-frame nil)
