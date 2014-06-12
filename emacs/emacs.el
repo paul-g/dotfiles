@@ -236,15 +236,9 @@
  '(ac-selection-face ((t (:background "dark olive green"))))
  '(error ((t (:foreground "dark red" :weight bold))))
  '(flycheck-error ((t (:foreground "firebrick"))))
-<<<<<<< HEAD
  '(flyspell-duplicate ((t (:foreground "light goldenrod" :weight normal))))
  '(flyspell-duplicate-face ((t (:foreground "Gold3" :weight bold))) t)
  '(flyspell-incorrect ((t (:foreground "RosyBrown2" :weight normal))))
-=======
- '(flyspell-duplicate ((t (:foreground "light goldenrod"))))
- '(flyspell-duplicate-face ((t (:foreground "Gold3" :weight bold))) t)
- '(flyspell-incorrect ((t (:foreground "IndianRed1"))))
->>>>>>> c2ea45a17822c46106fda457857aecbb20afdad8
  '(flyspell-incorrect-face ((t (:foreground "firebrick4" :underline t :weight bold))) t)
  '(fringe ((t (:background "gray11"))))
  '(hl-line ((t (:color nil :style nil :background "#151515" :underline nil))))
