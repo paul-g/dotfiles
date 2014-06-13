@@ -60,7 +60,7 @@
 (global-hl-line-mode 1)
 (global-flycheck-mode 1)
 (ido-mode 1)
-(load-theme 'ir-black t)
+(load-theme 'batman t)
 (menu-bar-mode -1)
 (setq column-number-mode t)
 (setq indent-tabs-mode nil
@@ -223,52 +223,3 @@
 (key-chord-define-global "aa" 'helm-ls-git-ls)
 (key-chord-define-global "zz" 'helm-etags-select)
 (key-chord-define-global "ZZ" 'helm-projectile)
-
-;; --- Various customisations ---
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "gray11" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
- '(ac-candidate-face ((t (:background "gray30"))))
- '(ac-completion-face ((t (:foreground "darkgray"))))
- '(ac-selection-face ((t (:background "dark olive green"))))
- '(error ((t (:foreground "dark red" :weight bold))))
- '(flycheck-error ((t (:foreground "firebrick"))))
- '(flyspell-duplicate ((t (:foreground "light goldenrod" :weight normal))))
- '(flyspell-duplicate-face ((t (:foreground "Gold3" :weight bold))) t)
- '(flyspell-incorrect ((t (:foreground "RosyBrown2" :weight normal))))
- '(flyspell-incorrect-face ((t (:foreground "firebrick4" :underline t :weight bold))) t)
- '(fringe ((t (:background "gray11"))))
- '(hl-line ((t (:color nil :style nil :background "#151515" :underline nil))))
- '(lazy-highlight ((t (:background "dark goldenrod" :foreground "#2F2F00"))))
- '(linum ((t (:inherit (shadow default) :background "gray11
-" :height 0.8))))
- '(magit-item-highlight ((t (:background "gray14"))) t)
- '(mode-line ((t (:background "#202020" :foreground "#CCCCCC"))))
- '(mode-line-inactive ((t (:inherit mode-line :background "#202020" :foreground "#000000" :weight light))))
- '(popup-summary-face ((t (:background "gray30" :foreground "dark goldenrod"))))
- '(popup-tip-face ((t (:background "gray30" :foreground "white"))))
- '(powerline-active1 ((t (:background "dark olive green"))))
- '(powerline-active2 ((t (:inherit mode-line :background "gray20"))))
- '(tooltip ((t (:inherit variable-pitch :background "gray30" :foreground "black"))))
- '(warning ((t (:foreground "dark goldenrod" :weight bold))))
- '(helm-candidate-number ((t (:background "dark olive green" :foreground "black"))))
- '(helm-selection ((t (:background "dark olive green" :underline nil))))
- '(helm-source-header ((t (:background "gray13" :foreground "white" :weight bold :height 1.0))))
- '(helm-split-window-in-side-p t))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(compilation-scroll-output (quote first-error))
- '(compilation-window-height 10)
- '(custom-safe-themes (quote ("4a60f0178f5cfd5eafe73e0fc2699a03da90ddb79ac6dbc73042a591ae216f03" default)))
- '(fringe-mode 15 nil (fringe))
- '(global-linum-mode t)
- '(powerline-default-separator (quote arrow))
- '(powerline-text-scale-factor nil)
- '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify)))
