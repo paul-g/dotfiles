@@ -16,7 +16,7 @@
     expand-region paredit projectile helm-projectile popup
     powerline volatile-highlights yaml-mode yari
     ;;themes
-    zenburn-theme ir-black-theme solarized-theme))
+    tango-plus))
 
 (require 'cl)
 (defun packages-installed-p ()
@@ -61,7 +61,7 @@
 (global-hl-line-mode 1)
 (global-flycheck-mode 1)
 (ido-mode 1)
-(load-theme 'batman t)
+(load-theme 'tango-plus t)
 (menu-bar-mode -1)
 (setq column-number-mode t)
 (setq indent-tabs-mode nil
