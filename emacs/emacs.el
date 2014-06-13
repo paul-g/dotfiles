@@ -18,6 +18,7 @@
     ;;themes
     zenburn-theme ir-black-theme solarized-theme))
 
+(require 'cl)
 (defun packages-installed-p ()
   (loop for p in packages
         when (not (package-installed-p p)) do (return nil)
