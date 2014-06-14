@@ -16,7 +16,7 @@
     expand-region paredit projectile helm-projectile popup
     powerline volatile-highlights yaml-mode yari
     ;;themes
-    tango-plus))
+    tango-plus-theme))
 
 (require 'cl)
 (defun packages-installed-p ()
@@ -224,3 +224,12 @@
 (key-chord-define-global "aa" 'helm-ls-git-ls)
 (key-chord-define-global "zz" 'helm-etags-select)
 (key-chord-define-global "ZZ" 'helm-projectile)
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(mode-line ((t (:background "#5f615c" :foreground "#eeeeec" :box nil))))
+ '(mode-line-highlight ((t (:box nil))))
+ '(mode-line-inactive ((t (:inherit mode-line :background "#888a85" :foreground "#babdb6" :box nil :weight light)))))
