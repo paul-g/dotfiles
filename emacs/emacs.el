@@ -58,6 +58,7 @@
 ;; -- UI, Editing --
 (powerline-default-theme)
 (autopair-global-mode)
+
 (desktop-save-mode 1)
 (global-hl-line-mode 1)
 (global-flycheck-mode 1)
@@ -196,7 +197,7 @@
 (global-set-key [f8] 'ascope-init)
 (global-set-key [f9] 'ascope-find-this-symbol)
 (global-set-key [f10] 'ascope-find-global-definition)
-(global-set-key [f11] 'ascope-find-functions-calling-this-functions)
+(global-set-key [f11] 'ascope-find-functions-calling-this-function)
 
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-<tab>") 'yas-expand)
