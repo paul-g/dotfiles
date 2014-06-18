@@ -8,13 +8,13 @@
 (defvar packages
   '(cl-lib ack-and-a-half helm helm-bibtex helm-ls-git
     ;; coding stuff
-    ascope auto-complete autopair yasnippet magit haskell-mode
-    python elpy jedi inf-ruby multiple-cursors flycheck
+    ascope auto-complete autopair clang-format yasnippet magit
+    haskell-mode python elpy jedi inf-ruby multiple-cursors flycheck
     ;; writing
     ace-jump-mode ebib markdown-mode key-chord
     ;; ui
-    expand-region paredit projectile helm-projectile popup
-    powerline volatile-highlights yaml-mode yari
+    automargin expand-region paredit projectile helm-projectile
+    popup powerline volatile-highlights yaml-mode yari
     ;;themes
     tango-plus-theme))
 
@@ -41,6 +41,7 @@
 (require 'ascope)
 (require 'auto-complete)
 (require 'autopair)
+(require 'automargin)
 (require 'ebib)
 (require 'elpy)
 (require 'expand-region)
