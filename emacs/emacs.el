@@ -16,8 +16,9 @@
     expand-region paredit projectile helm-projectile popup
     powerline volatile-highlights yaml-mode yari
     ;;themes
-    zenburn-theme ir-black-theme solarized-theme))
+    tango-plus-theme))
 
+(require 'cl)
 (defun packages-installed-p ()
   (loop for p in packages
         when (not (package-installed-p p)) do (return nil)
@@ -34,9 +35,6 @@
 (dolist (p packages)
   (when (not (package-installed-p p))
     (package-install p)))
-
-(load-theme 'ir-black t)
-;; (load-theme 'tango-plus t)
 
 ;; -- imports --
 (require 'ace-jump-mode)
@@ -63,6 +61,8 @@
 (global-hl-line-mode 1)
 (global-flycheck-mode 1)
 (ido-mode 1)
+(load-theme 'tango-plus t)
+
 (menu-bar-mode -1)
 (setq column-number-mode t)
 (setq indent-tabs-mode nil
@@ -218,51 +218,14 @@
 (key-chord-define-global "zz" 'helm-etags-select)
 (key-chord-define-global "ZZ" 'helm-projectile)
 
-;; --- Various customisations ---
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "gray11" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
- '(ac-candidate-face ((t (:background "gray30"))))
- '(ac-completion-face ((t (:foreground "darkgray"))))
- '(ac-selection-face ((t (:background "dark olive green"))))
- '(error ((t (:foreground "dark red" :weight bold))))
- '(flycheck-error ((t (:foreground "firebrick"))))
- '(flyspell-duplicate ((t (:foreground "light goldenrod"))))
- '(flyspell-duplicate-face ((t (:foreground "Gold3" :weight bold))) t)
- '(flyspell-incorrect ((t (:foreground "IndianRed1"))))
- '(flyspell-incorrect-face ((t (:foreground "firebrick4" :underline t :weight bold))) t)
- '(fringe ((t (:background "gray11"))))
- '(helm-candidate-number ((t (:background "dark olive green" :foreground "black"))))
- '(helm-selection ((t (:background "dark olive green" :underline nil))))
- '(helm-source-header ((t (:background "gray13" :foreground "white" :weight bold :height 1.0))))
- '(helm-split-window-in-side-p t)
- '(hl-line ((t (:color nil :style nil :background "#151515" :underline nil))))
- '(lazy-highlight ((t (:background "dark goldenrod" :foreground "#2F2F00"))))
- '(linum ((t (:inherit (shadow default) :background "gray11
-" :height 0.8))))
- '(magit-item-highlight ((t (:background "gray14"))))
- '(mode-line ((t (:background "#202020" :foreground "#CCCCCC"))))
- '(mode-line-inactive ((t (:inherit mode-line :background "#202020" :foreground "#000000" :weight light))))
- '(popup-summary-face ((t (:background "gray30" :foreground "dark goldenrod"))))
- '(popup-tip-face ((t (:background "gray30" :foreground "white"))))
- '(powerline-active1 ((t (:background "dark olive green"))))
- '(powerline-active2 ((t (:inherit mode-line :background "gray20"))))
- '(tooltip ((t (:inherit variable-pitch :background "gray30" :foreground "black"))))
- '(warning ((t (:foreground "dark goldenrod" :weight bold)))))
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(compilation-scroll-output (quote first-error))
- '(compilation-window-height 10)
- '(custom-safe-themes (quote ("f5e9f66da69f504cb61aacedeb8284d8f38f2e6f835fd658cac5f0ad5d924549" default)))
- '(fringe-mode 15 nil (fringe))
- '(global-linum-mode t)
- '(powerline-default-separator (quote arrow))
- '(powerline-text-scale-factor nil)
- '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify)))
+ '(mode-line ((t (:background "#5f615c" :foreground "#eeeeec" :box nil))))
+ '(mode-line-highlight ((t (:box nil))))
+ '(mode-line-inactive ((t (:inherit mode-line :background "#888a85" :foreground "#babdb6" :box nil :weight light))))
+ '(magit-diff-add ((t (:inherit diff-added :foreground "chartreuse3"))))
+ '(magit-diff-del ((t (:inherit diff-removed :foreground "red"))))
+ '(magit-item-highlight ((t (:inherit secondary-selection :background "white smoke")))))
