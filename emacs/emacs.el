@@ -183,9 +183,9 @@
   (find-file "~/.emacs.el"))
 
 ;; -- Local settings --
-(setq helm-bibtex-bibliography "~/workspaces/refdb/bibliography.bib")
-(setq helm-bibtex-library-path "~/workspaces/refdb/papers")
-(setq helm-bibtex-notes-path "~/workspaces/refdb/notes")
+(setq helm-bibtex-bibliography "~/Dropbox/refdb/bibliography.bib")
+(setq helm-bibtex-library-path "~/Dropbox/refdb/papers")
+(setq helm-bibtex-notes-path "~/Dropbox/refdb/notes")
 (setq helm-bibtex-notes-extension ".md")
 
 ;; -- Key bindings
