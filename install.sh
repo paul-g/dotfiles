@@ -21,7 +21,7 @@ function skipFoundFile() {
 echo "Installing some useful packages..."
 packages=(alien ack-grep clang exuberant-ctags emacs24
           fakeroot gnuplot htop maven python python-pip
-	  meld colordiff inkscape
+	  meld colordiff inkscape zsh
           pandoc subversion xmonad libghc-xmonad-contrib-dev
           texlive-full libghc-xmonad-dev suckless-tools trayer
           valgrind terminator chromium-browser xscreensaver)
@@ -59,7 +59,7 @@ done
 
 if [ $installEmacsSetup -eq 1 ]; then
     echo "Creating symlinks."
-    ln -s $(readlink -f emacs/prelude) ~/.emacs.el
+    ln -s $(readlink -f emacs/prelude) ~/.emacs.d
 fi
 
 echo -e "\nInstalling shell include..."
@@ -86,3 +86,6 @@ if [ -a $(readlink -f ~/.gitconfig) ]; then
 else
     ln -s $(readlink -f git/gitconfig) ~/.gitconfig
 fi
+
+echo -e "\nInstalling zsh..."
+sh oh-my-zsh/tools/install.sh
