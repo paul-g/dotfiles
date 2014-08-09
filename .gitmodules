@@ -4,3 +4,6 @@
 [submodule "emacs/prelude"]
 	path = emacs/prelude
 	url = https://github.com/paul-g/prelude.git
+[submodule "oh-my-zsh"]
+	path = oh-my-zsh
+	url = https://github.com/paul-g/oh-my-zsh.git
