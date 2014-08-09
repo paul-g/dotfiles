@@ -1,6 +1,3 @@
 [submodule "emacs/yasnippet-snippets"]
 	path = emacs/yasnippet-snippets
 	url = https://github.com/paul-g/yasnippet-snippets.git
-[submodule "emacs/prelude"]
-	path = emacs/prelude
-	url = https://github.com/paul-g/jargogle.git
