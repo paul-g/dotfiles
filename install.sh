@@ -59,8 +59,7 @@ done
 
 if [ $installEmacsSetup -eq 1 ]; then
     echo "Creating symlinks."
-    ln -s $(readlink -f emacs/emacs.el) ~/.emacs.el
-    ln -s $(readlink -f emacs/yasnippet-snippets) ~/.yasnippet-snippets
+    ln -s $(readlink -f emacs/prelude) ~/.emacs.el
 fi
 
 echo -e "\nInstalling shell include..."
