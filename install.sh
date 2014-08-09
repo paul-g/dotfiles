@@ -22,7 +22,7 @@ echo "Installing some useful packages..."
 packages=(alien ack-grep clang exuberant-ctags emacs24
           fakeroot gnuplot htop maven python python-pip
 	  meld colordiff inkscape zsh
-          pandoc subversion xmonad libghc-xmonad-contrib-dev
+          pandoc subversion xmonad xmobar libghc-xmonad-contrib-dev
           texlive-full libghc-xmonad-dev suckless-tools trayer
           valgrind terminator chromium-browser xscreensaver)
 
