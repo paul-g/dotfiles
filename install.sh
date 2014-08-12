@@ -24,7 +24,9 @@ packages=(alien ack-grep clang exuberant-ctags emacs24
 	  meld colordiff inkscape zsh
           pandoc subversion xmonad xmobar libghc-xmonad-contrib-dev
           texlive-full libghc-xmonad-dev suckless-tools trayer
-          valgrind terminator chromium-browser xscreensaver)
+          valgrind terminator chromium-browser xscreensaver
+          python-numpy python-scipy python-matplotlib ipython
+          ipython-notebook python-pandas python-sympy python-nose)
 
 for p in "${packages[@]}"; do
     installed=$(dpkg -s "$p" 2> /dev/null)
