@@ -14,8 +14,7 @@ import XMonad.Util.EZConfig
 
 -- xprop | grep WM_CLASS
 myManageHook = composeAll
-    [ className =? "Chromium-browser" --> doShift "2",
-      className =? "Emacs"            --> doShift "3",
+    [ className =? "Emacs"            --> doShift "3",
       className =? "Terminator"       --> doShift "1"
     , resource  =? "desktop_window"   --> doIgnore
     , className =? "Gimp"             --> doFloat
@@ -54,7 +53,7 @@ xmonadConfig = defaultConfig {
   [("M-S-l", spawn "xscreensaver-command --lock"),
    ("M-p",  spawn "dmenu_run -nb 'black' -nf 'white' -fn '-*-*-*-*-*-*-15-*-*-*-*-*-*-*' ")]
 
---- Start xmonad --- 
+--- Start xmonad ---
 main = do
   xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmonad/xmobar.hs"
   xmonad $ xmonadConfig {
@@ -65,4 +64,3 @@ main = do
       , manageHook = manageDocks <+> myManageHook
       , startupHook = setWMName "LG3D"
   }
-
