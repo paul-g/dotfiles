@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Where to install the JDK
 instDir="/usr/lib/jvm"
