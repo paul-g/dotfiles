@@ -29,3 +29,9 @@ The installation script:
 
 1. Creates appropriate simlinks (e.g. `~/.emacs.el -> <path/to/checkout/emacs/emacs.el`)
 2. Installs a bunch of useful packages (when not present)
+
+## Tweaks for Ubuntu 14
+
+* To disable Ctrl-space ibus binding, run `dconf-editor` desktop -> ibus -> general -> hotkeys
+* To improve power saving, run `powertop` and set everything to good
+* To change keyboard layout use `dkpg-reconfigure keyboard-configuration`
