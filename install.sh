@@ -61,15 +61,9 @@ done
 
 if [ $installEmacsSetup -eq 1 ]; then
     echo "Creating symlinks."
-    ln -s $(readlink -f emacs/prelude) ~/.emacs.d
+    ln -s $(readlink -f lib/prelude) ~/.emacs.d
 fi
 
-echo -e "\nInstalling shell include..."
-if [ -a $(readlink -f ~/.bash_include) ]; then
-    skipFoundFile "~/.bash_include"
-else
-    ln -s $(readlink -f config/bash_include) ~/.bash_include
-fi
 
 # Install xmonad
 echo -e "\nInstalling xmonad..."
@@ -90,4 +84,4 @@ else
 fi
 
 echo -e "\nInstalling zsh..."
-sh oh-my-zsh/tools/install.sh
+sh lib/oh-my-zsh/tools/install.sh

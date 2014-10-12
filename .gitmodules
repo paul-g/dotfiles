@@ -1,9 +1,6 @@
-[submodule "emacs/yasnippet-snippets"]
-	path = emacs/yasnippet-snippets
-	url = https://github.com/paul-g/yasnippet-snippets.git
-[submodule "emacs/prelude"]
-	path = emacs/prelude
+[submodule "lib/prelude"]
+	path = lib/prelude
 	url = https://github.com/paul-g/prelude.git
-[submodule "oh-my-zsh"]
-	path = oh-my-zsh
+[submodule "lib/oh-my-zsh"]
+	path = lib/oh-my-zsh
 	url = https://github.com/paul-g/oh-my-zsh.git
