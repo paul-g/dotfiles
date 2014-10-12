@@ -80,7 +80,7 @@ echo -e "\nInstalling git config..."
 if [ -a $(readlink -f ~/.gitconfig) ]; then
     skipFoundFile "~/.gitconfig"
 else
-    ln -s $(readlink -f git/gitconfig) ~/.gitconfig
+    ln -s $(readlink -f config/gitconfig) ~/.gitconfig
 fi
 
 echo -e "\nInstalling zsh..."
