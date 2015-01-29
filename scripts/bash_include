@@ -1,0 +1,96 @@
+# --- Aliases ---
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias rm='rm -i'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias ack='ack-grep'
+
+alias meminfo='free -m -l -t'
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+alias pscpu='ps auxf | sort -nr -k 3'
+alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
+alias cpuinfo='lscpu'
+alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
+
+# --- Useful Functions ---
+function projector-clone() {
+    vga=`xrandr -q | grep -o VGA.`
+    lvds=`xrandr -q | grep -o LVDS.`
+    res="1024x768"
+    echo "Setting projector -> $vga, local -> $lvds, res = 1024 x 768"
+    xrandr --output $vga --mode $res --same-as $lvds --output $lvds --mode $res
+}
+
+function projector-off() {
+    vga=`xrandr -q | grep -o VGA.`
+    lvds=`xrandr -q | grep -o LVDS.`
+    echo "Closing projector -> $vga, local -> $lvds"
+    xrandr --output $vga --off
+    xrandr --output $lvds --auto
+}
+
+function display-dual-left-of() {
+    xrandr --auto --output $1 --left-of $2
+}
+
+# display disk usage in human readable format, largest file first
+function mydu() {
+    echo "Checking disk usage. This may take a while..."
+    du -d 1 -h -a | sort -h
+}
+
+function __countFiles() {
+    while read -r dir; do files=`find "$dir" | wc -l`; echo "$files $dir"; done
+}
+
+# display file usage by directory in human readable format, largest file first
+function myfu() {
+    echo "Checking file usage. This may take a while..."
+    find -maxdepth 1 -type d | __countFiles | sort -h -r
+}
+
+function cd() {
+    builtin cd "$@" && ls
+}
+
+# create a new, empty pandoc project
+function pandoc-init() {
+    if [[ "$#" -ne 1 ]]; then
+	echo "Usage: pandoc-init <Project Name>"
+	return
+    fi
+    pathToFile=`readlink ~/.bash_include`
+    cp `dirname $pathToFile`"/../templates/pandoc" $1 -r
+}
+
+function max-show() {
+         echo "Current settings: "
+         echo "    MAXCOMPILERDIR --> ${MAXCOMPILERDIR}"
+         echo "    MAXELEROSDIR   --> ${MAXELEROSDIR}"
+         echo "Available maxcompiler versions"
+         ls /vol/cc/opt/maxeler | grep maxcompiler | sed 's/maxcompiler-//g'
+}
+
+function max-set() {
+         export MAXCOMPILERDIR=/vol/cc/opt/maxeler/maxcompiler-$1
+         source ${MAXCOMPILERDIR}/settings.sh
+         source /vol/cc/opt/Xilinx/13.3/ISE_DS/settings64.sh
+         export PATH=${PATH}:/vol/cc/opt/altera/13.1/quartus/bin
+         export LM_LICENSE_FILE=27000@chicken.doc.ic.ac.uk
+         export MAXELEROSDIR=${MAXCOMPILERDIR}/lib/maxeleros-sim
+
+         echo "Updated MAXELER tools"
+         max-show
+}
