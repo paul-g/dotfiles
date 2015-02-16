@@ -84,7 +84,8 @@ else
     ln -s $(readlink -f config/gitconfig) ~/.gitconfig
 fi
 
-if [ -a %(readlink -f ~/.tmux.conf) ]; then
+echo -e "\nInstalling tmux config..."
+if [ -a $(readlink -f ~/.tmux.conf) ]; then
     skipFoundFile "~/.tmux.conf"
 else
     ln -s $(readlink -f config/tmux.conf) ~/.tmux.conf
