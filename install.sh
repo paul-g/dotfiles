@@ -84,5 +84,12 @@ else
     ln -s $(readlink -f config/gitconfig) ~/.gitconfig
 fi
 
+echo -e "\nInstalling tmux config..."
+if [ -a $(readlink -f ~/.tmux.conf) ]; then
+    skipFoundFile "~/.tmux.conf"
+else
+    ln -s $(readlink -f config/tmux.conf) ~/.tmux.conf
+fi
+
 echo -e "\nInstalling zsh..."
 sh lib/oh-my-zsh/tools/install.sh
