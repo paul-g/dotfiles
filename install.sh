@@ -91,5 +91,13 @@ else
     ln -s $(readlink -f config/tmux.conf) ~/.tmux.conf
 fi
 
+echo -e "\nInstalling vim config..."
+if [ -a $(readlink -f ~/.vimrc) ]; then
+    skipFoundFile "~/.vimrc"
+else
+    ln -s $(readlink -f config/vimrc) ~/.vimrc
+fi
+
+
 echo -e "\nInstalling zsh..."
 sh lib/oh-my-zsh/tools/install.sh
