@@ -15,21 +15,16 @@ call neobundle#begin(expand('~/.vim/bundle'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'SirVer/ultisnips'
-
-" Snippets are separated from the engine. Add this if you want them:
-NeoBundle 'honza/vim-snippets'
-
 " Add or remove your Bundles here:
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'tpope/vim-fugitive'
-
-" You can specify revision/branch/tag.
+NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
 
 " Required:
 call neobundle#end()
@@ -43,15 +38,16 @@ NeoBundleCheck
 "End NeoBundle Scripts-------------------------
 
 colorscheme Monokai
+
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsEditSplit="vertical"
+
+let g:ycm_key_list_previous_completion=['<Up>']
+
+let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_powerline_fonts = 0
 
-" Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
