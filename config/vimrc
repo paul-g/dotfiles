@@ -5,7 +5,7 @@ if has('vim_starting')
   endif
 
   " Required:
-  set runtimepath+=/home/paul-g/.vim/bundle/neobundle.vim/
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 " Required:
@@ -16,15 +16,16 @@ call neobundle#begin(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Add or remove your Bundles here:
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'Valloric/YouCompleteMe'
+
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 NeoBundle 'SirVer/ultisnips'
+NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'honza/vim-snippets'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'tpope/vim-fugitive'
 
 " Required:
 call neobundle#end()
@@ -49,5 +50,3 @@ let g:ycm_key_list_previous_completion=['<Up>']
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-
-
