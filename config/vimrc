@@ -15,6 +15,7 @@ call neobundle#begin(expand('/data/.vim/bundle'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+NeoBundle 'flazz/vim-colorschemes'
 " Add or remove your Bundles here:
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'scrooloose/nerdtree'
@@ -24,10 +25,10 @@ NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'rdnetto/YCM-Generator'
 " Required:
 call neobundle#end()
 
@@ -38,8 +39,6 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
-
-colorscheme Monokai
 
 let g:airline_left_sep=''
 let g:airline_right_sep=''
@@ -58,5 +57,8 @@ let g:airline_left_sep=''
 let g:airline_right_sep=''
 
 set expandtab
-set tabstop=4
+set tabstop=2
+set shiftwidth=2
 syntax enable on
+
+colorscheme Monokai
