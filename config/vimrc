@@ -59,6 +59,8 @@ let g:airline_right_sep=''
 set expandtab
 set tabstop=2
 set shiftwidth=2
-syntax enable on
 
-colorscheme Monokai
+syntax on
+set t_Co=256
+set background=dark
+colorscheme distinguished
