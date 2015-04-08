@@ -5,11 +5,11 @@ if has('vim_starting')
   endif
 
   " Required:
-  set runtimepath+=/data/.vim/bundle/neobundle.vim/
+  set runtimepath+=/data/pg1709/.vim/bundle/neobundle.vim/
 endif
 
 " Required:
-call neobundle#begin(expand('/data/.vim/bundle'))
+call neobundle#begin(expand('/data/pg1709/.vim/bundle'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -28,6 +28,8 @@ NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-speeddating'
+NeoBundle 'jceb/vim-orgmode'
 NeoBundle 'rdnetto/YCM-Generator'
 " Required:
 call neobundle#end()
@@ -74,3 +76,5 @@ ino <down> <Nop>
 ino <left> <Nop>
 ino <right> <Nop>
 ino <up> <Nop>
+
+au BufRead,BufNewFile *.maxj setfiletype java
