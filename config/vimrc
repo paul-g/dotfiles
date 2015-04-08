@@ -64,3 +64,13 @@ syntax on
 set t_Co=256
 set background=dark
 colorscheme distinguished
+
+no <down> <Nop>
+no <left> <Nop>
+no <right> <Nop>
+no <up> <Nop>
+
+ino <down> <Nop>
+ino <left> <Nop>
+ino <right> <Nop>
+ino <up> <Nop>
