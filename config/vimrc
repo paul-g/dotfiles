@@ -42,39 +42,45 @@ filetype plugin indent on
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
 
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_powerline_fonts = 0
-
+" --- Plugin Configuration
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsEditSplit="vertical"
-
 let g:ycm_key_list_previous_completion=['<Up>']
-
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+let g:org_agenda_files=['~/Dropbox/cryptico/*.org']
+
+" --- Customised Behaviour
+au BufRead,BufNewFile *.maxj setfiletype java
+autocmd BufWritePre * :FixWhitespace
 
 set expandtab
 set tabstop=2
 set shiftwidth=2
+set smarttab
+set t_Co=256
+set incsearch
+set smartcase
+set showcmd
+set cursorline
 
 syntax on
-set t_Co=256
-set background=dark
 colorscheme distinguished
 
+" -- Key bindings
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 no <down> <Nop>
 no <left> <Nop>
 no <right> <Nop>
 no <up> <Nop>
-
 ino <down> <Nop>
 ino <left> <Nop>
 ino <right> <Nop>
 ino <up> <Nop>
-
-au BufRead,BufNewFile *.maxj setfiletype java
