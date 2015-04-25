@@ -29,6 +29,7 @@ NeoBundle 'honza/vim-snippets'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-speeddating'
+NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'jceb/vim-orgmode'
 NeoBundle 'rdnetto/YCM-Generator'
 " Required:
@@ -67,6 +68,9 @@ set incsearch
 set smartcase
 set showcmd
 set cursorline
+set nobackup
+set nowritebackup
+set noswapfile
 
 syntax on
 colorscheme distinguished
