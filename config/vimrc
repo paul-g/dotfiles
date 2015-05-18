@@ -31,6 +31,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-speeddating'
 NeoBundle 'jceb/vim-orgmode'
 NeoBundle 'rdnetto/YCM-Generator'
+NeoBundle 'pangloss/vim-javascript'
 " Required:
 call neobundle#end()
 
