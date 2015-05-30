@@ -33,6 +33,7 @@ NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'jceb/vim-orgmode'
 NeoBundle 'rdnetto/YCM-Generator'
 NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'wting/rust.vim'
 " Required:
 call neobundle#end()
 
