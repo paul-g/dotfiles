@@ -32,6 +32,8 @@ NeoBundle 'tpope/vim-speeddating'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'jceb/vim-orgmode'
 NeoBundle 'rdnetto/YCM-Generator'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'wting/rust.vim'
 " Required:
 call neobundle#end()
 
@@ -54,12 +56,14 @@ let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:org_agenda_files=['~/Dropbox/cryptico/*.org']
-let g:ctrlp_custom_ignore = '*.o'
+let g:ctrlp_extensions = ['tag']
+set wildignore=*/.git/*,*/.hg/*,*/.svn/*,*/build/*,*.o,*.class
 
 " --- Customised Behaviour
 au BufRead,BufNewFile *.maxj setfiletype java
 autocmd BufWritePre * :FixWhitespace
 
+" -- UI
 set expandtab
 set tabstop=2
 set shiftwidth=2
@@ -76,11 +80,17 @@ set noswapfile
 syntax on
 colorscheme distinguished
 
+
 " -- Key bindings
+" ---- Code search
+nnoremap <F2> :CtrlPTag<CR>
+nnoremap gr :grep -I <cword> * --exclude-dir="build" -r<CR>:cw<CR>
+
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
 no <down> <Nop>
 no <left> <Nop>
 no <right> <Nop>
