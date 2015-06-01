@@ -102,3 +102,7 @@ ino <up> <Nop>
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap H ^
+nnoremap L $
+inoremap jk <esc>
+inoremap <esc> <nop>
