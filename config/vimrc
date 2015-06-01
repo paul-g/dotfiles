@@ -76,10 +76,11 @@ set cursorline
 set nobackup
 set nowritebackup
 set noswapfile
+set relativenumber
+set cursorline
 
 syntax on
 colorscheme distinguished
-
 
 " -- Key bindings
 " ---- Code search
