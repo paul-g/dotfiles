@@ -32,6 +32,8 @@ NeoBundle 'tpope/vim-speeddating'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'jceb/vim-orgmode'
 NeoBundle 'rdnetto/YCM-Generator'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'wting/rust.vim'
 " Required:
 call neobundle#end()
 
@@ -83,7 +85,7 @@ colorscheme distinguished
 " -- Key bindings
 " ---- Code search
 nnoremap <F2> :CtrlPTag<CR>
-nnoremap gr :grep <cword> * --include="*.cpp" --include="*.hpp" --include="*.java" --include="*.maxj" --exclude-dir="build" -r<CR>:cw<CR>
+nnoremap gr :grep -I <cword> * --exclude-dir="build" -r<CR>:cw<CR>
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -98,3 +100,6 @@ ino <down> <Nop>
 ino <left> <Nop>
 ino <right> <Nop>
 ino <up> <Nop>
+
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
