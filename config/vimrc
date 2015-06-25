@@ -34,6 +34,7 @@ NeoBundle 'jceb/vim-orgmode'
 NeoBundle 'rdnetto/YCM-Generator'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'wting/rust.vim'
+NeoBundle 'paul-g/vimcit'
 " Required:
 call neobundle#end()
 
@@ -46,6 +47,10 @@ NeoBundleCheck
 "End NeoBundle Scripts-------------------------
 
 " --- Plugin Configuration
+let g:VimCitBibPath="~/workspaces/textito/"
+let g:VimCitPdfPath="/data/Dropbox/Dropbox/refdb/papers"
+let g:VimCitPdfViewer="evince"
+let g:VimCitNotesPath="/data/Dropbox/Dropbox/refdb/notes"
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
@@ -104,4 +109,15 @@ ino <up> <Nop>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>:q<cr>
 nnoremap <F5> :make <up><cr>
+nnoremap <F4> :source %<cr>
 nnoremap qq :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
+nnoremap H ^
+nnoremap L $
+inoremap jk <esc>
+inoremap jj <esc>:w<cr>
+inoremap <esc> <nop>
+
+nnoremap <F6> ?@<cr>/,<cr>h:VimCitPdf<cr>
+nnoremap <F7> ?@<cr>/,<cr>h:VimCitNotes<cr>
+nnoremap <F8> :VimCitSearch<cr>
+
