@@ -19,6 +19,7 @@ NeoBundle 'flazz/vim-colorschemes'
 " Add or remove your Bundles here:
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'scrooloose/nerdtree'
+" TODO NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'Valloric/YouCompleteMe'
@@ -30,11 +31,16 @@ NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-speeddating'
 NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'tpope/vim-sensible'
 NeoBundle 'jceb/vim-orgmode'
 NeoBundle 'rdnetto/YCM-Generator'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'wting/rust.vim'
 NeoBundle 'paul-g/vimcit'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'terryma/vim-multiple-cursors'
 " Required:
 call neobundle#end()
 
@@ -45,6 +51,9 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
+
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
 
 " --- Plugin Configuration
 let g:VimCitBibPath="~/workspaces/textito/"
@@ -85,7 +94,8 @@ set relativenumber
 set cursorline
 
 syntax on
-colorscheme distinguished
+let g:solarized_termcolors=256
+colorscheme solarized
 
 " -- Key bindings
 " ---- Code search
@@ -121,3 +131,4 @@ nnoremap <F6> ?@<cr>/,<cr>h:VimCitPdf<cr>
 nnoremap <F7> ?@<cr>/,<cr>h:VimCitNotes<cr>
 nnoremap <F8> :VimCitSearch<cr>
 
+autocmd BufNewFile,BufRead *.md setlocal omnifunc=VimCitComplete
