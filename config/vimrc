@@ -19,7 +19,7 @@ NeoBundle 'flazz/vim-colorschemes'
 " Add or remove your Bundles here:
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'scrooloose/nerdtree'
-" TODO NeoBundle 'scrooloose/syntastic'
+NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'Valloric/YouCompleteMe'
