@@ -69,13 +69,14 @@ let g:ycm_key_list_previous_completion=['<Up>']
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:org_agenda_files=['~/Dropbox/cryptico/*.org']
+let g:org_agenda_files=['/data/Dropbox/Dropbox/cryptico/*.org', '~/workspaces/textito/phd/plan/*.org']
 let g:ctrlp_extensions = ['tag']
 set wildignore=*/.git/*,*/.hg/*,*/.svn/*,*/build/*,*.o,*.class
 
 " --- Customised Behaviour
 au BufRead,BufNewFile *.maxj setfiletype java
 autocmd BufWritePre * :FixWhitespace
+au BufRead,BufNewFile *.md setlocal spell spelllang=en_gb
 
 " -- UI
 set expandtab
