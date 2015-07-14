@@ -42,6 +42,7 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'mattn/calendar-vim'
+NeoBundle 'utl.vim'
 " Required:
 call neobundle#end()
 
