@@ -81,6 +81,7 @@ au BufRead,BufNewFile *.md setlocal spell spelllang=en_gb
 
 autocmd BufWritePre * :FixWhitespace
 autocmd BufNewFile,BufRead *.md setlocal omnifunc=VimCitComplete
+autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 
 command! Gtd e /data/Dropbox/gtd/gtd.org
 
