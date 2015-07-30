@@ -43,6 +43,7 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'mattn/calendar-vim'
 NeoBundle 'utl.vim'
+NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
 " Required:
 call neobundle#end()
 
@@ -73,6 +74,10 @@ let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:org_agenda_files=[g:DropboxPath . '/gtd/*.org', g:DropboxPath . '/gtd/projects/*.org']
 let g:ctrlp_extensions = ['tag']
+let g:LatexBox_Folding = 1
+let g:LatexBox_latexmk_preview_continuously = 1
+let g:LatexBox_quickfix = 2
+
 set wildignore=*/.git/*,*/.hg/*,*/.svn/*,*/build/*,*.o,*.class
 
 " --- Customised Behaviour
