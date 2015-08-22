@@ -53,6 +53,9 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
+"
+
+set runtimepath+=~/workspaces/dotfiles
 
 " --- Custom Configuration
 let g:DropboxPath="/data/Dropbox"
@@ -67,6 +70,8 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetsDir="~/workspaces/dotfiles/vimsnippets"
+let g:UltiSnipsSnippetDirectories=["vimsnippets"]
 let g:ycm_key_list_previous_completion=['<Up>']
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
