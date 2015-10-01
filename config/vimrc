@@ -15,6 +15,7 @@ call neobundle#begin(expand('/data/pg1709/.vim/bundle'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+NeoBundle 'Align'
 NeoBundle 'flazz/vim-colorschemes'
 " Add or remove your Bundles here:
 NeoBundle 'majutsushi/tagbar'
@@ -82,6 +83,7 @@ let g:ctrlp_extensions = ['tag']
 let g:LatexBox_Folding = 1
 let g:LatexBox_latexmk_preview_continuously = 1
 let g:LatexBox_quickfix = 2
+let g:LatexBox_latexmk_options = '-bibtex'
 
 set wildignore=*/.git/*,*/.hg/*,*/.svn/*,*/build/*,*.o,*.class
 
