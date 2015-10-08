@@ -11,6 +11,7 @@ import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig
+import XMonad.Hooks.EwmhDesktops
 
 -- xprop | grep WM_CLASS
 myManageHook = composeAll
@@ -56,7 +57,7 @@ xmonadConfig = defaultConfig {
 --- Start xmonad ---
 main = do
   xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmonad/xmobar.hs"
-  xmonad $ xmonadConfig {
+  xmonad $ ewmh xmonadConfig {
       logHook = dynamicLogWithPP $ xmobarPP {
             ppOutput = hPutStrLn xmproc
           , ppTitle = xmobarColor "#FFB6B0" ""
