@@ -15,6 +15,7 @@ call neobundle#begin(expand('/data/pg1709/.vim/bundle'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+NeoBundle 'Align'
 NeoBundle 'flazz/vim-colorschemes'
 " Add or remove your Bundles here:
 NeoBundle 'majutsushi/tagbar'
@@ -53,6 +54,9 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
+"
+
+set runtimepath+=~/workspaces/dotfiles
 
 " --- Custom Configuration
 let g:DropboxPath="/data/Dropbox"
@@ -68,6 +72,8 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsUsePythonVersion = 2
+let g:UltiSnipsSnippetsDir="~/workspaces/dotfiles/vimsnippets"
+let g:UltiSnipsSnippetDirectories=["vimsnippets"]
 let g:ycm_key_list_previous_completion=['<Up>']
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
@@ -78,6 +84,7 @@ let g:LatexBox_Folding = 1
 let g:LatexBox_latexmk_preview_continuously = 1
 let g:LatexBox_quickfix = 2
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+let g:LatexBox_latexmk_options = '-bibtex'
 
 set wildignore=*/.git/*,*/.hg/*,*/.svn/*,*/build/*,*.o,*.class
 

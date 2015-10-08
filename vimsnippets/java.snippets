@@ -1,0 +1,39 @@
+snippet maxke "Create a Maxeler Kernel"
+class ${1:} extends Kernel {
+  protected $1(KernelParameters parameters) {
+	  super(parameters);
+		$2
+	}
+}
+endsnippet
+
+snippet maxsm "Create a Maxeler manager state machine."
+import com.maxeler.maxcompiler.v2.statemachine.*;
+import com.maxeler.maxcompiler.v2.statemachine.manager.*;
+
+public class ${1:} extends ManagerStateMachine {
+
+    private enum Mode {
+		// TODO Define modes
+		$2
+    };
+
+    private final DFEsmStateEnum<Mode> mode;
+
+    public $1(DFEManager owner) {
+        super(owner);
+        mode = state.enumerated(Mode.class, // mode1);
+		}
+
+    @Override
+    protected void nextState() {
+	    // TODO next state functions
+
+		}
+
+    @Override
+    protected void outputFunction() {
+		  // TODO output functions
+		}
+}
+endsnippet
