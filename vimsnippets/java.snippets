@@ -1,7 +1,7 @@
 snippet maxke "Create a Maxeler Kernel"
 class ${1:} extends Kernel {
-  protected $1(KernelParameters parameters) {
-	  super(parameters);
+	protected $1(KernelParameters parameters) {
+		super(parameters);
 		$2
 	}
 }
@@ -10,30 +10,66 @@ endsnippet
 snippet maxsm "Create a Maxeler manager state machine."
 import com.maxeler.maxcompiler.v2.statemachine.*;
 import com.maxeler.maxcompiler.v2.statemachine.manager.*;
+import com.maxeler.maxcompiler.v2.managers.DFEManager;
 
 public class ${1:} extends ManagerStateMachine {
 
-    private enum Mode {
+	private enum Mode {
 		// TODO Define modes
 		$2
-    };
+	};
 
-    private final DFEsmStateEnum<Mode> mode;
+	private final DFEsmStateEnum<Mode> mode;
 
-    public $1(DFEManager owner) {
-        super(owner);
-        mode = state.enumerated(Mode.class, // mode1);
-		}
+	public $1(DFEManager owner) {
+		super(owner);
+		mode = state.enumerated(Mode.class, // mode1);
+	}
 
-    @Override
-    protected void nextState() {
-	    // TODO next state functions
+	@Override
+	protected void nextState() {
+		// TODO next state functions
+	}
 
-		}
-
-    @Override
-    protected void outputFunction() {
-		  // TODO output functions
-		}
+	@Override
+	protected void outputFunction() {
+		// TODO output functions
+	}
 }
+endsnippet
+
+snippet maxsmblock "A Maxeler Manager SM block"
+	ManagerStateMachine ${2:} = new ${1:}(this);
+	StateMachineBlock $2Block = addStateMachine("$2", $2);
+endsnippet
+
+snippet maxcounts "A simple counter"
+	DFEVar ${1:} = control.count.simpleCounter(${2:sizeBits});
+endsnippet
+
+snippet maxmcst "A Maxfile constant"
+	addMaxFileConstant("$1", ${1:name});
+endsnippet
+
+snippet maxsmimps "Max SM imports."
+import com.maxeler.maxcompiler.v2.managers.custom.blocks.StateMachineBlock;
+import com.maxeler.maxcompiler.v2.statemachine.manager.ManagerStateMachine;
+endsnippet
+
+snippet maxjcountp "Counter with params"
+	Params $1Params = control.count.makeParams( ${2:} )
+		.withMax(${3:})
+		.withEnable(${4:});
+	DFEVar ${1:} = control.count.makeCounter($1Params).getCount();
+endsnippet
+
+snippet maxjcountc "Maxeler counter chain"
+	CounterChain ${1:} = control.count.makeCounterChain();
+	DFEVar ${2:} = chain.addCounter(${3:max}, ${4:inc});
+endsnippet
+
+snippet maxjloop "A carried loop in maxj"
+DFEVar $2Carried = ${1:type}.newInstance(this);
+DFEVar ${2:var} = ${3:operation};
+$2Carried <== stream.offset($2, ${4:latency});
 endsnippet
