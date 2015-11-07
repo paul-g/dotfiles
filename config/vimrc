@@ -19,6 +19,7 @@ NeoBundle 'Align'
 NeoBundle 'flazz/vim-colorschemes'
 " Add or remove your Bundles here:
 NeoBundle 'majutsushi/tagbar'
+NeoBundle 'taglist.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -79,7 +80,8 @@ let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:org_agenda_files=[g:DropboxPath . '/gtd/*.org', g:DropboxPath . '/gtd/projects/*.org']
-let g:ctrlp_extensions = ['tag']
+let g:ctrlp_cmd = 'CtrlPLastMode'
+let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 let g:LatexBox_Folding = 1
 let g:LatexBox_latexmk_preview_continuously = 1
 let g:LatexBox_quickfix = 2
