@@ -99,4 +99,4 @@ flag=$1
 install "vimrc" "${flag}"
 install "tmux.conf" "${flag}"
 install "gitconfig" "${flag}"
-#install "xmonad" "${flag}"
+install "bashrc" "${flag}"
