@@ -1,3 +1,29 @@
+# --- Configs ---
+# append history on session close
+shopt -s histappend
+HISTFILESIZE=1000000
+HISTSIZE=1000000
+
+# ignore commands that start with a space and duplicates
+HISTCONTROL=ignoreboth
+
+# ignore the following commands from history
+HISTIGNORE='ls:bg:fg:history'
+
+# Store each history line as it is issued to prevent lost history in case of a
+# crashed session
+PROMPT_COMMAND='history -a'
+
+# Prompt
+BGREEN='\[\033[1;32m\]'
+GREEN='\[\033[0;32m\]'
+BRED='\[\033[1;31m\]'
+RED='\[\033[0;31m\]'
+BBLUE='\[\033[1;34m\]'
+BLUE='\[\033[0;34m\]'
+NORMAL='\[\033[00m\]'
+PS1="${BLUE}(${RED}\w${BLUE}) ${NORMAL}\h ${RED}\$ ${NORMAL}"
+
 # --- Aliases ---
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
