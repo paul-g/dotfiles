@@ -1,6 +1,9 @@
 # --- Configs ---
 # append history on session close
 shopt -s histappend
+# save multi line commands as one command
+shopt -s cmdhist
+
 HISTFILESIZE=1000000
 HISTSIZE=1000000
 
@@ -119,4 +122,10 @@ function max-set() {
 
          echo "Updated MAXELER tools"
          max-show
+}
+
+# Lists top 10 commands used. Not sure how well this works with ignoredup set...
+# http://stackoverflow.com/questions/68372/what-is-your-single-most-favorite-command-line-trick-using-bash
+function top-ten() {
+  history | awk '{print $2}' | awk 'BEGIN {FS="|"}{print $1}' | sort | uniq -c | sort -nr | head
 }
