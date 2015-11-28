@@ -22,7 +22,7 @@ RED='\[\033[0;31m\]'
 BBLUE='\[\033[1;34m\]'
 BLUE='\[\033[0;34m\]'
 NORMAL='\[\033[00m\]'
-PS1="${BLUE}(${RED}\w${BLUE}) ${NORMAL}\h ${RED}\$ ${NORMAL}"
+PS1="${BLUE}(${RED}\w${BLUE}) ${NORMAL}\u@\h \n ${RED}\$ ${NORMAL}"
 
 # --- Aliases ---
 if [ -x /usr/bin/dircolors ]; then
