@@ -1,6 +1,3 @@
 [submodule "lib/prelude"]
 	path = lib/prelude
 	url = https://github.com/paul-g/prelude.git
-[submodule "lib/oh-my-zsh"]
-	path = lib/oh-my-zsh
-	url = https://github.com/paul-g/oh-my-zsh.git
