@@ -46,6 +46,7 @@ NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'mattn/calendar-vim'
 NeoBundle 'utl.vim'
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
+NeoBundle 'rhysd/vim-clang-format'
 " Required:
 call neobundle#end()
 
@@ -142,7 +143,8 @@ ino <up> <Nop>
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>:q<cr>
-nnoremap <F5> :make <up><cr>
+nnoremap <F5> :! <up><cr>
+nnoremap <F6> :make <up><cr>
 nnoremap <F4> :source %<cr>
 nnoremap qq :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 nnoremap H ^
@@ -151,7 +153,4 @@ inoremap jk <esc>
 inoremap jj <esc>:w<cr>
 inoremap <esc> <nop>
 
-" nnoremap <F6> ?@<cr>/,<cr>h:VimCitPdf<cr>
-nnoremap <F6> :!make <up><cr>
-nnoremap <F7> ?@<cr>/,<cr>h:VimCitNotes<cr>
-nnoremap <F8> :VimCitSearch<cr>
+map <C-i> :ClangFormat<cr>
