@@ -18,8 +18,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Align'
 NeoBundle 'flazz/vim-colorschemes'
 " Add or remove your Bundles here:
-NeoBundle 'xolox/vim-easytags'
 NeoBundle 'xolox/vim-misc'
+NeoBundle 'xolox/vim-easytags'
 NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'taglist.vim'
@@ -146,7 +146,7 @@ ino <up> <Nop>
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>:q<cr>
-nnoremap <F5> :! <up><cr>
+nnoremap <F5> :!<up><cr>
 nnoremap <F6> :make <up><cr>
 nnoremap <F4> :source %<cr>
 nnoremap qq :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
