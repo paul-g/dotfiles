@@ -67,10 +67,9 @@ then
   echo "Installing some useful packages..."
   packages=(alien ack-grep clang exuberant-ctags emacs24
             fakeroot gnuplot htop maven python python-pip
-      meld colordiff inkscape zsh
+            meld colordiff inkscape
             pandoc subversion silversearcher-ag-el silversearcher-ag
-            xmonad xmobar libghc-xmonad-contrib-dev
-            texlive-full libghc-xmonad-dev suckless-tools trayer
+            texlive-full i3
             valgrind terminator chromium-browser xscreensaver
             python-numpy python-scipy python-matplotlib ipython
             ipython-notebook python-pandas python-sympy python-nose)
