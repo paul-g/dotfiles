@@ -18,6 +18,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Align'
 NeoBundle 'flazz/vim-colorschemes'
 " Add or remove your Bundles here:
+NeoBundle 'xolox/vim-easytags'
+NeoBundle 'xolox/vim-misc'
 NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'taglist.vim'
@@ -99,6 +101,7 @@ au BufRead,BufNewFile *.md setlocal spell spelllang=en_gb
 autocmd BufWritePre * :FixWhitespace
 autocmd BufNewFile,BufRead *.md setlocal omnifunc=VimCitComplete
 autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+autocmd BufWritePost *.c,*.cpp,*.h,*.java,*.maxj :TlistUpdate
 
 command! Gtd e /data/Dropbox/gtd/gtd.org
 
@@ -154,3 +157,7 @@ inoremap jj <esc>:w<cr>
 inoremap <esc> <nop>
 
 map <C-i> :ClangFormat<cr>
+
+set tags=./tags;
+let g:Tlist_Auto_Update = 1
+let g:easytags_dynamic_files = 1
