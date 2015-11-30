@@ -115,23 +115,28 @@ function pandoc-init() {
 }
 
 function max-show() {
-         echo "Current settings: "
-         echo "    MAXCOMPILERDIR --> ${MAXCOMPILERDIR}"
-         echo "    MAXELEROSDIR   --> ${MAXELEROSDIR}"
-         echo "Available maxcompiler versions"
-         ls /vol/cc/opt/maxeler | grep maxcompiler | sed 's/maxcompiler-//g'
+  echo "Current settings: "
+  echo "    MAXCOMPILERDIR --> ${MAXCOMPILERDIR}"
+  echo "    MAXELEROSDIR   --> ${MAXELEROSDIR}"
+  echo "Available maxcompiler versions"
+  ls /vol/cc/opt/maxeler | grep maxcompiler | sed 's/maxcompiler-//g'
 }
 
 function max-set() {
-         export MAXCOMPILERDIR=/vol/cc/opt/maxeler/maxcompiler-$1
-         source ${MAXCOMPILERDIR}/settings.sh
-         source /vol/cc/opt/Xilinx/13.3/ISE_DS/settings64.sh
-         export PATH=${PATH}:/vol/cc/opt/altera/13.1/quartus/bin
-         export LM_LICENSE_FILE=27000@chicken.doc.ic.ac.uk
-         export MAXELEROSDIR=${MAXCOMPILERDIR}/lib/maxeleros-sim
+  mcdir=/vol/cc/opt/maxeler/maxcompiler-$1
+  if [ -x ${mcdir} ]; then
+    export MAXCOMPILERDIR=${mcdir}
+    source ${MAXCOMPILERDIR}/settings.sh
+    source /vol/cc/opt/Xilinx/13.3/ISE_DS/settings64.sh
+    export PATH=${PATH}:/vol/cc/opt/altera/13.1/quartus/bin
+    export LM_LICENSE_FILE=27000@chicken.doc.ic.ac.uk
+    export MAXELEROSDIR=${MAXCOMPILERDIR}/lib/maxeleros-sim
+    echo "Updated MAXELER tools"
+    max-show
+    return
+  fi
 
-         echo "Updated MAXELER tools"
-         max-show
+  echo "Directory ${mcdir} doesn't exist"
 }
 
 function scratch() {
@@ -163,4 +168,12 @@ function brc() {
 # CBB to type that every time...
 function cmkr() {
   cmake -DCMAKE_BUILD_TYPE=Release ..
+}
+
+function cmkb() {
+  rm -rf build && mkd build && cmkr
+}
+
+function cmkcb() {
+  .. && cmkb
 }
