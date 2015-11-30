@@ -30,6 +30,8 @@ PS1="${BLUE}(${RED}\w${BLUE}) ${NORMAL}\u@\h \n ${RED}\$ ${NORMAL}"
 # --- Paths ---
 if [ -x /opt/gcc-4.9.2 ]
 then
+  export CXX=/opt/gcc-4.9.2/bin/g++
+  export CC=/opt/gcc-4.9.2/bin/gcc
   export PATH=/opt/gcc-4.9.2/bin:${PATH}
   export LD_LIBRARY_PATH=/opt/gcc-4.9.2/lib64:${LD_LIBRARY_PATH}
 fi
@@ -144,4 +146,21 @@ function data() {
 # http://stackoverflow.com/questions/68372/what-is-your-single-most-favorite-command-line-trick-using-bash
 function top-ten() {
   history | awk '{print $2}' | awk 'BEGIN {FS="|"}{print $1}' | sort | uniq -c | sort -nr | head
+}
+
+# Mkdir and cd to it
+function mkd() {
+  d=$1
+  mkdir ${d} && cd ${d}
+}
+
+# Load, edit, source bashrc quickly
+function brc() {
+  vim ~/.bashrc
+  source ~/.bashrc
+}
+
+# CBB to type that every time...
+function cmkr() {
+  cmake -DCMAKE_BUILD_TYPE=Release ..
 }
