@@ -177,3 +177,9 @@ function cmkb() {
 function cmkcb() {
   .. && cmkb
 }
+
+# Commit, and push all changes in current dir
+function gpall() {
+  msg=$1
+  git commit -am "${msg}" && git push
+}
