@@ -170,6 +170,10 @@ function cmkr() {
   cmake -DCMAKE_BUILD_TYPE=Release ..
 }
 
+function cmkd() {
+  cmake -DCMAKE_BUILD_TYPE=Debug ..
+}
+
 function cmkb() {
   rm -rf build && mkd build && cmkr
 }
@@ -183,3 +187,20 @@ function gpall() {
   msg=$1
   git commit -am "${msg}" && git push
 }
+
+function gst() {
+  git status
+}
+
+function gdi() {
+  git diff
+}
+
+function gco() {
+  git checkout $@
+}
+
+function gundo() {
+  git reset --soft HEAD~
+}
+
