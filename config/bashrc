@@ -27,6 +27,14 @@ BLUE='\[\033[0;34m\]'
 NORMAL='\[\033[00m\]'
 PS1="${BLUE}(${RED}\w${BLUE}) ${NORMAL}\u@\h \n ${RED}\$ ${NORMAL}"
 
+# --- Paths ---
+if [ -x /opt/gcc-4.9.2 ]
+then
+  export PATH=/opt/gcc-4.9.2/bin:${PATH}
+  export LD_LIBRARY_PATH=/opt/gcc-4.9.2/lib64:${LD_LIBRARY_PATH}
+fi
+
+
 # --- Aliases ---
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -122,6 +130,14 @@ function max-set() {
 
          echo "Updated MAXELER tools"
          max-show
+}
+
+function scratch() {
+  cd /mnt/data/scratch/${USER}/workspaces
+}
+
+function data() {
+  cd /mnt/data/cccad3/${USER}/workspaces
 }
 
 # Lists top 10 commands used. Not sure how well this works with ignoredup set...
