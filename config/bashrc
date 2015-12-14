@@ -100,10 +100,6 @@ function myfu() {
     find -maxdepth 1 -type d | __countFiles | sort -h -r
 }
 
-function cd() {
-    builtin cd "$@" && ls
-}
-
 # create a new, empty pandoc project
 function pandoc-init() {
     if [[ "$#" -ne 1 ]]; then
@@ -204,3 +200,12 @@ function gundo() {
   git reset --soft HEAD~
 }
 
+function gamend() {
+  git commit --amend -m "$1"
+}
+
+function pdf_crop() {
+  tmp="pdf_cropped_tmp.pdf"
+  pdfcrop ${1} ${tmp}
+  cp ${tmp} ${1}
+}
