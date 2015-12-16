@@ -209,3 +209,15 @@ function pdf_crop() {
   pdfcrop ${1} ${tmp}
   cp ${tmp} ${1}
 }
+
+function force_resolution() {
+  # Usage: force_resolution 1920 1080 60
+  resolution="$1 $2 $3"
+  modeline="$(gtf ${resolution} | tail -n 2 | head -n 1 | sed s/^.*Modeline//g)"
+  name=`echo ${modeline} | cut -f 1 -d' ' | sed s/\"//g`
+  echo "To add new mode run:"
+  echo "    xrandr --newmode $modeline"
+  echo "    xrandr --addmode <OUTPUT> ${name}"
+  echo "    xrandr --output  <OUTPUT> --mode ${name}"
+}
+
