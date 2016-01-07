@@ -80,12 +80,14 @@ let g:UltiSnipsUsePythonVersion = 2
 let g:UltiSnipsSnippetsDir="~/workspaces/dotfiles/vimsnippets"
 let g:UltiSnipsSnippetDirectories=["vimsnippets"]
 let g:ycm_key_list_previous_completion=['<Up>']
+let g:ycm_autoclose_preview_window_after_completion = 1
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:org_agenda_files=[g:DropboxPath . '/gtd/*.org', g:DropboxPath . '/gtd/projects/*.org']
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
+let g:ctrlp_max_files=20000
 let g:LatexBox_Folding = 1
 let g:LatexBox_latexmk_preview_continuously = 1
 let g:LatexBox_quickfix = 2
@@ -93,7 +95,7 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:LatexBox_latexmk_options = '-bibtex'
 
 set wildignore=*/.git/*,*/.hg/*,*/.svn/*,*/build/*,*.o,*.class
-let g:ctrlp_max_files=20000
+set completeopt=menu
 
 " --- Customised Behaviour
 au BufRead,BufNewFile *.maxj setfiletype java
