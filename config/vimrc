@@ -93,6 +93,7 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:LatexBox_latexmk_options = '-bibtex'
 
 set wildignore=*/.git/*,*/.hg/*,*/.svn/*,*/build/*,*.o,*.class
+let g:ctrlp_max_files=20000
 
 " --- Customised Behaviour
 au BufRead,BufNewFile *.maxj setfiletype java
