@@ -87,7 +87,7 @@ function display-dual-left-of() {
 # display disk usage in human readable format, largest file first
 function mydu() {
     echo "Checking disk usage. This may take a while..."
-    du -d 1 -h -a | sort -h
+    du --max-depth 1 -h -a | sort -h
 }
 
 function __countFiles() {
