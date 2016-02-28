@@ -19,7 +19,7 @@ NeoBundle 'Align'
 NeoBundle 'flazz/vim-colorschemes'
 " Add or remove your Bundles here:
 NeoBundle 'xolox/vim-misc'
-NeoBundle 'xolox/vim-easytags'
+"NeoBundle 'xolox/vim-easytags'
 NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'taglist.vim'
@@ -94,7 +94,7 @@ let g:LatexBox_quickfix = 2
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:LatexBox_latexmk_options = '-bibtex'
 
-set wildignore=*/.git/*,*/.hg/*,*/.svn/*,*/build/*,*.o,*.class
+set wildignore=*/.git/*,*/.hg/*,*/.svn/*,*/build/*,*.o,*.class,*/lib-build/*
 set completeopt=menu
 
 " --- Customised Behaviour
@@ -104,7 +104,7 @@ au BufRead,BufNewFile *.md setlocal spell spelllang=en_gb
 autocmd BufWritePre * :FixWhitespace
 autocmd BufNewFile,BufRead *.md setlocal omnifunc=VimCitComplete
 autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
-autocmd BufWritePost *.c,*.cpp,*.h,*.java,*.maxj :TlistUpdate
+"autocmd BufWritePost *.c,*.cpp,*.h,*.java,*.maxj :TlistUpdate
 
 command! Gtd e /data/Dropbox/gtd/gtd.org
 
@@ -157,7 +157,6 @@ nnoremap H ^
 nnoremap L $
 inoremap jk <esc>
 inoremap jj <esc>:w<cr>
-inoremap <esc> <nop>
 
 map <C-i> :ClangFormat<cr>
 
