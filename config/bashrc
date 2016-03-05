@@ -204,6 +204,10 @@ function gamend() {
   git commit --amend -m "$1"
 }
 
+function guntracked() {
+  git ls-files --others --exclude-standard
+}
+
 function pdf_crop() {
   tmp="pdf_cropped_tmp.pdf"
   pdfcrop ${1} ${tmp}
