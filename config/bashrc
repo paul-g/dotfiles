@@ -36,6 +36,26 @@ then
   export LD_LIBRARY_PATH=/opt/gcc-4.9.2/lib64:${LD_LIBRARY_PATH}
 fi
 
+if [ -e /opt/Xilinx/Vivado/2015.4/ ]
+then
+  export VIVADO_HOME=/opt/Xilinx/Vivado/2015.4/
+fi
+
+if [ -e /usr/lib/jvm/jdk1.8.0_01 ]
+then
+  export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_91
+fi
+
+if [ -e /usr/share/ant/bin ]
+then
+  export ANT_ROOT=/usr/share/ant/bin
+  export PATH=$ANT_ROOT:$PATH
+fi
+
+if [ -e ~/dotfiles/scripts/ ]
+then
+  export PATH=$PATH:~/dotfiles/scripts
+fi
 
 # --- Aliases ---
 if [ -x /usr/bin/dircolors ]; then
@@ -225,3 +245,20 @@ function force_resolution() {
   echo "    xrandr --output  <OUTPUT> --mode ${name}"
 }
 
+function my_work_setup() {
+  centerM=DisplayPort-0
+  leftM=HDMI-1
+  rightM=eDP-0
+
+  xrandr --output ${rightM} --right-of ${centerM}
+  xrandr --output ${leftM} --left-of ${centerM}
+
+  # Note: this is obsolete in Ubuntu 14.04 (?)
+  setxkbmap us
+}
+
+
+function my_home_setup() {
+  setxkbmap gb
+  xrandr --auto
+}
