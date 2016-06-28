@@ -112,6 +112,7 @@ then
 fi
 
 install "vimrc" "${force_install}"
+install "ideavimrc" "${force_install}"
 install "tmux.conf" "${force_install}"
 install "gitconfig" "${force_install}"
 install "bashrc" "${force_install}"
