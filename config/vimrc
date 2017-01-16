@@ -1,65 +1,40 @@
-"NeoBundle Scripts-----------------------------
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
-
-  " Required:
-  set runtimepath+=/data/pg1709/.vim/bundle/neobundle.vim/
-endif
-
-" Required:
-call neobundle#begin(expand('/data/pg1709/.vim/bundle'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-NeoBundle 'Align'
-NeoBundle 'flazz/vim-colorschemes'
-" Add or remove your Bundles here:
-NeoBundle 'xolox/vim-misc'
-"NeoBundle 'xolox/vim-easytags'
-NeoBundle 'easymotion/vim-easymotion'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'taglist.vim'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'bronson/vim-trailing-whitespace'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-speeddating'
-NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'tpope/vim-sensible'
-NeoBundle 'jceb/vim-orgmode'
-NeoBundle 'rdnetto/YCM-Generator'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'wting/rust.vim'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'mattn/calendar-vim'
-NeoBundle 'utl.vim'
-NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
-NeoBundle 'rhysd/vim-clang-format'
-" Required:
-call neobundle#end()
+call plug#begin('~/.vim/plugged')
+Plug 'Align'
+Plug 'flazz/vim-colorschemes'
+Plug 'lervag/vimtex'
+Plug 'xolox/vim-misc'
+Plug 'easymotion/vim-easymotion'
+Plug 'majutsushi/tagbar'
+Plug 'taglist.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'Shougo/vimshell', { 'rev' : '3787e5' }
+Plug 'SirVer/ultisnips'
+Plug 'Valloric/YouCompleteMe'
+Plug 'bling/vim-airline'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'honza/vim-snippets'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-sensible'
+Plug 'jceb/vim-orgmode'
+Plug 'rdnetto/YCM-Generator'
+Plug 'pangloss/vim-javascript'
+Plug 'wting/rust.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'rking/ag.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'mattn/calendar-vim'
+Plug 'utl.vim'
+Plug 'rhysd/vim-clang-format'
+call plug#end()
 
 " Required:
 filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-"End NeoBundle Scripts-------------------------
-"
 
 set runtimepath+=~/workspaces/dotfiles
 
@@ -88,9 +63,6 @@ let g:org_agenda_files=[g:DropboxPath . '/gtd/*.org', g:DropboxPath . '/gtd/proj
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 let g:ctrlp_max_files=20000
-let g:LatexBox_Folding = 1
-let g:LatexBox_latexmk_preview_continuously = 1
-let g:LatexBox_quickfix = 2
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:LatexBox_latexmk_options = '-bibtex'
 
@@ -101,7 +73,7 @@ set completeopt=menu
 au BufRead,BufNewFile *.maxj setfiletype java
 au BufRead,BufNewFile *.md setlocal spell spelllang=en_gb
 
-autocmd BufWritePre * :FixWhitespace
+" autocmd BufWritePre * :FixWhitespace
 autocmd BufNewFile,BufRead *.md setlocal omnifunc=VimCitComplete
 autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 "autocmd BufWritePost *.c,*.cpp,*.h,*.java,*.maxj :TlistUpdate
@@ -163,3 +135,5 @@ map <C-i> :ClangFormat<cr>
 set tags=./tags;
 let g:Tlist_Auto_Update = 1
 let g:easytags_dynamic_files = 1
+let g:latex_view_general_viewer = 'zathura'
+let g:vimtex_view_method = "zathura"
