@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
 Plug 'Align'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'flazz/vim-colorschemes'
 Plug 'lervag/vimtex'
 Plug 'xolox/vim-misc'
@@ -42,10 +43,6 @@ set runtimepath+=~/workspaces/dotfiles
 let g:DropboxPath="/data/Dropbox"
 
 " --- Plugin Configuration
-let g:VimCitBibPath="~/workspaces/textito/"
-let g:VimCitPdfPath=g:DropboxPath . "/refdb/papers"
-let g:VimCitPdfViewer="evince"
-let g:VimCitNotesPath=g:DropboxPath . "/refdb/notes"
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
@@ -74,7 +71,6 @@ au BufRead,BufNewFile *.maxj setfiletype java
 au BufRead,BufNewFile *.md setlocal spell spelllang=en_gb
 
 " autocmd BufWritePre * :FixWhitespace
-autocmd BufNewFile,BufRead *.md setlocal omnifunc=VimCitComplete
 autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 "autocmd BufWritePost *.c,*.cpp,*.h,*.java,*.maxj :TlistUpdate
 
@@ -137,3 +133,49 @@ let g:Tlist_Auto_Update = 1
 let g:easytags_dynamic_files = 1
 let g:latex_view_general_viewer = 'zathura'
 let g:vimtex_view_method = "zathura"
+
+" --- Fuzzy find for latex citations based on FZF
+function! Strip(input_string)
+  return substitute(a:input_string, '^\s*\(.\{-}\)\s*$', '\1', '')
+endfunction
+
+let g:BibPath="~/workspaces/textito/"
+
+fun! ParseBib()
+  let parsingEntry = 0
+  let entryId = ''
+  let entries = []
+  for line in readfile(glob(g:BibPath . "/bibliography.bib"), '')
+      if line =~? '@STRING'
+        continue
+      endif
+      if line =~ '@'
+        let parsingEntry = 1
+        let id = substitute(line, '@.*{\|,', "", "g")
+      continue
+    endif
+    if line =~? 'title' && line !~? 'booktitle'
+      let title = substitute(line, 'title\s*=\s*\|,\|{\|}', "", "g")
+      let parsingEntry = parsingEntry + 1
+    endif
+    if line =~? 'author'
+      let author = substitute(line, 'author\s*=\s*\|,\|{\|}', "", "g")
+      let parsingEntry = parsingEntry + 1
+    endif
+    if parsingEntry == 3
+      call add(entries, Strip(author) . " -- " . Strip(title) . " | " . Strip(id))
+      let parsingEntry = 0
+    endif
+  endfor
+  return entries
+endfun
+
+fun! s:WriteBibtexId(line)
+  let bibtexId = substitute(a:line, '.*| ', "", "g")
+  execute "normal! a" . bibtexId
+endfun
+
+command! FzfCiteSearch call fzf#run({'source': ParseBib(), 'sink': function('s:WriteBibtexId')})
+
+" TODO only needed in tex files
+inoremap <C-l> <esc>:FzfCiteSearch<CR>a
