@@ -106,15 +106,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-no <down> <Nop>
-no <left> <Nop>
-no <right> <Nop>
-no <up> <Nop>
-ino <down> <Nop>
-ino <left> <Nop>
-ino <right> <Nop>
-ino <up> <Nop>
-
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>:q<cr>
 nnoremap <F5> :!<up><cr>
