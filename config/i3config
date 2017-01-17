@@ -150,7 +150,8 @@ bar {
 }
 
 #######################################################################
-exec xset m 5 1
+exec unity-settings-daemon
+exec xset m 7 1
 exec nm-applet
 exec --no-startup-id i3-msg 'workspace 2; exec chromium-browser; workspace 1'
 exec --no-startup-id i3-msg 'workspace 3; exec terminator -x vim; workspace 1'
