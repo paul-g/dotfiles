@@ -1,33 +1,19 @@
 # About
 
-My configs and customisations for:
+My config files for vim, bash, git, tmux, i3 etc.
 
-1. Emacs - [my fork](https://github.com/paul-g/prelude) of [prelude](https://github.com/tmalsburg/tango-plus-theme) with:
-   1. python (with [elpy](https://github.com/jorgenschaefer/elpy))
-   2. latex and markdown editing
-   3. reference management (with [helm-bibtex](https://github.com/tmalsburg/helm-bibtex))
-   4. slightly tweaked [tango+ theme](https://github.com/tmalsburg/tango-plus-theme)
-2. Useful scripts (bin/)
-3. Xmonad (xmonad/) -- shorter version of
-   [Vic Fryzel's](https://github.com/vicfryzel/xmonad-config) ir-black
-   config
-
-## Installation
+To install:
 
 ````
-clone <repo>
-cd <path_to_checkout>
-git submodule init && git submodule update
-bash install.sh
+git clone https://github.com/paul-g/dotfiles.git && cd dotfiles && git submodule update --init
 ````
 
-`install.sh`:
+Run `install.sh` to:
 
-1. Creates appropriate simlinks (e.g. `~/.emacs.el -> <path/to/checkout/emacs/emacs.el`)
-2. Installs a bunch of useful packages (when not present)
+1. Create dotfile simlinks (e.g. `~/.vimrc -> config/vimrc`)
+2. Install useful packages if not present
 
-## Additional Tweaks (Ubuntu 14)
+Additional system tweaks for Ubuntu 16:
 
 * To disable Ctrl-space ibus binding, run `dconf-editor` desktop -> ibus -> general -> hotkeys
-* To improve power saving, run `powertop` and set everything to good
-* To change keyboard layout use `dkpg-reconfigure keyboard-configuration`
+* Disable touchpad from BIOS
