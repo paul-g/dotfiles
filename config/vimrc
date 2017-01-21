@@ -37,6 +37,9 @@ filetype plugin indent on
 
 set runtimepath+=~/workspaces/dotfiles
 
+let mapleader=" "
+let maplocalleader=" "
+
 " --- Custom Configuration
 let g:DropboxPath="/data/Dropbox"
 
