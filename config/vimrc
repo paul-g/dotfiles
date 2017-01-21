@@ -1,10 +1,10 @@
 call plug#begin('~/.vim/plugged')
 Plug 'Align'
+Plug 'shougo/unite.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'flazz/vim-colorschemes'
 Plug 'lervag/vimtex'
 Plug 'xolox/vim-misc'
-Plug 'easymotion/vim-easymotion'
 Plug 'majutsushi/tagbar'
 Plug 'taglist.vim'
 Plug 'scrooloose/nerdtree'
@@ -21,7 +21,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-sensible'
-Plug 'jceb/vim-orgmode'
 Plug 'rdnetto/YCM-Generator'
 Plug 'pangloss/vim-javascript'
 Plug 'wting/rust.vim'
@@ -30,7 +29,6 @@ Plug 'rking/ag.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'mattn/calendar-vim'
-Plug 'utl.vim'
 Plug 'rhysd/vim-clang-format'
 call plug#end()
 
@@ -48,7 +46,6 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsUsePythonVersion = 2
 let g:UltiSnipsSnippetsDir="~/workspaces/dotfiles/vimsnippets"
 let g:UltiSnipsSnippetDirectories=["vimsnippets"]
 let g:ycm_key_list_previous_completion=['<Up>']
@@ -124,6 +121,7 @@ let g:Tlist_Auto_Update = 1
 let g:easytags_dynamic_files = 1
 let g:latex_view_general_viewer = 'zathura'
 let g:vimtex_view_method = "zathura"
+let g:vimtex_fold_enabled = 1
 
 " --- Fuzzy find for latex citations based on FZF
 function! Strip(input_string)
@@ -163,10 +161,15 @@ endfun
 
 fun! s:WriteBibtexId(line)
   let bibtexId = substitute(a:line, '.*| ', "", "g")
-  execute "normal! a" . bibtexId
+  execute "normal! a~\\cite{" . bibtexId . "}"
 endfun
 
-command! FzfCiteSearch call fzf#run({'source': ParseBib(), 'sink': function('s:WriteBibtexId')})
+command! FzfCiteSearch call fzf#run({'source': ParseBib(), 'sink': function('s:WriteBibtexId'), 'options': '-e'})
+
 
 " TODO only needed in tex files
 inoremap <C-l> <esc>:FzfCiteSearch<CR>a
+nnoremap <localleader>lt :<c-u>Unite vimtex_toc<cr>
+nnoremap <localleader>ly :<c-u>Unite vimtex_labels<cr>
+nnoremap <localleader>bb :b#<cr>
+
