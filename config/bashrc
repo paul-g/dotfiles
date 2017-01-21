@@ -246,9 +246,9 @@ function force_resolution() {
 }
 
 function my_work_setup() {
-  centerM=DisplayPort-0
-  leftM=HDMI-1
-  rightM=eDP-0
+  centerM=DP1
+  leftM=HDMI2
+  rightM=eDP1
 
   xrandr --output ${rightM} --right-of ${centerM}
   xrandr --output ${leftM} --left-of ${centerM}
