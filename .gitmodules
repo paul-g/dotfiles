@@ -1,3 +1,0 @@
-[submodule "lib/prelude"]
-	path = lib/prelude
-	url = https://github.com/paul-g/prelude.git
