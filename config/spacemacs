@@ -18,13 +18,16 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     javascript
+     html
+     vimscript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      pdf-tools
-     themes-megapack
+     ;; themes-megapack
      semantic
      (auto-completion
       :variables
@@ -32,9 +35,9 @@ values."
       auto-completion-enable-snippets-in-popup t
       auto-completion-tab-key-behavior 'cycle
       )
+     ycmd
      (c-c++ :variables c-c++-enable-clang-support t)
      python
-     ycmd
      gtags
      ess
      (latex
@@ -43,6 +46,7 @@ values."
       latex-enable-folding t
       latex-build-command "LatexMk"
       )
+     bibtex
      ;; cscope
      ;; better-defaults
      emacs-lisp
@@ -55,9 +59,9 @@ values."
      spell-checking
      syntax-checking
      version-control
-     ranger
-     spotify
-     personal
+     ;; ranger
+     ;; spotify
+     ;; personal
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -118,22 +122,14 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(
-                         ;; tango-plus
-                         ;; dorsey
-                         ;; spacemacs-dark
-                         ;; spacemacs-light
-                         ;; solarized-light
-                         ;; solarized-dark
-                         leuven
-                         ;; monokai
-                         zenburn
+   dotspacemacs-themes '(leuven
+                         spacemacs-dark
                          )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Ubuntu Mono"
                                :size 13
                                :weight normal
                                :width normal
@@ -233,7 +229,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers 'relative
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -258,9 +254,6 @@ values."
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
    dotspacemacs-whitespace-cleanup nil
-   ycmd-server-command '("python" "/home/paul-g/workspaces/ycmd/ycmd/")
-   ycmd-extra-conf-whitelist '("~/workspaces/corerain/pat/*")
-   ycmd-global-config "/home/paul-g/workspaces/ycmd/cpp/ycm/.ycm_extra_conf.py"
    ))
 
 (defun dotspacemacs/user-init ()
@@ -291,10 +284,32 @@ layers configuration. You are free to put any user code."
   (setq helm-bibtex-library-path '("/home/paul-g/workspaces/textito/refdb/papers"))
   (setq helm-bibtex-notes-path "/home/paul-g/workspaces/textito/refdb/notes")
   (setq helm-bibtex-notes-extension ".md")
-  ;; (setq helm-bibtex-library-path '("/data/Dropbox/refdb/papers/"))
-  ;; (setq helm-bibtex-notes-path "/data/Dropbox/refdb/notes.org")
+
+  (setq ycmd-server-command '("python" "/home/paul-g/workspaces/checkouts/ycmd/ycmd"))
+  (setq ycmd-force-semantic-completion t)
 
   (setq clang-format-style "Google")
+
+  ;; Add LLNCS latex style to org export; note that this will have to be in a
+  ;; path available to the latex compiler; for example in pdflatex / latexmk
+  ;; llncs.cls can be in the same directory the .org file being exported
+  (with-eval-after-load 'ox-latex
+    (add-to-list 'org-latex-classes
+                 '("org-llncs"
+                   "\\documentclass{llncs}
+                 [NO-DEFAULT-PACKAGES]
+                 [PACKAGES]
+                 [EXTRA]"
+                   ("\\section{%s}" . "\\section*{%s}")
+                   ("\\subsection{%s}" . "\\subsection*{%s}")
+                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+    )
+  ;; \hypersetup seems to break LLNCS and other styles
+  (with-eval-after-load 'ox-latex
+    (setq org-latex-with-hyperref nil)
+    )
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
