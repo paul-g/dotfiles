@@ -121,3 +121,4 @@ install "spacemacs" "${force_install}"
 install "i3status.conf" "${force_install}"
 
 mkdir "$HOME/.i3" -p && ln -s $(readlink -f config/i3config) ~/.i3/config
+ln -s $(readlink -f config/emacs.d/) ~/.emacs.d
