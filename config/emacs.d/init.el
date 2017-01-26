@@ -83,20 +83,36 @@
   :ensure t
   :init (global-evil-leader-mode)
   :config (progn
-	    (evil-leader/set-leader "<SPC>")))
+            (evil-leader/set-leader "<SPC>")
+            (evil-leader/set-key "xr" 'xref-find-references)
+            (evil-leader/set-key "xd" 'xref-find-definitions)
+            (evil-leader/set-key "xa" 'xref-find-apropos)
+            (evil-leader/set-key "bb" 'ido-switch-buffer)
+            (evil-leader/set-key "ff" 'ido-find-file)
+            (evil-leader/set-key "fr" 'ido-find-recentf)
+            (evil-leader/set-key "fp" 'projectile-find-file)
+            (evil-leader/set-key "fd" 'open-init)
+            (evil-leader/set-key "om" 'whitespace-mode)
+            (evil-leader/set-key "oc" 'whitespace-cleanup)
+            (evil-leader/set-key "ob" 'indent-buffer)
+            (which-key-add-key-based-replacements "<SPC> o" "formatting")
+            (which-key-add-key-based-replacements "<SPC> x" "xref")
+            (which-key-add-key-based-replacements "<SPC> x a" "apropos")
+            (which-key-add-key-based-replacements "<SPC> x r" "references")
+            (which-key-add-key-based-replacements "<SPC> x d" "definitions")))
 
 (use-package evil-magit
   :ensure t
   :config (progn
-	    (evil-leader/set-key "gs" 'magit-status)
-	    (which-key-add-key-based-replacements "<SPC> g" "git")))
+            (evil-leader/set-key "gs" 'magit-status)
+            (which-key-add-key-based-replacements "<SPC> g" "git")))
 
 (use-package evil-nerd-commenter
   :ensure t
   :config (progn
-	    (evil-leader/set-key "cl" 'evilnc-comment-or-uncomment-lines)
-	    (which-key-add-key-based-replacements "<SPC> c" "comment")
-	    (which-key-add-key-based-replacements "<SPC> c l" "line")))
+            (evil-leader/set-key "cl" 'evilnc-comment-or-uncomment-lines)
+            (which-key-add-key-based-replacements "<SPC> c" "comment")
+            (which-key-add-key-based-replacements "<SPC> c l" "line")))
 
 (use-package auto-complete
   :ensure t
