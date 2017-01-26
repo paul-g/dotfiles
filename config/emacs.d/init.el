@@ -71,6 +71,9 @@
 (use-package helm-helm-commands
   :ensure t)
 
+(use-package projectile
+  :ensure t)
+
 ; --- Org mode configuration
 (use-package org
   :ensure org-plus-contrib)
