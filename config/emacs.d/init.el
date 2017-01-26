@@ -45,11 +45,16 @@
 
 (use-package evil-magit
   :ensure t
-  :config (evil-leader/set-key "gs" 'magit-status))
+  :config (progn
+	    (evil-leader/set-key "gs" 'magit-status)
+	    (which-key-add-key-based-replacements "<SPC> g" "git")))
 
 (use-package evil-nerd-commenter
   :ensure t
-  :config (evil-leader/set-key "cl" 'evilnc-comment-or-uncomment-lines))
+  :config (progn
+	    (evil-leader/set-key "cl" 'evilnc-comment-or-uncomment-lines)
+	    (which-key-add-key-based-replacements "<SPC> c" "comment")
+	    (which-key-add-key-based-replacements "<SPC> c l" "line")))
 
 (use-package auto-complete
   :ensure t
