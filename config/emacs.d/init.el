@@ -1,7 +1,49 @@
-; Disable startup message, tool bar and menu bar
+;; Disable startup message, tool bar and menu bar
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
+(toggle-scroll-bar -1)
+
+;; Enable ido mode
+(require 'ido)
+(ido-mode t)
+(setq ido-enable-flex-matching t)
+; Vertical ido display
+(setq ido-decorations '("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]" "\n-> " ""))
+
+; spaces instead of tabs
+(setq-default indent-tabs-mode nil)
+
+; decent backup settings
+(setq
+   backup-by-copying t      ; don't clobber symlinks
+   backup-directory-alist
+    '(("." . "~/.saves"))    ; don't litter my fs tree
+   delete-old-versions t
+   kept-new-versions 6
+   kept-old-versions 2
+   version-control t)       ; use versioned backups
+
+; Save recent files
+(require 'recentf)
+(setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
+(recentf-mode 1)
+(setq recentf-max-menu-items 1000)
+
+(defun open-init()
+  (interactive)
+  (find-file (expand-file-name "~/.emacs.d/init.el")))
+
+(defun ido-find-recentf ()
+  (interactive)
+  (if (find-file (ido-completing-read "Find recent file: " recentf-list))
+      (message "Opening file...")
+    (message "Aborting")))
+
+(defun indent-buffer ()
+  (interactive)
+  (save-excursion
+    (indent-region (point-min) (point-max) nil)))
 
 ; Create separate file for customizations
 (setq custom-file "~/.emacs.d/custom.el")
