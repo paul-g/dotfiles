@@ -26,10 +26,6 @@
   :ensure t
   :config (which-key-mode))
 
-(use-package evil
-  :ensure t
-  :config (evil-mode))
-
 (use-package powerline
   :ensure t
   :config (powerline-center-evil-theme))
@@ -37,15 +33,31 @@
 (use-package magit
   :ensure t)
 
+(use-package evil
+  :ensure t
+  :config (evil-mode))
+
+(use-package evil-leader
+  :ensure t
+  :init (global-evil-leader-mode)
+  :config (progn
+	    (evil-leader/set-leader "<SPC>")))
+
 (use-package evil-magit
-  :ensure t)
+  :ensure t
+  :config (evil-leader/set-key "gs" 'magit-status))
 
 (use-package evil-nerd-commenter
-  :ensure t)
+  :ensure t
+  :config (evil-leader/set-key "cl" 'evilnc-comment-or-uncomment-lines))
 
 (use-package auto-complete
   :ensure t
   :config (global-auto-complete-mode t))
+
+(use-package ace-window
+  :ensure t
+  :config (evil-leader/set-key "w" 'ace-window))
 
 ; --- Helm
 (use-package helm
