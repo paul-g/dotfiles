@@ -8,25 +8,25 @@
 (require 'ido)
 (ido-mode t)
 (setq ido-enable-flex-matching t)
-; Vertical ido display
+;; Vertical ido display
 (setq ido-decorations '("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]" "\n-> " ""))
 
-; spaces instead of tabs
+;; spaces instead of tabs
 (setq-default indent-tabs-mode nil)
 
-; decent backup settings
+;; decent backup settings
 (setq
-   backup-by-copying t      ; don't clobber symlinks
-   backup-directory-alist
-    '(("." . "~/.saves"))    ; don't litter my fs tree
-   delete-old-versions t
-   kept-new-versions 6
-   kept-old-versions 2
-   version-control t)       ; use versioned backups
+ backup-by-copying t      ; don't clobber symlinks
+ backup-directory-alist
+ '(("." . "~/.saves"))    ; don't litter my fs tree
+ delete-old-versions t
+ kept-new-versions 6
+ kept-old-versions 2
+ version-control t)       ; use versioned backups
 
-; Save recent files
+;; Save recent files
 (require 'recentf)
-(setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
+(setq recentf-auto-cleanup 'never)
 (recentf-mode 1)
 (setq recentf-max-menu-items 1000)
 
@@ -45,11 +45,11 @@
   (save-excursion
     (indent-region (point-min) (point-max) nil)))
 
-; Create separate file for customizations
+;; Create separate file for customizations
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
-; --- Package configuration
+;; --- Package configuration
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
@@ -122,7 +122,7 @@
   :ensure t
   :config (evil-leader/set-key "w" 'ace-window))
 
-; --- Helm
+;; --- Helm
 (use-package helm
   :ensure t)
 
@@ -132,7 +132,7 @@
 (use-package projectile
   :ensure t)
 
-; --- Org mode configuration
+;; --- Org mode configuration
 (use-package org
   :ensure org-plus-contrib)
 
@@ -143,16 +143,16 @@
 
 (with-eval-after-load 'ox-latex
   (add-to-list 'org-latex-classes
-	       '("org-llncs"
-		 "\\documentclass{llncs}
-		 [NO-DEFAULT-PACKAGES]
-		 [PACKAGES]
-		 [EXTRA]"
-		 ("\\section{%s}" . "\\section*{%s}")
-		 ("\\subsection{%s}" . "\\subsection*{%s}")
-		 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-		 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-		 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+               '("org-llncs"
+                 "\\documentclass{llncs}
+                 [NO-DEFAULT-PACKAGES]
+                 [PACKAGES]
+                 [EXTRA]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
 ;; \hypersetup seems to break LLNCS and other styles
 (with-eval-after-load 'ox-latex
