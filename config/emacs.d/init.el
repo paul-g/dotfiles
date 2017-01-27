@@ -165,3 +165,4 @@
   (setq org-latex-with-hyperref nil))
 
 (load-theme 'leuven t)
+(set-default-font "Ubuntu Mono 11")
