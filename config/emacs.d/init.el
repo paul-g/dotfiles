@@ -157,3 +157,5 @@
 ;; \hypersetup seems to break LLNCS and other styles
 (with-eval-after-load 'ox-latex
   (setq org-latex-with-hyperref nil))
+
+(load-theme 'leuven t)
