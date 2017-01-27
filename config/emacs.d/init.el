@@ -45,6 +45,12 @@
   (save-excursion
     (indent-region (point-min) (point-max) nil)))
 
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
 ;; Create separate file for customizations
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
