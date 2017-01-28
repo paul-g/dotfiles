@@ -101,6 +101,9 @@
             (evil-leader/set-key "om" 'whitespace-mode)
             (evil-leader/set-key "oc" 'whitespace-cleanup)
             (evil-leader/set-key "ob" 'indent-buffer)
+            (evil-leader/set-key "pl" 'org-latex-export-to-pdf)
+            (evil-leader/set-key "pc" 'compile)
+            (evil-leader/set-key "pe" 'compile-goto-error)
             (which-key-add-key-based-replacements "<SPC> o" "formatting")
             (which-key-add-key-based-replacements "<SPC> x" "xref")
             (which-key-add-key-based-replacements "<SPC> x a" "apropos")
@@ -139,30 +142,7 @@
   :ensure t)
 
 ;; --- Org mode configuration
-(use-package org
-  :ensure org-plus-contrib)
-
-(use-package org-bullets
-  :ensure t
-  :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-
-(with-eval-after-load 'ox-latex
-  (add-to-list 'org-latex-classes
-               '("org-llncs"
-                 "\\documentclass{llncs}
-                 [NO-DEFAULT-PACKAGES]
-                 [PACKAGES]
-                 [EXTRA]"
-                 ("\\section{%s}" . "\\section*{%s}")
-                 ("\\subsection{%s}" . "\\subsection*{%s}")
-                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
-
-;; \hypersetup seems to break LLNCS and other styles
-(with-eval-after-load 'ox-latex
-  (setq org-latex-with-hyperref nil))
+(load-file "~/.emacs.d/init_org.el")
 
 (load-theme 'leuven t)
 (set-default-font "Ubuntu Mono 11")
