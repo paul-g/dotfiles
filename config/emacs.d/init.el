@@ -141,8 +141,21 @@
 (use-package projectile
   :ensure t)
 
+(setq init-org-file "~/.emacs.d/init_org.el")
+(setq init-autocomplete-file "~/.emacs.d/init_autocomplete.el")
+(setq init-experimental-file "~/.emacs.d/init_experimental.el")
+
 ;; --- Org mode configuration
-(load-file "~/.emacs.d/init_org.el")
+(if (file-exists-p init-org-file)
+    (load-file init-org-file))
+
+;; --- Auto complete settings
+(if (file-exists-p init-autocomplete-file)
+    (load-file init-autocomplete-file))
+
+;; --- Local experimental stuff
+(if (file-exists-p init-experimental-file)
+    (load-file init-experimental-file))
 
 (load-theme 'leuven t)
 (set-default-font "Ubuntu Mono 11")
