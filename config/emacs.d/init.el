@@ -158,5 +158,11 @@
 (if (file-exists-p init-experimental-file)
     (load-file init-experimental-file))
 
+(use-package srefactor
+  :ensure t
+  :config (progn
+            (semantic-mode 1)
+            (evil-leader/set-key "p r" 'srefactor-refactor-at-point)))
+
 (load-theme 'leuven t)
 (set-default-font "Ubuntu Mono 11")
