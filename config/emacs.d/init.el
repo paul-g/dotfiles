@@ -123,13 +123,13 @@
             (which-key-add-key-based-replacements "<SPC> c" "comment")
             (which-key-add-key-based-replacements "<SPC> c l" "line")))
 
-(use-package auto-complete
-  :ensure t
-  :config (global-auto-complete-mode t))
-
 (use-package ace-window
   :ensure t
   :config (evil-leader/set-key "w" 'ace-window))
+
+(use-package ace-jump-mode
+  :ensure t
+  :config (evil-leader/set-key "<SPC>" 'ace-jump-mode))
 
 ;; --- Helm
 (use-package helm
