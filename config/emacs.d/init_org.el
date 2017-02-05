@@ -47,3 +47,11 @@
 ;; \hypersetup seems to break LLNCS and other styles
 (with-eval-after-load 'ox-latex
   (setq org-latex-with-hyperref nil))
+
+;; set style for listings in org latex export
+(setq org-latex-listings 'listings)
+(setq org-latex-listings-options
+      '(("frame" "lines")
+        ("basicstyle" "\\footnotesize")
+        ("numbers" "left")
+        ("numberstyle" "\\tiny")))
