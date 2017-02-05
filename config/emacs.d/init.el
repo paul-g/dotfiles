@@ -67,27 +67,22 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+(setq use-package-always-ensure t)
 
-(use-package try
-  :ensure t)
+(use-package try)
 
 (use-package which-key
-  :ensure t
   :config (which-key-mode))
 
 (use-package powerline
-  :ensure t
   :config (powerline-center-evil-theme))
 
-(use-package magit
-  :ensure t)
+(use-package magit)
 
 (use-package evil
-  :ensure t
   :config (evil-mode))
 
 (use-package evil-leader
-  :ensure t
   :init (global-evil-leader-mode)
   :config (progn
             (evil-leader/set-leader "<SPC>")
@@ -112,35 +107,26 @@
             (which-key-add-key-based-replacements "<SPC> x d" "definitions")))
 
 (use-package evil-magit
-  :ensure t
   :config (progn
             (evil-leader/set-key "gs" 'magit-status)
             (which-key-add-key-based-replacements "<SPC> g" "git")))
 
 (use-package evil-nerd-commenter
-  :ensure t
   :config (progn
             (evil-leader/set-key "cl" 'evilnc-comment-or-uncomment-lines)
             (which-key-add-key-based-replacements "<SPC> c" "comment")
             (which-key-add-key-based-replacements "<SPC> c l" "line")))
 
 (use-package ace-window
-  :ensure t
   :config (evil-leader/set-key "w" 'ace-window))
 
 (use-package ace-jump-mode
-  :ensure t
   :config (evil-leader/set-key "<SPC>" 'ace-jump-mode))
 
 ;; --- Helm
-(use-package helm
-  :ensure t)
-
-(use-package helm-helm-commands
-  :ensure t)
-
-(use-package projectile
-  :ensure t)
+(use-package helm)
+(use-package helm-helm-commands)
+(use-package projectile)
 
 (setq init-org-file "~/.emacs.d/init_org.el")
 (setq init-autocomplete-file "~/.emacs.d/init_autocomplete.el")
