@@ -262,3 +262,12 @@ function my_home_setup() {
   setxkbmap gb
   xrandr --auto
 }
+
+function pdf4up() {
+  pdfjoin --nup 2x2 $@
+}
+
+function print_ictmono_landscape() {
+  lpr -P ICTMono -o landscape $@
+}
+  
