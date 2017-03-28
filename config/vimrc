@@ -1,49 +1,35 @@
+" Plugins {{{
 call plug#begin('~/.vim/plugged')
 Plug 'Align'
-Plug 'shougo/unite.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'flazz/vim-colorschemes'
-Plug 'lervag/vimtex'
 Plug 'xolox/vim-misc'
 Plug 'majutsushi/tagbar'
 Plug 'taglist.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
-Plug 'Shougo/vimshell', { 'rev' : '3787e5' }
+Plug 'scrooloose/nerdcommenter'
 Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe'
 Plug 'bling/vim-airline'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'honza/vim-snippets'
-Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-sensible'
 Plug 'rdnetto/YCM-Generator'
 Plug 'pangloss/vim-javascript'
-Plug 'wting/rust.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'rking/ag.vim'
-Plug 'altercation/vim-colors-solarized'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'mattn/calendar-vim'
 Plug 'rhysd/vim-clang-format'
+Plug 'lervag/vimtex'
 call plug#end()
+"}}}
 
-" Required:
+" Plugin Configuration {{{
 filetype plugin indent on
-
 set runtimepath+=~/workspaces/dotfiles
-
-let mapleader=" "
-let maplocalleader=" "
-
-" --- Custom Configuration
 let g:DropboxPath="/data/Dropbox"
-
-" --- Plugin Configuration
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
@@ -56,27 +42,29 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:org_agenda_files=[g:DropboxPath . '/gtd/*.org', g:DropboxPath . '/gtd/projects/*.org']
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 let g:ctrlp_max_files=20000
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-let g:LatexBox_latexmk_options = '-bibtex'
+set tags=./tags;
+let g:Tlist_Auto_Update = 1
+let g:easytags_dynamic_files = 1
+let g:vimtex_toc_enabled = 1
+let g:vimtex_view_method = "zathura"
+let g:vimtex_fold_enabled = 1
+"}}}
 
 set wildignore=*/.git/*,*/.hg/*,*/.svn/*,*/build/*,*.o,*.class,*/lib-build/*
-set completeopt=menu
 
-" --- Customised Behaviour
+" Auto commands {{{
 au BufRead,BufNewFile *.maxj setfiletype java
 au BufRead,BufNewFile *.md setlocal spell spelllang=en_gb
 
-" autocmd BufWritePre * :FixWhitespace
+autocmd BufWritePre * :FixWhitespace
 autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
-"autocmd BufWritePost *.c,*.cpp,*.h,*.java,*.maxj :TlistUpdate
-
-command! Gtd e /data/Dropbox/gtd/gtd.org
-
-" -- UI
+autocmd BufRead .vimrc setlocal foldmethod=marker
+"}}}
+" UI {{{
 set expandtab
 set tabstop=2
 set shiftwidth=2
@@ -92,15 +80,22 @@ set noswapfile
 set relativenumber
 set cursorline
 set shell=bash
-
+set lazyredraw
 syntax on
 colorscheme Tomorrow
+set completeopt=menu
+"}}}
 
-" -- Key bindings
-" ---- Code search
+" Key Bindings {{{
+" Remap leader to <space>
+let mapleader=" "
+let maplocalleader=" "
+
+" Code search
 nnoremap <F2> :CtrlPTag<CR>
 nnoremap gr :grep -I <cword> * --exclude-dir="build" -r<CR>:cw<CR>
 
+" Window Navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -117,62 +112,8 @@ nnoremap L $
 inoremap jk <esc>
 inoremap jj <esc>:w<cr>
 
-map <C-i> :ClangFormat<cr>
-
-set tags=./tags;
-let g:Tlist_Auto_Update = 1
-let g:easytags_dynamic_files = 1
-let g:latex_view_general_viewer = 'zathura'
-let g:vimtex_view_method = "zathura"
-let g:vimtex_fold_enabled = 1
-
-" --- Fuzzy find for latex citations based on FZF
-function! Strip(input_string)
-  return substitute(a:input_string, '^\s*\(.\{-}\)\s*$', '\1', '')
-endfunction
-
-let g:BibPath="~/workspaces/textito/"
-
-fun! ParseBib()
-  let parsingEntry = 0
-  let entryId = ''
-  let entries = []
-  for line in readfile(glob(g:BibPath . "/bibliography.bib"), '')
-      if line =~? '@STRING'
-        continue
-      endif
-      if line =~ '@'
-        let parsingEntry = 1
-        let id = substitute(line, '@.*{\|,', "", "g")
-      continue
-    endif
-    if line =~? 'title' && line !~? 'booktitle'
-      let title = substitute(line, 'title\s*=\s*\|,\|{\|}', "", "g")
-      let parsingEntry = parsingEntry + 1
-    endif
-    if line =~? 'author'
-      let author = substitute(line, 'author\s*=\s*\|,\|{\|}', "", "g")
-      let parsingEntry = parsingEntry + 1
-    endif
-    if parsingEntry == 3
-      call add(entries, Strip(author) . " -- " . Strip(title) . " | " . Strip(id))
-      let parsingEntry = 0
-    endif
-  endfor
-  return entries
-endfun
-
-fun! s:WriteBibtexId(line)
-  let bibtexId = substitute(a:line, '.*| ', "", "g")
-  execute "normal! a~\\cite{" . bibtexId . "}"
-endfun
-
-command! FzfCiteSearch call fzf#run({'source': ParseBib(), 'sink': function('s:WriteBibtexId'), 'options': '-e'})
-
-
 " TODO only needed in tex files
-inoremap <C-l> <esc>:FzfCiteSearch<CR>a
 nnoremap <localleader>lt :<c-u>Unite vimtex_toc<cr>
 nnoremap <localleader>ly :<c-u>Unite vimtex_labels<cr>
 nnoremap <localleader>bb :b#<cr>
-
+"}}}
