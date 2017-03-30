@@ -23,6 +23,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'rking/ag.vim'
 Plug 'rhysd/vim-clang-format'
 Plug 'lervag/vimtex'
+Plug 'hecal3/vim-leader-guide'
 call plug#end()
 "}}}
 
@@ -63,6 +64,7 @@ au BufRead,BufNewFile *.md setlocal spell spelllang=en_gb
 autocmd BufWritePre * :FixWhitespace
 autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 autocmd BufRead .vimrc setlocal foldmethod=marker
+autocmd BufRead *.tex setlocal spell spelllang=en_gb
 "}}}
 " UI {{{
 set expandtab
@@ -91,6 +93,14 @@ set completeopt=menu
 let mapleader=" "
 let maplocalleader=" "
 
+" Remap frequent actions to use leader
+nnoremap <localleader>w :w<CR>
+nnoremap <localleader>bb :b#<CR>
+nnoremap <localleader>fr :CtrlPMRU<CR>
+vnoremap <localleader>y "+y
+nnoremap <localleader>p "+p
+nnoremap <localleader>gs :Gstatus<CR>
+
 " Code search
 nnoremap <F2> :CtrlPTag<CR>
 nnoremap gr :grep -I <cword> * --exclude-dir="build" -r<CR>:cw<CR>
@@ -115,5 +125,10 @@ inoremap jj <esc>:w<cr>
 " TODO only needed in tex files
 nnoremap <localleader>lt :<c-u>Unite vimtex_toc<cr>
 nnoremap <localleader>ly :<c-u>Unite vimtex_labels<cr>
-nnoremap <localleader>bb :b#<cr>
+
+" Leader guide set up
+call leaderGuide#register_prefix_descriptions("<Space>", "g:lmap")
+nnoremap <silent> <leader> :<c-u>LeaderGuide '<Space>'<CR>
+vnoremap <silent> <leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
+
 "}}}
