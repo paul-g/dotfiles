@@ -1,1 +1,17 @@
 config/emacs.d/elpa
+/config/emacs.d/ac-comphist.dat
+config/emacs.d/*~
+config/emacs.d/#recentf#
+config/emacs.d/.mc-lists.el
+config/emacs.d/auto-save-list/
+config/emacs.d/custom.el
+config/emacs.d/ede-projects.el
+config/emacs.d/eshell/
+config/emacs.d/ido.last
+config/emacs.d/init_experimental.el
+config/emacs.d/projectile-bookmarks.eld
+config/emacs.d/recentf
+config/emacs.d/semanticdb/
+config/emacs.d/srecode-map.el
+config/emacs.d/tramp
+config/emacs.d/url/
