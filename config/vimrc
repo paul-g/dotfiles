@@ -1,5 +1,7 @@
 " Plugins {{{
 call plug#begin('~/.vim/plugged')
+Plug 'shougo/denite.nvim'
+Plug 'shougo/unite.vim'
 Plug 'Align'
 Plug 'flazz/vim-colorschemes'
 Plug 'xolox/vim-misc'
@@ -43,9 +45,11 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 let g:ctrlp_max_files=20000
+let g:ctrlp_custom_ignore={
+      \ 'file': '\v\.(aux|bl|blg|fdb_latexmk|fls|lof|log|lot|out|pdf|synctex.gz|tdo|toc)$'
+      \ }
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 set tags=./tags;
 let g:Tlist_Auto_Update = 1
@@ -57,15 +61,6 @@ let g:vimtex_fold_enabled = 1
 
 set wildignore=*/.git/*,*/.hg/*,*/.svn/*,*/build/*,*.o,*.class,*/lib-build/*
 
-" Auto commands {{{
-au BufRead,BufNewFile *.maxj setfiletype java
-au BufRead,BufNewFile *.md setlocal spell spelllang=en_gb
-
-autocmd BufWritePre * :FixWhitespace
-autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
-autocmd BufRead .vimrc setlocal foldmethod=marker
-autocmd BufRead *.tex setlocal spell spelllang=en_gb
-"}}}
 " UI {{{
 set expandtab
 set tabstop=2
@@ -95,14 +90,16 @@ let maplocalleader=" "
 
 " Remap frequent actions to use leader
 nnoremap <localleader>w :w<CR>
-nnoremap <localleader>bb :b#<CR>
+nnoremap <localleader>bb :CtrlPBuffer<CR>
 nnoremap <localleader>fr :CtrlPMRU<CR>
+nnoremap <localleader>fd :e $MYVIMRC<CR>
+nnoremap <localleader>fs :source $MYVIMRC<CR>
+nnoremap <localleader>t :CtrlPTag<CR>
 vnoremap <localleader>y "+y
 nnoremap <localleader>p "+p
 nnoremap <localleader>gs :Gstatus<CR>
 
 " Code search
-nnoremap <F2> :CtrlPTag<CR>
 nnoremap gr :grep -I <cword> * --exclude-dir="build" -r<CR>:cw<CR>
 
 " Window Navigation
@@ -111,24 +108,47 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>:q<cr>
-nnoremap <F5> :!<up><cr>
-nnoremap <F6> :make <up><cr>
-nnoremap <F4> :source %<cr>
+nnoremap <F5> :!<up><CR>
+nnoremap <F6> :make <up><CR>
+nnoremap <F4> :source %<CR>
 nnoremap qq :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 nnoremap H ^
 nnoremap L $
 inoremap jk <esc>
-inoremap jj <esc>:w<cr>
+inoremap jj <esc>:w<CR>
+"}}}
 
-" TODO only needed in tex files
-nnoremap <localleader>lt :<c-u>Unite vimtex_toc<cr>
-nnoremap <localleader>ly :<c-u>Unite vimtex_labels<cr>
-
-" Leader guide set up
-call leaderGuide#register_prefix_descriptions("<Space>", "g:lmap")
+" Leader guide set up {{{
 nnoremap <silent> <leader> :<c-u>LeaderGuide '<Space>'<CR>
 vnoremap <silent> <leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
 
+let g:llmap = {}
+call leaderGuide#register_prefix_descriptions("<Space>", "g:llmap")
+"}}}
+
+" Auto commands {{{
+augroup filetype_maxj
+  au BufRead,BufNewFile *.maxj setfiletype java
+augroup END
+
+augroup filetype_all
+  au FileType * let g:llmap = {}
+  au BufWritePre * :FixWhitespace
+augroup END
+
+augroup filetype_vimrc
+  au BufRead .vimrc setlocal foldmethod=marker
+augroup END
+
+augroup filetype_tex
+  au FileType tex setlocal spell spelllang=en_gb
+  au FileType tex let g:llmap.l = { 'name' : 'vimtex' }
+  au FileType tex nnoremap <buffer> <localleader>lt :Denite unite:vimtex_toc<CR>
+  au FileType tex nnoremap <buffer> <localleader>ly :Denite unite:vimtex_labels<CR>
+augroup END
+
+augroup filetype_md
+  au BufNewFile,BufRead *.md setlocal filetype=markdown
+  au BufNewFile,BufRead *.md setlocal spell spelllang=en_gb
+augroup END
 "}}}
