@@ -4,7 +4,10 @@
 
 ;; Epic citation support 
 (use-package org-ref
-  :ensure t)
+  :ensure t
+  :config (setq
+           bibtex-completion-bibliography '("~/workspaces/textito/bibliography.bib")
+           org-ref-default-bibliography '("~/workspaces/textito/bibliography.bib")))
 
 ;; Display headings as fancy bullets
 (use-package org-bullets
@@ -44,6 +47,43 @@
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                  ("\\paragraph{%s}" . "\\paragraph*{%s}"))))
 
+(with-eval-after-load 'ox-latex
+  (add-to-list 'org-latex-classes
+               '("org-acm-trets"
+                 "\\documentclass[prodmode, acmtrets]{acmsmall}
+                 [NO-DEFAULT-PACKAGES]
+                 [PACKAGES]
+                 [EXTRA]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}"))))
+
+
+(with-eval-after-load 'ox-latex
+  (add-to-list 'org-latex-classes
+               '("org-ieee-conference"
+                 "\\documentclass[conference]{IEEEtran}
+                 [NO-DEFAULT-PACKAGES]
+                 [PACKAGES]
+                 [EXTRA]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}"))))
+
+(with-eval-after-load 'ox-latex
+  (add-to-list 'org-latex-classes
+               '("org-ieee-compsoc-journal"
+                 "\\documentclass[10pt,journal,compsoc]{IEEEtran}
+                 [NO-DEFAULT-PACKAGES]
+                 [PACKAGES]
+                 [EXTRA]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}"))))
+;; \hypersetup seems to break LLNCS and other styles
 ;; \hypersetup seems to break LLNCS and other styles
 (with-eval-after-load 'ox-latex
   (setq org-latex-with-hyperref nil))
@@ -55,3 +95,5 @@
         ("basicstyle" "\\footnotesize")
         ("numbers" "left")
         ("numberstyle" "\\tiny")))
+
+(setq org-agenda-files '("~/Dropbox/agendas"))

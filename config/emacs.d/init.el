@@ -61,6 +61,7 @@
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 
 (package-initialize)
 
@@ -70,6 +71,10 @@
 (setq use-package-always-ensure t)
 
 (use-package try)
+(use-package elpy
+  :pin elpy
+  :config (elpy-enable)
+  )
 
 (use-package which-key
   :config (which-key-mode))
@@ -78,6 +83,8 @@
   :config (powerline-center-evil-theme))
 
 (use-package magit)
+
+(use-package helm-gtags)
 
 (use-package evil
   :config (evil-mode))
@@ -92,14 +99,20 @@
             (evil-leader/set-key "bb" 'ido-switch-buffer)
             (evil-leader/set-key "ff" 'ido-find-file)
             (evil-leader/set-key "fr" 'ido-find-recentf)
-            (evil-leader/set-key "fp" 'projectile-find-file)
             (evil-leader/set-key "fd" 'open-init)
             (evil-leader/set-key "om" 'whitespace-mode)
             (evil-leader/set-key "oc" 'whitespace-cleanup)
             (evil-leader/set-key "ob" 'indent-buffer)
-            (evil-leader/set-key "pl" 'org-latex-export-to-pdf)
+            (evil-leader/set-key "pl" 'org-latex-export-to-latex)
+            (evil-leader/set-key "pf" 'projectile-find-file)
             (evil-leader/set-key "pc" 'compile)
+            (evil-leader/set-key "pd" 'helm-gtags-dwim)
             (evil-leader/set-key "pe" 'compile-goto-error)
+            (evil-leader/set-key "p>" 'next-error)
+            (evil-leader/set-key "p<" 'previous-error)
+            (evil-leader/set-key "sn" 'flyspell-goto-next-error)
+            (evil-leader/set-key "sa" 'flyspell-auto-correct-word)
+            (which-key-add-key-based-replacements "<SPC> p" "project")
             (which-key-add-key-based-replacements "<SPC> o" "formatting")
             (which-key-add-key-based-replacements "<SPC> x" "xref")
             (which-key-add-key-based-replacements "<SPC> x a" "apropos")
@@ -145,10 +158,15 @@
     (load-file init-experimental-file))
 
 (use-package srefactor
-  :ensure t
   :config (progn
+            (global-semanticdb-minor-mode 1)
+            (global-semantic-idle-scheduler-mode 1)
             (semantic-mode 1)
             (evil-leader/set-key "p r" 'srefactor-refactor-at-point)))
 
 (load-theme 'leuven t)
 (set-default-font "Ubuntu Mono 11")
+
+
+(use-package cmake-mode)
+(add-hook 'doc-view-mode-hook 'auto-revert-mode)
