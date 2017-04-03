@@ -11,7 +11,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'SirVer/ultisnips'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'bling/vim-airline'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -19,7 +19,7 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-sensible'
-Plug 'rdnetto/YCM-Generator'
+Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 Plug 'pangloss/vim-javascript'
 Plug 'airblade/vim-gitgutter'
 Plug 'rking/ag.vim'
@@ -27,41 +27,40 @@ Plug 'rhysd/vim-clang-format'
 Plug 'lervag/vimtex'
 Plug 'hecal3/vim-leader-guide'
 call plug#end()
-"}}}
 
-" Plugin Configuration {{{
-filetype plugin indent on
-set runtimepath+=~/workspaces/dotfiles
-let g:DropboxPath="/data/Dropbox"
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let g:UltiSnipsListSnippets="<c-l>"
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetsDir="~/workspaces/dotfiles/vimsnippets"
-let g:UltiSnipsSnippetDirectories=["vimsnippets"]
+" YCM Setup {{{
 let g:ycm_key_list_previous_completion=['<Up>']
 let g:ycm_autoclose_preview_window_after_completion = 1
+"}}}
+" UltiSnips {{{
+set runtimepath+=~/workspaces/dotfiles
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories=["vimsnippets"]
+"}}}
+" Airline {{{
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+"}}}
+" CtrlP {{{
 let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 let g:ctrlp_max_files=20000
 let g:ctrlp_custom_ignore={
       \ 'file': '\v\.(aux|bl|blg|fdb_latexmk|fls|lof|log|lot|out|pdf|synctex.gz|tdo|toc)$'
       \ }
+"}}}
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-set tags=./tags;
 let g:Tlist_Auto_Update = 1
 let g:easytags_dynamic_files = 1
-let g:vimtex_toc_enabled = 1
-let g:vimtex_view_method = "zathura"
-let g:vimtex_fold_enabled = 1
 "}}}
-
+" Vim Behaviour {{{
+filetype plugin indent on
+set tags=./tags;
 set wildignore=*/.git/*,*/.hg/*,*/.svn/*,*/build/*,*.o,*.class,*/lib-build/*
-
-" UI {{{
+set wildmode=longest,full
+"}}}
+" Vim UI {{{
 set expandtab
 set tabstop=2
 set shiftwidth=2
@@ -82,7 +81,6 @@ syntax on
 colorscheme Tomorrow
 set completeopt=menu
 "}}}
-
 " Key Bindings {{{
 " Remap leader to <space>
 let mapleader=" "
@@ -117,7 +115,6 @@ nnoremap L $
 inoremap jk <esc>
 inoremap jj <esc>:w<CR>
 "}}}
-
 " Leader guide set up {{{
 nnoremap <silent> <leader> :<c-u>LeaderGuide '<Space>'<CR>
 vnoremap <silent> <leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
@@ -125,7 +122,6 @@ vnoremap <silent> <leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
 let g:llmap = {}
 call leaderGuide#register_prefix_descriptions("<Space>", "g:llmap")
 "}}}
-
 " Auto commands {{{
 augroup filetype_maxj
   au BufRead,BufNewFile *.maxj setfiletype java
@@ -140,15 +136,35 @@ augroup filetype_vimrc
   au BufRead .vimrc setlocal foldmethod=marker
 augroup END
 
+augroup filetype_md
+  au BufNewFile,BufRead *.md setlocal filetype=markdown
+  au BufNewFile,BufRead *.md setlocal spell spelllang=en_gb
+augroup END
+"}}}
+" Vimtex and Latex Configuration {{{
+let g:vimtex_toc_enabled = 1
+let g:vimtex_view_method = "zathura"
+let g:vimtex_fold_enabled = 1
 augroup filetype_tex
   au FileType tex setlocal spell spelllang=en_gb
   au FileType tex let g:llmap.l = { 'name' : 'vimtex' }
   au FileType tex nnoremap <buffer> <localleader>lt :Denite unite:vimtex_toc<CR>
   au FileType tex nnoremap <buffer> <localleader>ly :Denite unite:vimtex_labels<CR>
 augroup END
-
-augroup filetype_md
-  au BufNewFile,BufRead *.md setlocal filetype=markdown
-  au BufNewFile,BufRead *.md setlocal spell spelllang=en_gb
-augroup END
+" Enable completion support with vimtex
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = [
+      \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
+      \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
+      \ 're!\\hyperref\[[^]]*',
+      \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
+      \ 're!\\(include(only)?|input){[^}]*',
+      \ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
+      \ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ 're!\\usepackage(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ 're!\\documentclass(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ ]
 "}}}
