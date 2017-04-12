@@ -141,18 +141,19 @@ function max-show() {
 function max-set() {
   mcdir=/vol/cc/opt/maxeler/maxcompiler-$1
   if [ -x ${mcdir} ]; then
+    pathToXilinx=/vol/cc/opt/Xilinx/13.3/ISE_DS
+    source ${pathToXilinx}/settings64.sh ${pathToXilinx}
+    export PATH=${PATH}:/vol/cc/opt/altera/13.1/quartus/bin
     export MAXCOMPILERDIR=${mcdir}
     source ${MAXCOMPILERDIR}/settings.sh
-    source /vol/cc/opt/Xilinx/13.3/ISE_DS/settings64.sh
-    export PATH=${PATH}:/vol/cc/opt/altera/13.1/quartus/bin
-    export LM_LICENSE_FILE=27000@chicken.doc.ic.ac.uk
     export MAXELEROSDIR=${MAXCOMPILERDIR}/lib/maxeleros-sim
+    export LM_LICENSE_FILE=27000@chicken.doc.ic.ac.uk
     echo "Updated MAXELER tools"
     max-show
     return
   fi
-
-  echo "Directory ${mcdir} doesn't exist"
+  echo "Could not find maxcompiler version"
+  max-show
 }
 
 function scratch() {
@@ -271,3 +272,5 @@ function print_ictmono_landscape() {
   lpr -P ICTMono -o landscape $@
 }
   
+
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
