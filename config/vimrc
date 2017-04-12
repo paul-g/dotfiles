@@ -1,5 +1,6 @@
 " Plugins {{{
 call plug#begin('~/.vim/plugged')
+Plug 'mileszs/ack.vim'
 Plug 'shougo/denite.nvim'
 Plug 'shougo/unite.vim'
 Plug 'Align'
@@ -7,12 +8,12 @@ Plug 'flazz/vim-colorschemes'
 Plug 'xolox/vim-misc'
 Plug 'majutsushi/tagbar'
 Plug 'taglist.vim'
-Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'honza/vim-snippets'
@@ -22,10 +23,10 @@ Plug 'tpope/vim-sensible'
 Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 Plug 'pangloss/vim-javascript'
 Plug 'airblade/vim-gitgutter'
-Plug 'rking/ag.vim'
 Plug 'rhysd/vim-clang-format'
 Plug 'lervag/vimtex'
 Plug 'hecal3/vim-leader-guide'
+Plug 'nelstrom/vim-markdown-folding'
 call plug#end()
 
 " YCM Setup {{{
@@ -42,6 +43,7 @@ let g:UltiSnipsSnippetDirectories=["vimsnippets"]
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+let g:airline#extensions#ctrlp#color_template = 'normal'
 "}}}
 " CtrlP {{{
 let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
@@ -92,7 +94,10 @@ nnoremap <localleader>bb :CtrlPBuffer<CR>
 nnoremap <localleader>fr :CtrlPMRU<CR>
 nnoremap <localleader>fd :e $MYVIMRC<CR>
 nnoremap <localleader>fs :source $MYVIMRC<CR>
-nnoremap <localleader>t :CtrlPTag<CR>
+nnoremap <localleader>st :CtrlPTag<CR>
+nnoremap <localleader>s* :Ack! <C-R><C-W><CR>
+nnoremap <localleader>sd :YcmCompleter GoToDefinition<CR>
+nnoremap <localleader>sw :Ack!
 vnoremap <localleader>y "+y
 nnoremap <localleader>p "+p
 nnoremap <localleader>gs :Gstatus<CR>
@@ -114,6 +119,15 @@ nnoremap H ^
 nnoremap L $
 inoremap jk <esc>
 inoremap jj <esc>:w<CR>
+
+" Basic mappings for TODO management
+nnoremap <localleader>tdi i- [ ] ()
+nnoremap <localleader>tdd 0f[c3l[x]<esc>
+nnoremap <localleader>tdd 0f[c3l[x]<esc>
+nnoremap <localleader>tds :vimgrep /\[ \]/ %<esc>:copen<cr>
+nnoremap <localleader>tdS :vimgrep /\[ \]/ ~/Dropbox/logs/*.md<esc>:copen<cr>
+"nnoremap <localleader>tdc
+
 "}}}
 " Leader guide set up {{{
 nnoremap <silent> <leader> :<c-u>LeaderGuide '<Space>'<CR>
@@ -167,4 +181,19 @@ let g:ycm_semantic_triggers.tex = [
       \ 're!\\usepackage(\s*\[[^]]*\])?\s*\{[^}]*',
       \ 're!\\documentclass(\s*\[[^]]*\])?\s*\{[^}]*',
       \ ]
+"Disable some overzealous warnings in vimtex
+let g:vimtex_quickfix_latexlog = {
+      \ 'overfull' : 0,
+      \ 'underfull' : 0,
+      \ 'packages' : {
+      \   'default' : 0,
+      \ },
+      \}
 "}}}
+" Toggles {{{
+nnoremap <localleader>tc :let g:ycm_auto_trigger=1-g:ycm_auto_trigger<CR>:echo "YCM set to"g:ycm_auto_trigger<CR>
+"}}}
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar

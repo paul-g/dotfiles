@@ -41,9 +41,9 @@ then
   export VIVADO_HOME=/opt/Xilinx/Vivado/2015.4/
 fi
 
-if [ -e /usr/lib/jvm/jdk1.8.0_01 ]
+if [ -e /usr/lib/jvm/jdk1.8.0_121 ]
 then
-  export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_91
+  export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_121
 fi
 
 if [ -e /usr/share/ant/bin ]
@@ -268,9 +268,10 @@ function pdf4up() {
   pdfjoin --nup 2x2 $@
 }
 
+function pdf2up() {
+  pdfjoin --nup 1x2 $@
+}
+
 function print_ictmono_landscape() {
   lpr -P ICTMono -o landscape $@
 }
-  
-
-# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
