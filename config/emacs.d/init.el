@@ -149,7 +149,9 @@
             (setq TeX-source-correlate-mode t)
             (setq TeX-source-correlate-method 'synctex)
             (setq TeX-command-default "LatexMK")
-            (setq TeX-view-program-selection '((output-pdf "Zathura")))))
+            (setq TeX-view-program-selection '((output-pdf "Zathura")))
+            (evil-leader/set-key "lb" '(lambda () (interactive) (TeX-command "LatexMk" 'TeX-master-file -1)))
+            (evil-leader/set-key "lv" 'TeX-view)))
 
 (use-package auctex-latexmk
   :config (progn (auctex-latexmk-setup)
