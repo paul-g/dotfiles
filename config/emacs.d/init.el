@@ -141,6 +141,20 @@
 (use-package helm-helm-commands)
 (use-package projectile)
 
+(use-package tex
+  :defer t
+  :ensure auctex
+  :config (progn
+            (setq TeX-PDF-mode t)
+            (setq TeX-source-correlate-mode t)
+            (setq TeX-source-correlate-method 'synctex)
+            (setq TeX-command-default "LatexMK")
+            (setq TeX-view-program-selection '((output-pdf "Zathura")))))
+
+(use-package auctex-latexmk
+  :config (progn (auctex-latexmk-setup)
+                 (setq auctex-latexmk-inherit-TeX-PDF-mode t)))
+
 (setq init-org-file "~/.emacs.d/init_org.el")
 (setq init-autocomplete-file "~/.emacs.d/init_autocomplete.el")
 (setq init-experimental-file "~/.emacs.d/init_experimental.el")
