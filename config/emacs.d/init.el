@@ -153,6 +153,12 @@
             (evil-leader/set-key "lb" '(lambda () (interactive) (TeX-command "LatexMk" 'TeX-master-file -1)))
             (evil-leader/set-key "lv" 'TeX-view)))
 
+(add-hook 'LaTeX-mode-hook
+          (lambda ()
+            (TeX-fold-mode 1)
+            (add-hook 'find-file-hook 'TeX-fold-buffer t t)))
+
+
 (use-package auctex-latexmk
   :config (progn (auctex-latexmk-setup)
                  (setq auctex-latexmk-inherit-TeX-PDF-mode t)))
