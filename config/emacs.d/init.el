@@ -142,43 +142,15 @@
 (use-package helm-helm-commands)
 (use-package projectile)
 
-(use-package tex
-  :defer t
-  :ensure auctex
-  :config (progn
-            (setq TeX-PDF-mode t)
-            (setq TeX-source-correlate-mode t)
-            (setq TeX-source-correlate-method 'synctex)
-            (setq TeX-command-default "LatexMK")
-            (setq TeX-view-program-selection '((output-pdf "Zathura")))
-            (evil-leader/set-key "lb" '(lambda () (interactive) (TeX-command "LatexMk" 'TeX-master-file -1)))
-            (evil-leader/set-key "lv" 'TeX-view)))
+(defun check-load-file (f)
+  (interactive)
+  (message "Loading file")
+  (if (file-exists-p f) (load-file f)))
 
-(add-hook 'LaTeX-mode-hook
-          (lambda ()
-            (TeX-fold-mode 1)
-            (add-hook 'find-file-hook 'TeX-fold-buffer t t)))
-
-
-(use-package auctex-latexmk
-  :config (progn (auctex-latexmk-setup)
-                 (setq auctex-latexmk-inherit-TeX-PDF-mode t)))
-
-(setq init-org-file "~/.emacs.d/init_org.el")
-(setq init-autocomplete-file "~/.emacs.d/init_autocomplete.el")
-(setq init-experimental-file "~/.emacs.d/init_experimental.el")
-
-;; --- Org mode configuration
-(if (file-exists-p init-org-file)
-    (load-file init-org-file))
-
-;; --- Auto complete settings
-(if (file-exists-p init-autocomplete-file)
-    (load-file init-autocomplete-file))
-
-;; --- Local experimental stuff
-(if (file-exists-p init-experimental-file)
-    (load-file init-experimental-file))
+(mapc 'check-load-file '("~/.emacs.d/init_org.el"
+                         "~/.emacs.d/init_autocomplete.el"
+                         "~/.emacs.d/init_latex.el"
+                         "~/.emacs.d/init_experiemental.el"))
 
 (use-package srefactor
   :config (progn
