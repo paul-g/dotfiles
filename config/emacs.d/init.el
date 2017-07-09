@@ -86,38 +86,39 @@
 
 (use-package helm-gtags)
 
-(use-package evil
-  :config (evil-mode))
-
 (use-package evil-leader
   :init (global-evil-leader-mode)
   :config (progn
             (evil-leader/set-leader "<SPC>")
-            (evil-leader/set-key "xr" 'xref-find-references)
-            (evil-leader/set-key "xd" 'xref-find-definitions)
-            (evil-leader/set-key "xa" 'xref-find-apropos)
-            (evil-leader/set-key "bb" 'ido-switch-buffer)
-            (evil-leader/set-key "ff" 'ido-find-file)
-            (evil-leader/set-key "fr" 'ido-find-recentf)
-            (evil-leader/set-key "fd" 'open-init)
-            (evil-leader/set-key "om" 'whitespace-mode)
-            (evil-leader/set-key "oc" 'whitespace-cleanup)
-            (evil-leader/set-key "ob" 'indent-buffer)
-            (evil-leader/set-key "pl" 'org-latex-export-to-latex)
-            (evil-leader/set-key "pf" 'projectile-find-file)
-            (evil-leader/set-key "pc" 'compile)
-            (evil-leader/set-key "pd" 'helm-gtags-dwim)
-            (evil-leader/set-key "pe" 'compile-goto-error)
-            (evil-leader/set-key "p>" 'next-error)
-            (evil-leader/set-key "p<" 'previous-error)
-            (evil-leader/set-key "sn" 'flyspell-goto-next-error)
-            (evil-leader/set-key "sa" 'flyspell-auto-correct-word)
+            (evil-leader/set-key
+              "xr" 'xref-find-references
+              "xd" 'xref-find-definitions
+              "xa" 'xref-find-apropos
+              "bb" 'ido-switch-buffer
+              "ff" 'ido-find-file
+              "fr" 'ido-find-recentf
+              "fd" 'open-init
+              "om" 'whitespace-mode
+              "oc" 'whitespace-cleanup
+              "ob" 'indent-buffer
+              "pl" 'org-latex-export-to-latex
+              "pf" 'projectile-find-file
+              "pc" 'compile
+              "pd" 'helm-gtags-dwim
+              "pe" 'compile-goto-error
+              "p>" 'next-error
+              "p<" 'previous-error
+              "sn" 'flyspell-goto-next-error
+              "sa" 'flyspell-auto-correct-word)
             (which-key-add-key-based-replacements "<SPC> p" "project")
             (which-key-add-key-based-replacements "<SPC> o" "formatting")
             (which-key-add-key-based-replacements "<SPC> x" "xref")
             (which-key-add-key-based-replacements "<SPC> x a" "apropos")
             (which-key-add-key-based-replacements "<SPC> x r" "references")
             (which-key-add-key-based-replacements "<SPC> x d" "definitions")))
+
+(use-package evil
+  :config (evil-mode))
 
 (use-package evil-magit
   :config (progn
