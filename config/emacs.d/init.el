@@ -54,7 +54,7 @@
 
 ;; Create separate file for customizations
 (setq custom-file "~/.emacs.d/custom.el")
-(load custom-file)
+(if (file-exists-p custom-file) (load-file custom-file))
 
 ;; --- Package configuration
 (require 'package)
@@ -161,7 +161,13 @@
 
 (load-theme 'leuven t)
 (set-default-font "Ubuntu Mono 11")
+(global-hl-line-mode)
 
+(use-package nlinum-relative
+    :config
+    (nlinum-relative-setup-evil)
+    (evil-leader/set-key "tl" 'nlinum-mode)
+    (evil-leader/set-key "tr" 'nlinum-relative-toggle))
 
 (use-package cmake-mode)
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
