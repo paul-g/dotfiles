@@ -147,7 +147,8 @@
   (message "Loading file")
   (if (file-exists-p f) (load-file f)))
 
-(mapc 'check-load-file '("~/.emacs.d/init_org.el"
+(mapc 'check-load-file '("~/.emacs.d/init_local.el"
+                         "~/.emacs.d/init_org.el"
                          "~/.emacs.d/init_autocomplete.el"
                          "~/.emacs.d/init_latex.el"
                          "~/.emacs.d/init_experiemental.el"))
