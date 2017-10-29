@@ -236,14 +236,14 @@ function pdf_crop() {
 }
 
 function force_resolution() {
-  # Usage: force_resolution 1920 1080 60
+  # Usage: force_resolution 1920 1080 60 <OUTPUT>
   resolution="$1 $2 $3"
-  modeline="$(gtf ${resolution} | tail -n 2 | head -n 1 | sed s/^.*Modeline//g)"
-  name=`echo ${modeline} | cut -f 1 -d' ' | sed s/\"//g`
-  echo "To add new mode run:"
-  echo "    xrandr --newmode $modeline"
-  echo "    xrandr --addmode <OUTPUT> ${name}"
-  echo "    xrandr --output  <OUTPUT> --mode ${name}"
+  modeline=$(gtf ${resolution} | tail -n 2 | head -n 1 | sed s/^.*Modeline//g | sed s/\"//g)
+  name=`echo ${modeline} | cut -f 1 -d' '`
+  xrandr --newmode ${modeline}
+  xrandr --addmode $4 ${name}
+  echo "Setting resolution $1 x $2 for $4"
+  xrandr --output  $4 --mode ${name}
 }
 
 function my_work_setup() {
