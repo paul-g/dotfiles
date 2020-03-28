@@ -65,14 +65,10 @@ if [ "${install_packages}" == "1" ]
 then
   # Installing some useful packages
   echo "Installing some useful packages..."
-  packages=(alien ack-grep clang exuberant-ctags emacs24
+  packages=(ack-grep clang exuberant-ctags emacs24
             fakeroot gnuplot htop maven python python-pip
-            meld colordiff inkscape
-            pandoc subversion silversearcher-ag-el silversearcher-ag
-            texlive-full i3
-            valgrind terminator chromium-browser xscreensaver
-            python-numpy python-scipy python-matplotlib ipython
-            ipython-notebook python-pandas python-sympy python-nose)
+            meld colordiff pandoc i3
+	    valgrind terminator chromium-browser xscreensaver)
 
   for p in "${packages[@]}"; do
     installed=$(dpkg -s "$p" 2> /dev/null)
