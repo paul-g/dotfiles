@@ -1,17 +1,17 @@
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " Plugins {{{
 call plug#begin('~/.vim/plugged')
 Plug 'mileszs/ack.vim'
-Plug 'shougo/denite.nvim'
-Plug 'shougo/unite.vim'
-Plug 'Align'
 Plug 'flazz/vim-colorschemes'
 Plug 'xolox/vim-misc'
 Plug 'majutsushi/tagbar'
-Plug 'taglist.vim'
-Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'SirVer/ultisnips'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bronson/vim-trailing-whitespace'
@@ -20,19 +20,20 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-sensible'
-Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 Plug 'pangloss/vim-javascript'
 Plug 'airblade/vim-gitgutter'
 Plug 'rhysd/vim-clang-format'
 Plug 'lervag/vimtex'
 Plug 'hecal3/vim-leader-guide'
-Plug 'nelstrom/vim-markdown-folding'
+Plug 'dense-analysis/ale'
 call plug#end()
 
-" YCM Setup {{{
-let g:ycm_key_list_previous_completion=['<Up>']
-let g:ycm_autoclose_preview_window_after_completion = 1
-"}}}
+let g:ale_linters = {
+\   'python': ['pylint', 'pyls'],
+\}
+let g:ale_python_pylint_options='--disable=C0114,C0115,C0116,C0103'
+let g:ale_completion_enabled = 1
+
 " UltiSnips {{{
 set runtimepath+=~/workspaces/dotfiles
 let g:UltiSnipsExpandTrigger="<c-j>"
@@ -52,7 +53,6 @@ let g:ctrlp_custom_ignore={
       \ 'file': '\v\.(aux|bl|blg|fdb_latexmk|fls|lof|log|lot|out|pdf|synctex.gz|tdo|toc)$'
       \ }
 "}}}
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:Tlist_Auto_Update = 1
 let g:easytags_dynamic_files = 1
 "}}}
@@ -92,15 +92,20 @@ let maplocalleader=" "
 nnoremap <localleader>w :w<CR>
 nnoremap <localleader>bb :CtrlPBuffer<CR>
 nnoremap <localleader>fr :CtrlPMRU<CR>
-nnoremap <localleader>fd :e $MYVIMRC<CR>
-nnoremap <localleader>fs :source $MYVIMRC<CR>
+nnoremap <localleader>ve :e $MYVIMRC<CR>
+nnoremap <localleader>vs :source $MYVIMRC<CR>
 nnoremap <localleader>st :CtrlPTag<CR>
 nnoremap <localleader>s* :Ack! <C-R><C-W><CR>
-nnoremap <localleader>sd :YcmCompleter GoToDefinition<CR>
-nnoremap <localleader>sw :Ack!
 vnoremap <localleader>y "+y
 nnoremap <localleader>p "+p
+
+" Git
 nnoremap <localleader>gs :Gstatus<CR>
+nnoremap <localleader>gd :Gvdiff<CR>
+
+" Ale
+nnoremap <localleader>ag :ALEGoToDefinition<CR>
+nnoremap <localleader>ar :ALEFindReferences<CR>
 
 " Code search
 nnoremap gr :grep -I <cword> * --exclude-dir="build" -r<CR>:cw<CR>
@@ -162,25 +167,7 @@ let g:vimtex_fold_enabled = 1
 augroup filetype_tex
   au FileType tex setlocal spell spelllang=en_gb
   au FileType tex let g:llmap.l = { 'name' : 'vimtex' }
-  au FileType tex nnoremap <buffer> <localleader>lt :Denite unite:vimtex_toc<CR>
-  au FileType tex nnoremap <buffer> <localleader>ly :Denite unite:vimtex_labels<CR>
 augroup END
-" Enable completion support with vimtex
-if !exists('g:ycm_semantic_triggers')
-  let g:ycm_semantic_triggers = {}
-endif
-let g:ycm_semantic_triggers.tex = [
-      \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
-      \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
-      \ 're!\\hyperref\[[^]]*',
-      \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
-      \ 're!\\(include(only)?|input){[^}]*',
-      \ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
-      \ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
-      \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
-      \ 're!\\usepackage(\s*\[[^]]*\])?\s*\{[^}]*',
-      \ 're!\\documentclass(\s*\[[^]]*\])?\s*\{[^}]*',
-      \ ]
 "Disable some overzealous warnings in vimtex
 let g:vimtex_quickfix_latexlog = {
       \ 'overfull' : 0,
@@ -189,9 +176,6 @@ let g:vimtex_quickfix_latexlog = {
       \   'default' : 0,
       \ },
       \}
-"}}}
-" Toggles {{{
-nnoremap <localleader>tc :let g:ycm_auto_trigger=1-g:ycm_auto_trigger<CR>:echo "YCM set to"g:ycm_auto_trigger<CR>
 "}}}
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
