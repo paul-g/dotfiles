@@ -28,30 +28,6 @@ NORMAL='\[\033[00m\]'
 PS1="${BLUE}(${RED}\w${BLUE}) ${NORMAL}\u@\h \n ${RED}\$ ${NORMAL}"
 
 # --- Paths ---
-if [ -x /opt/gcc-4.9.2 ]
-then
-  export CXX=/opt/gcc-4.9.2/bin/g++
-  export CC=/opt/gcc-4.9.2/bin/gcc
-  export PATH=/opt/gcc-4.9.2/bin:${PATH}
-  export LD_LIBRARY_PATH=/opt/gcc-4.9.2/lib64:${LD_LIBRARY_PATH}
-fi
-
-if [ -e /opt/Xilinx/Vivado/2015.4/ ]
-then
-  export VIVADO_HOME=/opt/Xilinx/Vivado/2015.4/
-fi
-
-if [ -e /usr/lib/jvm/jdk1.8.0_121 ]
-then
-  export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_121
-fi
-
-if [ -e /usr/share/ant/bin ]
-then
-  export ANT_ROOT=/usr/share/ant/bin
-  export PATH=$ANT_ROOT:$PATH
-fi
-
 if [ -e ~/dotfiles/scripts/ ]
 then
   export PATH=$PATH:~/dotfiles/scripts
@@ -120,50 +96,6 @@ function myfu() {
     find -maxdepth 1 -type d | __countFiles | sort -h -r
 }
 
-# create a new, empty pandoc project
-function pandoc-init() {
-    if [[ "$#" -ne 1 ]]; then
-	echo "Usage: pandoc-init <Project Name>"
-	return
-    fi
-    pathToFile=`readlink ~/.bash_include`
-    cp `dirname $pathToFile`"/../templates/pandoc" $1 -r
-}
-
-function max-show() {
-  echo "Current settings: "
-  echo "    MAXCOMPILERDIR --> ${MAXCOMPILERDIR}"
-  echo "    MAXELEROSDIR   --> ${MAXELEROSDIR}"
-  echo "Available maxcompiler versions"
-  ls /vol/cc/opt/maxeler | grep maxcompiler | sed 's/maxcompiler-//g'
-}
-
-function max-set() {
-  mcdir=/vol/cc/opt/maxeler/maxcompiler-$1
-  if [ -x ${mcdir} ]; then
-    pathToXilinx=/vol/cc/opt/Xilinx/13.3/ISE_DS
-    source ${pathToXilinx}/settings64.sh ${pathToXilinx}
-    export PATH=${PATH}:/vol/cc/opt/altera/13.1/quartus/bin
-    export MAXCOMPILERDIR=${mcdir}
-    source ${MAXCOMPILERDIR}/settings.sh
-    export MAXELEROSDIR=${MAXCOMPILERDIR}/lib/maxeleros-sim
-    export LM_LICENSE_FILE=27000@chicken.doc.ic.ac.uk
-    echo "Updated MAXELER tools"
-    max-show
-    return
-  fi
-  echo "Could not find maxcompiler version"
-  max-show
-}
-
-function scratch() {
-  cd /mnt/data/scratch/${USER}/workspaces
-}
-
-function data() {
-  cd /mnt/data/cccad3/${USER}/workspaces
-}
-
 # Lists top 10 commands used. Not sure how well this works with ignoredup set...
 # http://stackoverflow.com/questions/68372/what-is-your-single-most-favorite-command-line-trick-using-bash
 function top-ten() {
@@ -176,13 +108,8 @@ function mkd() {
   mkdir ${d} && cd ${d}
 }
 
-# Load, edit, source bashrc quickly
-function brc() {
-  vim ~/.bashrc
-  source ~/.bashrc
-}
 
-# CBB to type that every time...
+###### CPP ######
 function cmkr() {
   cmake -DCMAKE_BUILD_TYPE=Release ..
 }
@@ -199,7 +126,7 @@ function cmkcb() {
   .. && cmkb
 }
 
-# Commit, and push all changes in current dir
+###### Git ######
 function gpall() {
   msg=$1
   git commit -am "${msg}" && git push
@@ -229,49 +156,9 @@ function guntracked() {
   git ls-files --others --exclude-standard
 }
 
-function pdf_crop() {
-  tmp="pdf_cropped_tmp.pdf"
-  pdfcrop ${1} ${tmp}
-  cp ${tmp} ${1}
+###### Py ######
+function py_mkenv() {
+  python3 -m venv .env/
+  chmod +x .env/bin/activate
 }
 
-function force_resolution() {
-  # Usage: force_resolution 1920 1080 60 <OUTPUT>
-  resolution="$1 $2 $3"
-  modeline=$(gtf ${resolution} | tail -n 2 | head -n 1 | sed s/^.*Modeline//g | sed s/\"//g)
-  name=`echo ${modeline} | cut -f 1 -d' '`
-  xrandr --newmode ${modeline}
-  xrandr --addmode $4 ${name}
-  echo "Setting resolution $1 x $2 for $4"
-  xrandr --output  $4 --mode ${name}
-}
-
-function my_work_setup() {
-  centerM=DP1
-  leftM=HDMI2
-  rightM=eDP1
-
-  xrandr --output ${rightM} --right-of ${centerM}
-  xrandr --output ${leftM} --left-of ${centerM}
-
-  # Note: this is obsolete in Ubuntu 14.04 (?)
-  setxkbmap us
-}
-
-
-function my_home_setup() {
-  setxkbmap gb
-  xrandr --auto
-}
-
-function pdf4up() {
-  pdfjoin --nup 2x2 $@
-}
-
-function pdf2up() {
-  pdfjoin --nup 1x2 $@
-}
-
-function print_ictmono_landscape() {
-  lpr -P ICTMono -o landscape $@
-}

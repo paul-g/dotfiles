@@ -107,14 +107,15 @@ then
   fi
 fi
 
-install "vimrc" "${force_install}"
-install "ideavimrc" "${force_install}"
+#install "vimrc" "${force_install}"
+#install "ideavimrc" "${force_install}"
 install "tmux.conf" "${force_install}"
 install "gitconfig" "${force_install}"
-install "bashrc" "${force_install}"
-install "inputrc" "${force_install}"
-install "spacemacs" "${force_install}"
-install "i3status.conf" "${force_install}"
+install "dotfiles" "${force_install}"
+#install "inputrc" "${force_install}"
 
-mkdir "$HOME/.i3" -p && ln -s $(readlink -f config/i3config) ~/.i3/config
-ln -s $(readlink -f config/emacs.d/) ~/.emacs.d
+#install "spacemacs" "${force_install}"
+#install "i3status.conf" "${force_install}"
+
+#mkdir "$HOME/.i3" -p && ln -s $(readlink -f config/i3config) ~/.i3/config
+#ln -s $(readlink -f config/emacs.d/) ~/.emacs.d
