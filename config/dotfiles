@@ -158,7 +158,7 @@ function guntracked() {
 
 ###### Py ######
 function py_mkenv() {
-  python3 -m venv .env/
-  chmod +x .env/bin/activate
+  python3 -m venv .pyenv/
+  chmod +x .pyenv/bin/activate
 }
 
